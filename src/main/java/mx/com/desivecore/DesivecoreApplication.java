@@ -1,13 +1,13 @@
-package com.example.demo;
+package mx.com.desivecore;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DesiveCoreApplication {
+public class DesivecoreApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DesiveCoreApplication.class, args);
+		SpringApplication.run(DesivecoreApplication.class, args);
 	}
 
 }
