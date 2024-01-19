@@ -32,7 +32,17 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		 */
 		// ACCESOS PARA GESTION DE SUCURSALES
 		// http.authorizeRequests().antMatchers(HttpMethod.GET,"/branch/view-all").hasAnyAuthority(PermissionEnum.BRANCHES_CREATE.toString());
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/branch/create").permitAll());
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/branch/update").permitAll());
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/branch/view-all").permitAll());
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/branch/view-detail/{id}").permitAll());
+		
+		//ACCESOS PARA LA GESTION DE CONFIGURACION DE ROLES Y PERMISOS 
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/security-configuration/create-role").permitAll());
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/security-configuration/view-role/list").permitAll());
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/security-configuration/view-role/detail/{id}").permitAll());
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/security-configuration/update-role").permitAll());
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/security-configuration/view-permission/list").permitAll());
 		/*
 		 * Se habiltan las para la obtención del token de acceso y acceso a consola h2
 		 * en dev
