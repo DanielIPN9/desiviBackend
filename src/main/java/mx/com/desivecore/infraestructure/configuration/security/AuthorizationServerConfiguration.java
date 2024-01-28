@@ -1,5 +1,7 @@
 package mx.com.desivecore.infraestructure.configuration.security;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,8 +31,8 @@ public class AuthorizationServerConfiguration  extends AuthorizationServerConfig
 	@Autowired
 	private JwtTokenStore jwtTokenStore;
 	
-//	@Autowired
-//	private AditionalInformationToken aditionalInformationToken;
+	@Autowired
+	private AditionalInformationToken aditionalInformationToken;
 	
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception{
@@ -52,7 +54,7 @@ public class AuthorizationServerConfiguration  extends AuthorizationServerConfig
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		
 		TokenEnhancerChain tokenEnhancer = new TokenEnhancerChain();
-		//tokenEnhancer.setTokenEnhancers(Arrays.asList(jwtAccessTokenConverter,aditionalInformationToken));
+		tokenEnhancer.setTokenEnhancers(Arrays.asList(jwtAccessTokenConverter,aditionalInformationToken));
 		
 		endpoints.pathMapping("/oauth/token", "/api/security/access/oauth/token")
 		.authenticationManager(authenticationManager).tokenStore(jwtTokenStore).reuseRefreshTokens(false)

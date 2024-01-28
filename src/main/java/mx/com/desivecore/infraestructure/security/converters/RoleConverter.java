@@ -32,8 +32,10 @@ public class RoleConverter {
 		rol.setRoleId(rolEntity.getId());
 		rol.setName(rolEntity.getName());
 		rol.setDescription(rolEntity.getDescription());
-		List<PermissionEntity> permissionEntityList = new ArrayList<>(rolEntity.getPermissions());
-		rol.setPermissions(permissionConverter.permissionEntityListToPermissionList(permissionEntityList));
+		if (rolEntity.getPermissions() != null) {
+			List<PermissionEntity> permissionEntityList = new ArrayList<>(rolEntity.getPermissions());
+			rol.setPermissions(permissionConverter.permissionEntityListToPermissionList(permissionEntityList));
+		}
 
 		return rol;
 	}

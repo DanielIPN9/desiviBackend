@@ -17,6 +17,8 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import mx.com.desivecore.commons.constants.PermissionEnum;
+
 @Configuration
 @EnableResourceServer
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -31,21 +33,27 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		 * Se deberan de registrar todas las url y el permiso correspondiente
 		 */
 		// ACCESOS PARA GESTION DE SUCURSALES
-		// http.authorizeRequests().antMatchers(HttpMethod.GET,"/branch/view-all").hasAnyAuthority(PermissionEnum.BRANCHES_CREATE.toString());
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/branch/create").permitAll());
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/branch/update").permitAll());
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/branch/view-all").permitAll());
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/branch/view-detail/{id}").permitAll());
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/branch/create").hasAuthority(PermissionEnum.BRANCH.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/branch/update").hasAuthority(PermissionEnum.BRANCH.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/branch/view-all").hasAuthority(PermissionEnum.BRANCH.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/branch/view-detail/{id}").hasAuthority(PermissionEnum.BRANCH.toString()));
 		
 		//ACCESOS PARA LA GESTION DE CONFIGURACION DE ROLES Y PERMISOS 
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/security-configuration/create-role").permitAll());
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/security-configuration/view-role/list").permitAll());
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/security-configuration/view-role/detail/{id}").permitAll());
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/security-configuration/update-role").permitAll());
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/security-configuration/view-permission/list").permitAll());
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/security-configuration/create-role").hasAuthority(PermissionEnum.ROLE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/security-configuration/view-role/list").hasAuthority(PermissionEnum.ROLE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/security-configuration/view-role/detail/{id}").hasAuthority(PermissionEnum.ROLE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/security-configuration/update-role").hasAuthority(PermissionEnum.ROLE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/security-configuration/view-permission/list").hasAuthority(PermissionEnum.ROLE.toString()));
+		
+		//ACCESOS PARA LA GESTION DE USUARIOS 
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/users/create").hasAuthority(PermissionEnum.USER.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/users/search").hasAuthority(PermissionEnum.USER.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/users/view-detail/{id}").hasAuthority(PermissionEnum.USER.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/users/view-all").hasAuthority(PermissionEnum.USER.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/users/update").hasAuthority(PermissionEnum.USER.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/users/change-status/{status}/{id}").hasAuthority(PermissionEnum.USER.toString()));
 		/*
-		 * Se habiltan las para la obtención del token de acceso y acceso a consola h2
-		 * en dev
+		 * Se habiltan las para la obtención del token de acceso
 		 */
 		http.authorizeRequests(requests -> requests.antMatchers("/oauth/token", "/api/security/access/oauth/token")
 				.permitAll().anyRequest().authenticated())

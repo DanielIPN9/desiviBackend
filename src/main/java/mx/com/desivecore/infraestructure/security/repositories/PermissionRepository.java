@@ -10,9 +10,10 @@ import org.springframework.stereotype.Repository;
 import mx.com.desivecore.infraestructure.security.entities.PermissionEntity;
 
 @Repository
-public interface PermissionRepository extends JpaRepository<PermissionEntity, Long>{
-	
-	@Query("SELECT DISTINCT new PermissionEntity(p.id, p.name) FROM PermissionEntity p INNER JOIN p.roles r INNER JOIN r.users u WHERE u.id=:id")
+public interface PermissionRepository extends JpaRepository<PermissionEntity, Long> {
+
+	@Query("SELECT DISTINCT new PermissionEntity(p.id, p.name) "
+			+ "FROM PermissionEntity p INNER JOIN p.roles r INNER JOIN r.users u WHERE u.userId=:userId")
 	List<PermissionEntity> findAllByUserId(@Param("userId") Long userId);
 
 }

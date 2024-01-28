@@ -12,7 +12,7 @@ public class ResponseModel {
 	
 	public ResponseModel(Object data) {
 		super();
-		this.message = "";
+		this.message = "Operación completada";
 		this.data = data;
 		this.statusCode = STATUS_CODE_SUCCESS;
 	}

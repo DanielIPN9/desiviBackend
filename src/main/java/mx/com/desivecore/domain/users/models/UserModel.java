@@ -1,12 +1,17 @@
 package mx.com.desivecore.domain.users.models;
 
-public class User {
+import java.util.List;
+
+import mx.com.desivecore.domain.branches.models.Branch;
+import mx.com.desivecore.domain.security.models.Rol;
+
+public class UserModel {
 
 	private Long userId;
 
-	private Long branchId;
+	private Branch branch;
 
-	private Long roleId;
+	private List<Rol> roles;
 
 	private String name;
 
@@ -22,6 +27,33 @@ public class User {
 
 	private boolean status;
 
+	public UserModel() {
+		super();
+	}
+
+	public UserModel(Long userId, Branch branch, List<Rol> roles, String name, String firstSurname,
+			String secondSurname, String email, String contactNumber, String password, boolean status) {
+		super();
+		this.userId = userId;
+		this.branch = branch;
+		this.roles = roles;
+		this.name = name;
+		this.firstSurname = firstSurname;
+		this.secondSurname = secondSurname;
+		this.email = email;
+		this.contactNumber = contactNumber;
+		this.password = password;
+		this.status = status;
+	}
+
+	public List<Rol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
+	}
+
 	public Long getUserId() {
 		return userId;
 	}
@@ -30,20 +62,12 @@ public class User {
 		this.userId = userId;
 	}
 
-	public Long getBranchId() {
-		return branchId;
+	public Branch getBranch() {
+		return branch;
 	}
 
-	public void setBranchId(Long branchId) {
-		this.branchId = branchId;
-	}
-
-	public Long getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(Long roleId) {
-		this.roleId = roleId;
+	public void setBranch(Branch branch) {
+		this.branch = branch;
 	}
 
 	public String getName() {
@@ -104,9 +128,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", branchId=" + branchId + ", roleId=" + roleId + ", name=" + name
+		return "UserModel [userId=" + userId + ", branch=" + branch + ", roles=" + roles + ", name=" + name
 				+ ", firstSurname=" + firstSurname + ", secondSurname=" + secondSurname + ", email=" + email
-				+ ", contactNumber=" + contactNumber + ", status=" + status + "]";
+				+ ", contactNumber=" + contactNumber + ", password=" + password + ", status=" + status + "]";
 	}
 
 }
