@@ -4,7 +4,10 @@ public enum PermissionEnum {
 	
 	BRANCH, 
 	ROLE, 
-	USER
+	USER, 
+	PRODUCT,
+	SUPPLIER,
+	CLIENT,
 	
 	;
 
