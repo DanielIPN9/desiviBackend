@@ -60,6 +60,12 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/product/view-detail/**").hasAuthority(PermissionEnum.PRODUCT.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/product/update").hasAuthority(PermissionEnum.PRODUCT.toString()));
 		
+		//ACCESOS PARA LA GESTION DE PRODUCTOS
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/client/create").hasAuthority(PermissionEnum.CLIENT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/client/view-all").hasAuthority(PermissionEnum.CLIENT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/client/view-detail/**").hasAuthority(PermissionEnum.CLIENT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/client/update").hasAuthority(PermissionEnum.CLIENT.toString()));
+		
 				
 		/*
 		 * Se habiltan las para la obtención del token de acceso
