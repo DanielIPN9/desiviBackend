@@ -60,12 +60,18 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/product/view-detail/**").hasAuthority(PermissionEnum.PRODUCT.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/product/update").hasAuthority(PermissionEnum.PRODUCT.toString()));
 		
-		//ACCESOS PARA LA GESTION DE PRODUCTOS
+		//ACCESOS PARA LA GESTION DE CLIENTES
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/client/create").hasAuthority(PermissionEnum.CLIENT.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/client/view-all").hasAuthority(PermissionEnum.CLIENT.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/client/view-detail/**").hasAuthority(PermissionEnum.CLIENT.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/client/update").hasAuthority(PermissionEnum.CLIENT.toString()));
 		
+		//ACCESOS PARA LA GESTION DE PROVEEDORES
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/supplier/create").hasAuthority(PermissionEnum.SUPPLIER.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/supplier/view-all").hasAuthority(PermissionEnum.SUPPLIER.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/supplier/view-detail/{supplierId}").hasAuthority(PermissionEnum.SUPPLIER.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/supplier/update").hasAuthority(PermissionEnum.SUPPLIER.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/supplier/change-status/{status}/{supplierId}").hasAuthority(PermissionEnum.SUPPLIER.toString()));
 				
 		/*
 		 * Se habiltan las para la obtención del token de acceso
