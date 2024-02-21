@@ -101,7 +101,7 @@ public class ProductPersistenceImpl implements ProductPersistencePort {
 
 			List<ProductAvailabilityEntity> productAvailabilityEntityList = productAvailabilityRepository
 					.findByProductId(productId);
-			if(!productAvailabilityEntityList.isEmpty())
+			if (!productAvailabilityEntityList.isEmpty())
 				product.setAvailability(productAvailabilityConverter
 						.productAvailabilityEntityListToProductAvailabilityList(productAvailabilityEntityList));
 
@@ -134,6 +134,21 @@ public class ProductPersistenceImpl implements ProductPersistencePort {
 			Optional<ProductEntity> productOptional = productRepository.findBySkuAndIdNot(null, productId);
 			if (productOptional.isPresent())
 				return productConverter.productEntityToProduct(productOptional.get());
+			return null;
+		} catch (Exception e) {
+			log.severe("EXCEPTION: " + e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public ProductAvailability findByProducIdAndBranchId(Long productId, Long branchId) {
+		try {
+			log.info("INIT findByProducIdAndBranchId()");
+			Optional<ProductAvailabilityEntity> optional = productAvailabilityRepository
+					.findByBranchIdAndProductId(branchId, productId);
+			if (optional.isPresent())
+				return productAvailabilityConverter.productAvailabilityEntityToProductAvailability(optional.get());
 			return null;
 		} catch (Exception e) {
 			log.severe("EXCEPTION: " + e.getMessage());

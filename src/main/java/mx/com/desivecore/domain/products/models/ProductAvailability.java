@@ -12,6 +12,22 @@ public class ProductAvailability {
 
 	private Double amount;
 
+	public ProductAvailability() {
+		super();
+	}
+
+	public ProductAvailability(Long id, Branch branch, Long productId, Double amount) {
+		super();
+		this.id = id;
+		this.branch = branch;
+		this.productId = productId;
+		this.amount = amount;
+	}
+
+	public void updateAvailability(Double amountEntry) {
+		amount = amount + amountEntry;
+	}
+
 	public Long getId() {
 		return id;
 	}

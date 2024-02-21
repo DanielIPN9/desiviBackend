@@ -12,6 +12,8 @@ public interface ProductPersistencePort {
 
 	void saveAvailability(List<ProductAvailability> productAvailabilityList, Product product);
 
+	ProductAvailability findByProducIdAndBranchId(Long productId, Long branchId);
+
 	List<Product> viewProductListByParams(ProductSearchParams productSearchParams);
 
 	List<Product> viewALLProduct();

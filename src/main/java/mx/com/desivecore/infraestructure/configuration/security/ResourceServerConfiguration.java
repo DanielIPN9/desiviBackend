@@ -72,6 +72,28 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/supplier/view-detail/{supplierId}").hasAuthority(PermissionEnum.SUPPLIER.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/supplier/update").hasAuthority(PermissionEnum.SUPPLIER.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/supplier/change-status/{status}/{supplierId}").hasAuthority(PermissionEnum.SUPPLIER.toString()));
+		
+		//ACCESOS PARA LA GESTION DE PROVEEDORES
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/remission-entry/create")
+				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(), PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/remission-entry/view-all")
+				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(), PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/remission-entry/view-detail/{remissionEntryId}")
+				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(), PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/remission-entry/search")
+				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(), PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/remission-entry/update")
+				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/remission-entry/view-history/{remissionEntryId}")
+				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/remission-entry/generate/document/{remissionEntryId}")
+				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(), PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/remission-entry/view-all/sipplier")
+				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(), PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/remission-entry/view-all/branch")
+				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(), PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/remission-entry/view-all/product")
+				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(), PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
 				
 		/*
 		 * Se habiltan las para la obtención del token de acceso
