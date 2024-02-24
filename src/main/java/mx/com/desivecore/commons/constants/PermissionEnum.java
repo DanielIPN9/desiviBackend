@@ -10,7 +10,7 @@ public enum PermissionEnum {
 	CLIENT,
 	REMISSION_ENTRY_GENERAL,
 	REMISSION_ENTRY_OPERATIONAL,
-	
+	PRODUCT_TAG
 	;
 
 }

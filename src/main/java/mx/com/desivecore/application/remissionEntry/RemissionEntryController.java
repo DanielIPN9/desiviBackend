@@ -83,11 +83,8 @@ public class RemissionEntryController {
 		log.info("INIT generateRemissionDocumentById()");
 		log.info(String.format("PARAMS: [%s]", remissionEntryId.toString()));
 		ResponseModel response = remissionEntryServicePort.generateRemissionDocumentById(remissionEntryId);
-
 		byte[] reporte = (byte[]) response.getData();
-
 		String encodedString = Base64.getEncoder().encodeToString(reporte);
-
 		return new ResponseEntity<>(new ResponseModel(encodedString), HttpStatus.OK);
 	}
 

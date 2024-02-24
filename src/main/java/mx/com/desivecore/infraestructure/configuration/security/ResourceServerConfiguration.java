@@ -33,68 +33,129 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		 * Se deberan de registrar todas las url y el permiso correspondiente
 		 */
 		// ACCESOS PARA GESTION DE SUCURSALES
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/branch/create").hasAuthority(PermissionEnum.BRANCH.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/branch/update").hasAuthority(PermissionEnum.BRANCH.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/branch/view-all").hasAuthority(PermissionEnum.BRANCH.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/branch/view-detail/{id}").hasAuthority(PermissionEnum.BRANCH.toString()));
-		
-		//ACCESOS PARA LA GESTION DE CONFIGURACION DE ROLES Y PERMISOS 
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/security-configuration/create-role").hasAuthority(PermissionEnum.ROLE.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/security-configuration/view-role/list").hasAuthority(PermissionEnum.ROLE.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/security-configuration/view-role/detail/{id}").hasAuthority(PermissionEnum.ROLE.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/security-configuration/update-role").hasAuthority(PermissionEnum.ROLE.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/security-configuration/view-permission/list").hasAuthority(PermissionEnum.ROLE.toString()));
-		
-		//ACCESOS PARA LA GESTION DE USUARIOS 
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/users/create").hasAuthority(PermissionEnum.USER.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/users/search").hasAuthority(PermissionEnum.USER.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/users/view-detail/{id}").hasAuthority(PermissionEnum.USER.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/users/view-all").hasAuthority(PermissionEnum.USER.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/users/update").hasAuthority(PermissionEnum.USER.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/users/change-status/{status}/{id}").hasAuthority(PermissionEnum.USER.toString()));
-		
-		//ACCESOS PARA LA GESTION DE PRODUCTOS
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/product/create").hasAuthority(PermissionEnum.PRODUCT.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/product/view-all").hasAuthority(PermissionEnum.PRODUCT.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/product/search").hasAuthority(PermissionEnum.PRODUCT.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/product/view-detail/**").hasAuthority(PermissionEnum.PRODUCT.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/product/update").hasAuthority(PermissionEnum.PRODUCT.toString()));
-		
-		//ACCESOS PARA LA GESTION DE CLIENTES
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/client/create").hasAuthority(PermissionEnum.CLIENT.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/client/view-all").hasAuthority(PermissionEnum.CLIENT.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/client/view-detail/**").hasAuthority(PermissionEnum.CLIENT.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/client/update").hasAuthority(PermissionEnum.CLIENT.toString()));
-		
-		//ACCESOS PARA LA GESTION DE PROVEEDORES
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/supplier/create").hasAuthority(PermissionEnum.SUPPLIER.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/supplier/view-all").hasAuthority(PermissionEnum.SUPPLIER.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/supplier/view-detail/{supplierId}").hasAuthority(PermissionEnum.SUPPLIER.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/supplier/update").hasAuthority(PermissionEnum.SUPPLIER.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/supplier/change-status/{status}/{supplierId}").hasAuthority(PermissionEnum.SUPPLIER.toString()));
-		
-		//ACCESOS PARA LA GESTION DE PROVEEDORES
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/branch/create")
+				.hasAuthority(PermissionEnum.BRANCH.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/branch/update")
+				.hasAuthority(PermissionEnum.BRANCH.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/branch/view-all")
+				.hasAuthority(PermissionEnum.BRANCH.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/branch/view-detail/{id}")
+				.hasAuthority(PermissionEnum.BRANCH.toString()));
+
+		// ACCESOS PARA LA GESTION DE CONFIGURACION DE ROLES Y PERMISOS
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/security-configuration/create-role")
+				.hasAuthority(PermissionEnum.ROLE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/security-configuration/view-role/list")
+						.hasAuthority(PermissionEnum.ROLE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/security-configuration/view-role/detail/{id}")
+						.hasAuthority(PermissionEnum.ROLE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/security-configuration/update-role")
+				.hasAuthority(PermissionEnum.ROLE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/security-configuration/view-permission/list")
+						.hasAuthority(PermissionEnum.ROLE.toString()));
+
+		// ACCESOS PARA LA GESTION DE USUARIOS
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/users/create")
+				.hasAuthority(PermissionEnum.USER.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/users/search")
+				.hasAuthority(PermissionEnum.USER.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/users/view-detail/{id}")
+				.hasAuthority(PermissionEnum.USER.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/users/view-all")
+				.hasAuthority(PermissionEnum.USER.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/users/update")
+				.hasAuthority(PermissionEnum.USER.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/users/change-status/{status}/{id}")
+				.hasAuthority(PermissionEnum.USER.toString()));
+
+		// ACCESOS PARA LA GESTION DE PRODUCTOS
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/product/create")
+				.hasAuthority(PermissionEnum.PRODUCT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/product/view-all")
+				.hasAuthority(PermissionEnum.PRODUCT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/product/search")
+				.hasAuthority(PermissionEnum.PRODUCT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/product/view-detail/**")
+				.hasAuthority(PermissionEnum.PRODUCT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/product/update")
+				.hasAuthority(PermissionEnum.PRODUCT.toString()));
+
+		// ACCESOS PARA LA GESTION DE CLIENTES
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/client/create")
+				.hasAuthority(PermissionEnum.CLIENT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/client/view-all")
+				.hasAuthority(PermissionEnum.CLIENT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/client/view-detail/**")
+				.hasAuthority(PermissionEnum.CLIENT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/client/update")
+				.hasAuthority(PermissionEnum.CLIENT.toString()));
+
+		// ACCESOS PARA LA GESTION DE PROVEEDORES
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/supplier/create")
+				.hasAuthority(PermissionEnum.SUPPLIER.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/supplier/view-all")
+				.hasAuthority(PermissionEnum.SUPPLIER.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/supplier/view-detail/{supplierId}")
+				.hasAuthority(PermissionEnum.SUPPLIER.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/supplier/update")
+				.hasAuthority(PermissionEnum.SUPPLIER.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.PUT, "/supplier/change-status/{status}/{supplierId}")
+						.hasAuthority(PermissionEnum.SUPPLIER.toString()));
+
+		// ACCESOS PARA LA GESTION DE PROVEEDORES
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/remission-entry/create")
-				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(), PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
+				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(),
+						PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/remission-entry/view-all")
-				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(), PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/remission-entry/view-detail/{remissionEntryId}")
-				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(), PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
+				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(),
+						PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/remission-entry/view-detail/{remissionEntryId}")
+						.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(),
+								PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/remission-entry/search")
-				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(), PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
+				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(),
+						PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/remission-entry/update")
 				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/remission-entry/view-history/{remissionEntryId}")
-				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/remission-entry/generate/document/{remissionEntryId}")
-				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(), PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/remission-entry/view-history/{remissionEntryId}")
+						.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString()));
+		http.authorizeRequests(requests -> requests
+				.antMatchers(HttpMethod.GET, "/remission-entry/generate/document/{remissionEntryId}")
+				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(),
+						PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/remission-entry/view-all/sipplier")
-				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(), PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
+				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(),
+						PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/remission-entry/view-all/branch")
-				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(), PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
+				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(),
+						PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/remission-entry/view-all/product")
-				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(), PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
-				
+				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(),
+						PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
+
+		// ACCESOS PARA LA GESTION DE ETIQUETAS DE PRODUCTOS
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/product-tag/create")
+				.hasAuthority(PermissionEnum.PRODUCT_TAG.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/product-tag/view-all")
+				.hasAuthority(PermissionEnum.PRODUCT_TAG.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/product-tag/view-detail/{tagId}")
+				.hasAuthority(PermissionEnum.PRODUCT_TAG.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/product-tag/update")
+				.hasAuthority(PermissionEnum.PRODUCT_TAG.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.DELETE, "/product-tag/remove/{tagId}")
+				.hasAuthority(PermissionEnum.PRODUCT_TAG.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/product-tag/view-all/product")
+				.hasAuthority(PermissionEnum.PRODUCT_TAG.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/product-tag/generate/document/{tagId}")
+						.hasAuthority(PermissionEnum.PRODUCT_TAG.toString()));
+
 		/*
 		 * Se habiltan las para la obtención del token de acceso
 		 */
