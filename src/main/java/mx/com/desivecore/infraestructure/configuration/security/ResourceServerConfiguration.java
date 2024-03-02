@@ -156,6 +156,22 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				requests -> requests.antMatchers(HttpMethod.GET, "/product-tag/generate/document/{tagId}")
 						.hasAuthority(PermissionEnum.PRODUCT_TAG.toString()));
 
+		// ACCESOS PARA LA GESTION DE HOJAS DE SEGURIDAD
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/security-data-sheet/create")
+				.hasAuthority(PermissionEnum.SECURITY_DATA_SHEET.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/security-data-sheet/view-all/product")
+				.hasAuthority(PermissionEnum.SECURITY_DATA_SHEET.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/security-data-sheet/view-detail/{secDataSheetId}")
+						.hasAuthority(PermissionEnum.SECURITY_DATA_SHEET.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/security-data-sheet/view-all")
+				.hasAuthority(PermissionEnum.SECURITY_DATA_SHEET.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/security-data-sheet/update")
+				.hasAuthority(PermissionEnum.SECURITY_DATA_SHEET.toString()));
+		http.authorizeRequests(requests -> requests
+				.antMatchers(HttpMethod.GET, "/security-data-sheet/generate-document/{secDataSheetId}")
+				.hasAuthority(PermissionEnum.SECURITY_DATA_SHEET.toString()));
+
 		/*
 		 * Se habiltan las para la obtención del token de acceso
 		 */

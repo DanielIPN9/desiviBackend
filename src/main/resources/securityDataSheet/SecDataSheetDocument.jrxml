@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.0.final using JasperReports Library version 6.21.0-4f56c4f36cd19e17675219a9ac4692d5f0f13b06  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SecDataSheetDocument" pageWidth="595" pageHeight="842" columnWidth="591" leftMargin="2" rightMargin="2" topMargin="2" bottomMargin="2" uuid="09ef6090-66d1-4e2c-82cc-0c38b4c37b1c">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="logo" class="java.io.InputStream"/>
+	<field name="flammability" class="java.lang.Integer"/>
+	<field name="reactivity" class="java.lang.Integer"/>
+	<field name="health" class="java.lang.Integer"/>
+	<field name="specialHazard" class="java.lang.Integer"/>
+	<field name="productName" class="java.lang.String"/>
+	<field name="tradeName" class="java.lang.String"/>
+	<field name="chemicalFamily" class="java.lang.String"/>
+	<field name="chemicalFormula" class="java.lang.String"/>
+	<field name="synonym" class="java.lang.String"/>
+	<field name="molecularWeight" class="java.lang.String"/>
+	<field name="chIdentifications" class="java.util.List"/>
+	<field name="chSpecifications" class="java.util.List"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="application" class="java.lang.String"/>
+	<field name="commercialUse" class="java.lang.String"/>
+	<field name="figure" class="java.io.InputStream"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="97" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="14" width="200" height="63" uuid="fd8c2b8e-b657-4c88-b287-c850e7cfa3aa"/>
+				<imageExpression><![CDATA[$F{logo}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="200" y="63" width="391" height="1" uuid="567d06ba-fbf4-487f-883c-1a34ef8048b6">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="7.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="200" y="74" width="391" height="1" uuid="eb01fd43-8dcd-47f8-a481-cd2946e47cd0">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="4.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="200" y="19" width="393" height="19" uuid="33420299-a16a-4512-8a95-b25e92a4def0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[DESIVI S. A. DE C. V.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="38" width="393" height="19" uuid="ab2807e9-07b1-4d09-ac07-371679877fe6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[SUSTENTABILIDAD Y PRODUCTOS INDUSTRIALES.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="516" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-2" y="0" width="592" height="29" backcolor="#666161" uuid="12a8b016-443b-4289-8ac3-f172b8b1d775"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="0" width="580" height="30" forecolor="#FCF8F7" backcolor="#C4C0C0" uuid="ea2928f1-144c-4357-9947-22c6fed0e396"/>
+				<box>
+					<pen lineColor="#FCFAFA"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HOJA DE INFORMACION DE SEGURIDAD DE MATERIAL:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="400" y="30" width="190" height="30" backcolor="#7F7DF5" uuid="964e8b69-e9f6-4965-9e34-9a3981648f43"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="400" y="30" width="190" height="30" forecolor="#FCFCFC" backcolor="#FFFFFF" uuid="c9e8b6a3-fa5c-42b7-bf7b-1fa6986ca3ac"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NSFP]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="400" y="60" width="190" height="60" backcolor="#7F7DF5" uuid="26a9cd0a-0093-46ab-8d23-bf5ae3837759">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="400" y="120" width="190" height="60" backcolor="#7F7DF5" uuid="bbafc9a0-5fab-4610-a9e3-b055e49904cb">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="400" y="180" width="190" height="60" backcolor="#7F7DF5" uuid="d853be90-01ae-4b75-a59b-eb1ece7fd656">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="400" y="240" width="190" height="60" backcolor="#7F7DF5" uuid="31b0ce7f-09ad-4735-a0ff-3f6848f53612">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="400" y="300" width="190" height="60" backcolor="#7F7DF5" uuid="c1b16b9f-1f66-4044-abdf-c051f64653da">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="400" y="60" width="190" height="30" forecolor="#FFFFFF" uuid="94107427-35c2-4f96-8d67-18421ac18c33">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4.- EXTREMO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="120" width="190" height="30" forecolor="#FFFFFF" uuid="abbfde64-ff04-48ae-a9a2-d2786b7c4b96">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3.- ALTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="180" width="190" height="30" forecolor="#FFFFFF" uuid="a58a8660-e40d-4821-8f46-c1f847bba640">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.- MODERADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="240" width="190" height="30" forecolor="#FFFFFF" uuid="f86d5e50-a732-4563-8a15-a86e6b78f02e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.- LIGERO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="300" width="190" height="30" forecolor="#FFFFFF" uuid="c57cee4c-7441-4313-a206-eab2e4119d0a">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[0.- SIN RIESGO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="-2" y="30" width="402" height="330" uuid="d9cc880b-afd6-43e6-812e-7fb6215cd6ce"/>
+			</rectangle>
+			<image>
+				<reportElement x="80" y="80" width="259" height="239" uuid="5d5eb048-9dbe-4916-b2b5-fc988e4b4f16"/>
+				<imageExpression><![CDATA[$F{figure}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="30" width="398" height="30" uuid="b9e126f4-9f37-4577-a1e1-e576211395bd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Inflamabilidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-2" y="166" width="61" height="30" uuid="8daf827e-2daa-4c04-8062-60fbf6875515"/>
+				<box leftPadding="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Salud]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="316" y="166" width="77" height="30" uuid="cf7a946e-d0ed-47ea-b406-affe52a45fcb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reactividad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="330" width="398" height="30" uuid="b305d368-87ed-4a8f-a27d-3dbdcf5ef543"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Riesgo Especial]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="154" y="117" width="90" height="30" uuid="1529f7f8-4420-495a-b78f-3a28604efcb2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{flammability}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="241" width="90" height="30" uuid="190cdeeb-815a-406b-a800-7069196f04bf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{specialHazard}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="89" y="191" width="59" height="30" uuid="939a42dc-a2d6-4fd9-9ba4-3435849d940f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{health}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="186" width="60" height="30" uuid="670f5da4-71f4-4899-a2a6-c65f2b89a8a4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{reactivity}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="-2" y="360" width="592" height="29" backcolor="#666161" uuid="c65195b7-7cdb-4bb3-8c46-b7dae4dc69e1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="360" width="580" height="30" forecolor="#FCF8F7" backcolor="#C4C0C0" uuid="952f44d4-cf2f-4901-8479-0ec9fbaccbca"/>
+				<box>
+					<pen lineColor="#FCFAFA"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL PRODUCTO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="-2" y="390" width="152" height="39" backcolor="#7F7DF5" uuid="07c32f6a-b01a-47c3-9ec7-da7a764415b0"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="390" width="140" height="39" forecolor="#FCFCFC" backcolor="#FFFFFF" uuid="9455e64c-f10c-4ce3-a191-b8ab2835ca00"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre del
+producto:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="389" width="140" height="40" uuid="5dd95947-808c-4142-8cbf-a23a015a6398"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{productName}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="291" y="390" width="152" height="39" backcolor="#7F7DF5" uuid="ad6feeef-585a-494a-8a6f-4ef0c4374df7"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="-2" y="429" width="152" height="39" backcolor="#7F7DF5" uuid="9408dc0e-536a-4a00-93d0-48e16830c8d8"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="-2" y="468" width="152" height="39" backcolor="#7F7DF5" uuid="7575cd2f-4c4f-44ba-bf64-fc59eba20cd9"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="291" y="429" width="152" height="39" backcolor="#7F7DF5" uuid="16f8bdb6-21f9-4e6b-8e6e-df7a85b6039e"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="291" y="468" width="152" height="39" backcolor="#7F7DF5" uuid="555b2ffa-4da5-4006-a07d-762f16cdf4df">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="150" y="429" width="140" height="39" uuid="f9328589-ba9f-402c-9cac-2fb55cc8ecb0"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tradeName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="468" width="140" height="39" uuid="cc7d3b55-ae0b-4ea3-8654-ddbcc237ee6f"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{chemicalFamily}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="443" y="389" width="146" height="40" uuid="5e47f640-1f1d-43e7-8fd3-8bd8c7d4c14a"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{chemicalFormula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="443" y="429" width="146" height="39" uuid="7377528c-2bc3-4b15-a07e-73f980c6b5eb"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{synonym}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="443" y="468" width="146" height="39" uuid="b03af181-1dcf-4d75-b49f-a1de42018a3b"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{molecularWeight}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="429" width="140" height="39" forecolor="#FCFCFC" backcolor="#FFFFFF" uuid="915d71c4-a711-4b7f-8628-1c5a5d3d47a2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre comercial:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="468" width="140" height="39" forecolor="#FCFCFC" backcolor="#FFFFFF" uuid="bba2e88d-19e0-4fdc-93fd-f282b92bb9ec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Familia Química:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="389" width="140" height="39" forecolor="#FCFCFC" backcolor="#FFFFFF" uuid="59ec338a-5da0-48a8-87fd-198b3c12f503"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Formula química:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="428" width="140" height="39" forecolor="#FCFCFC" backcolor="#FFFFFF" uuid="886b302e-a8bd-4090-ab36-135a97a50394"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sinónimos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="467" width="140" height="39" forecolor="#FCFCFC" backcolor="#FFFFFF" uuid="f81f8c60-c36b-4419-a404-01b3346d18b9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso Molecular:]]></text>
+			</staticText>
+		</band>
+		<band height="95">
+			<rectangle>
+				<reportElement x="-2" y="2" width="592" height="29" backcolor="#666161" uuid="251515a9-46ef-4bae-8fcb-b3164154c801"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="2" width="580" height="30" forecolor="#FCF8F7" backcolor="#C4C0C0" uuid="a1647089-3de2-497a-a3d8-9047ebe7ca1d"/>
+				<box>
+					<pen lineColor="#FCFAFA"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IDENTIFICACION]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="-2" y="32" width="591" height="57" uuid="0aeeedee-2c5a-417b-92e4-e1410b9c183a"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{chIdentifications})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["securityDataSheet/chemicalIdentification.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="117">
+			<rectangle>
+				<reportElement x="-2" y="-1" width="592" height="29" backcolor="#666161" uuid="cfc479b7-d9ca-4be5-905e-a7b9e5e8a67d"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="-1" width="580" height="30" forecolor="#FCF8F7" backcolor="#C4C0C0" uuid="04cf181f-583d-413f-a034-877c3686a0a6"/>
+				<box>
+					<pen lineColor="#FCFAFA"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESPECIFICACIONES FISICO/QUIMICAS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="28" width="589" height="30" uuid="8da4f11a-af52-4b06-9870-c7730a3bb3b4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESPECIFICACION DEL FABRICANTE]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="58" width="591" height="57" uuid="ca95f1ef-538e-457e-b307-dec32966523e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{chSpecifications})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["securityDataSheet/chemicalSpecification.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="570">
+			<rectangle>
+				<reportElement x="-2" y="0" width="592" height="29" backcolor="#666161" uuid="e2400181-9457-48e5-b47f-ae1aecca0d12"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="0" width="580" height="30" forecolor="#FCF8F7" backcolor="#C4C0C0" uuid="462958c2-3571-4f19-8908-9183bf299de5"/>
+				<box>
+					<pen lineColor="#FCFAFA"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[APLICACIONES Y PROPIEDADES GENERALES:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="32" width="589" height="30" uuid="92a429be-43ad-4690-9734-366e5bbb3665"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="62" width="589" height="138" uuid="903df97a-ebbf-4104-a4c6-055303c92c41"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="203" width="589" height="30" uuid="99f33fbb-a4df-489c-b740-378eed43eb76"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usos]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="233" width="589" height="130" uuid="a85e20dc-839a-4566-a468-b66a3565bf6c"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{commercialUse}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="435" width="589" height="120" uuid="dc31536f-24fc-4d20-8f2b-ecdc1cd99fec"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{application}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="403" width="589" height="30" uuid="692e707e-576a-4b3a-9266-9434a389459f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Aplicaciones]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="75" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="8" width="550" height="59" uuid="93e0e07e-4798-4828-9d30-5506b238813b"/>
+				<box topPadding="12"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Av. Ferrocarriles Nacionales No. 43 Col. Ahuizotla, Naucalpan de Juárez, Estado de México C.P. 53378
+WWW.DESIVI.JIMDO.COM
+CEL. 5511526395 TEL. (55)84349778 * E-MAIL: industrialesvillegas@gmail.com * RFC: DIV140204QZ9]]></text>
+			</staticText>
+			<line>
+				<reportElement x="20" y="7" width="550" height="1" uuid="8a678114-53bf-4c17-a7a1-d39815cbbdfe">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="4.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="99">
+			<line>
+				<reportElement x="20" y="29" width="550" height="1" uuid="d87a9eff-28a7-453e-82d1-709d7e4f8936">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="4.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="20" y="28" width="550" height="59" uuid="94ba407d-508c-4d92-85b5-3e2e88a0f69e"/>
+				<box topPadding="12"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Av. Ferrocarriles Nacionales No. 43 Col. Ahuizotla, Naucalpan de Juárez, Estado de México C.P. 53378
+WWW.DESIVI.JIMDO.COM
+CEL. 5511526395 TEL. (55)84349778 * E-MAIL: industrialesvillegas@gmail.com * RFC: DIV140204QZ9]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="7" width="550" height="15" uuid="327d89de-f52f-4f35-9fb0-21f9e9f2b9e7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[*Estos datos son copia exacta del fabricante, el mal uso de este documento es responsabilidad del consumidor.]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+</jasperReport>
