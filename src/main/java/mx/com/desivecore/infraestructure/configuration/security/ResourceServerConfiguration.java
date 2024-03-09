@@ -172,6 +172,26 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				.antMatchers(HttpMethod.GET, "/security-data-sheet/generate-document/{secDataSheetId}")
 				.hasAuthority(PermissionEnum.SECURITY_DATA_SHEET.toString()));
 
+		// ACCESOS PARA LA GESTION DE CERTIFICADOS
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/certificate/view/remission-summary")
+				.hasAuthority(PermissionEnum.CERTIFICATE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/certificate/view-detail/{remissionId}/{productId}")
+						.hasAuthority(PermissionEnum.CERTIFICATE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/certificate/create")
+				.hasAuthority(PermissionEnum.CERTIFICATE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/certificate/update")
+				.hasAuthority(PermissionEnum.CERTIFICATE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/certificate/generate-document/{certificateId}")
+						.hasAuthority(PermissionEnum.CERTIFICATE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/certificate/view-all/sipplier")
+						.hasAuthority(PermissionEnum.CERTIFICATE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/certificate/view-all/branch")
+						.hasAuthority(PermissionEnum.CERTIFICATE.toString()));
+
 		/*
 		 * Se habiltan las para la obtención del token de acceso
 		 */
