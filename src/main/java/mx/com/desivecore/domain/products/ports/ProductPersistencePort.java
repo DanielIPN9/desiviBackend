@@ -4,6 +4,7 @@ import java.util.List;
 
 import mx.com.desivecore.domain.products.models.Product;
 import mx.com.desivecore.domain.products.models.ProductAvailability;
+import mx.com.desivecore.domain.products.models.ProductOutputSummary;
 import mx.com.desivecore.domain.products.models.ProductSearchParams;
 
 public interface ProductPersistencePort {
@@ -23,5 +24,7 @@ public interface ProductPersistencePort {
 	Product findProductBySku(String sku);
 
 	Product findProductBySkuAndIdNot(String sku, Long productId);
+
+	List<ProductOutputSummary> findAllByBranchId(Long branchId);
 
 }

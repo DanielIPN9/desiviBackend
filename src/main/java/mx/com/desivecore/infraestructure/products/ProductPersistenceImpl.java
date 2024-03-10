@@ -9,12 +9,14 @@ import org.springframework.stereotype.Service;
 import lombok.extern.java.Log;
 import mx.com.desivecore.domain.products.models.Product;
 import mx.com.desivecore.domain.products.models.ProductAvailability;
+import mx.com.desivecore.domain.products.models.ProductOutputSummary;
 import mx.com.desivecore.domain.products.models.ProductSearchParams;
 import mx.com.desivecore.domain.products.ports.ProductPersistencePort;
 import mx.com.desivecore.infraestructure.products.converters.ProductAvailabilityConverter;
 import mx.com.desivecore.infraestructure.products.converters.ProductConverter;
 import mx.com.desivecore.infraestructure.products.entities.ProductAvailabilityEntity;
 import mx.com.desivecore.infraestructure.products.entities.ProductEntity;
+import mx.com.desivecore.infraestructure.products.repositories.CustomDSLProductRepository;
 import mx.com.desivecore.infraestructure.products.repositories.ProductAvailabilityRepository;
 import mx.com.desivecore.infraestructure.products.repositories.ProductRepository;
 
@@ -33,6 +35,9 @@ public class ProductPersistenceImpl implements ProductPersistencePort {
 
 	@Autowired
 	private ProductAvailabilityConverter productAvailabilityConverter;
+	
+	@Autowired
+	private CustomDSLProductRepository customDSLProductRepository;
 
 	@Override
 	public Product saveProduc(Product product) {
@@ -150,6 +155,16 @@ public class ProductPersistenceImpl implements ProductPersistencePort {
 			if (optional.isPresent())
 				return productAvailabilityConverter.productAvailabilityEntityToProductAvailability(optional.get());
 			return null;
+		} catch (Exception e) {
+			log.severe("EXCEPTION: " + e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public List<ProductOutputSummary> findAllByBranchId(Long branchId) {
+		try {
+			return customDSLProductRepository.findAllByBranchId(branchId);
 		} catch (Exception e) {
 			log.severe("EXCEPTION: " + e.getMessage());
 			return null;

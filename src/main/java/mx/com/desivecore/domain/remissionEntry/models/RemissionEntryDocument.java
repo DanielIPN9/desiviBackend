@@ -68,7 +68,8 @@ public class RemissionEntryDocument {
 			subTotal += reEntry.getNet();
 			remissionDetail.add(new RemissionEntryDetail(reEntry));
 		}
-
+		
+		subTotal = (double) Math.round(subTotal * 100) / 100;
 		ivaTotal = remissionEntry.getIvaTotal();
 		total = remissionEntry.getRemissionTotal();
 

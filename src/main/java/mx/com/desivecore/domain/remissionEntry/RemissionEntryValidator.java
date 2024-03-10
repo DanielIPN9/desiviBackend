@@ -16,7 +16,7 @@ public class RemissionEntryValidator {
 
 		validations = validRequiredFields(remissionEntry, validations);
 
-		if (!validations.isEmpty()) {
+		if (validations.isEmpty()) {
 			for (ProductEntry productEntry : remissionEntry.getProducts()) {
 				validations = validAmount(validations, productEntry);
 				validations = validUnitMeasure(validations, productEntry);
@@ -27,13 +27,6 @@ public class RemissionEntryValidator {
 		return validations;
 	}
 	
-	public String validOperativeDataToUpdate(RemissionEntry remissionEntry) {
-		log.info("INIT validOperativeDataToUpdate()");
-		String validations = "";
-
-		return validations;
-	}
-
 	private String validPurchaeUnitPrice(String validations, ProductEntry productEntry) {
 		validations += productEntry.getPurchaseUnitPrice() == null
 				? "El precio unitario de compra no puede ser negativo para el producto: "

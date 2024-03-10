@@ -185,12 +185,31 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		http.authorizeRequests(
 				requests -> requests.antMatchers(HttpMethod.GET, "/certificate/generate-document/{certificateId}")
 						.hasAuthority(PermissionEnum.CERTIFICATE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/certificate/view-all/sipplier")
+				.hasAuthority(PermissionEnum.CERTIFICATE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/certificate/view-all/branch")
+				.hasAuthority(PermissionEnum.CERTIFICATE.toString()));
+
+		// ACCESOS PARA LA GESTION DE REMISION DE SALIDA
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/remission-output/create")
+				.hasAuthority(PermissionEnum.REMISSION_OUTPUT.toString()));
 		http.authorizeRequests(
-				requests -> requests.antMatchers(HttpMethod.GET, "/certificate/view-all/sipplier")
-						.hasAuthority(PermissionEnum.CERTIFICATE.toString()));
+				requests -> requests.antMatchers(HttpMethod.GET, "/remission-output/view-detail/{remissionOutputId}")
+						.hasAuthority(PermissionEnum.REMISSION_OUTPUT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/remission-output/search")
+				.hasAuthority(PermissionEnum.REMISSION_OUTPUT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/remission-output/update")
+				.hasAuthority(PermissionEnum.REMISSION_OUTPUT.toString()));
+		http.authorizeRequests(requests -> requests
+				.antMatchers(HttpMethod.GET, "/remission-output/generate/document/{remissionOutputId}")
+				.hasAuthority(PermissionEnum.REMISSION_OUTPUT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/remission-output/view-all/client")
+				.hasAuthority(PermissionEnum.REMISSION_OUTPUT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/remission-output/view-all/branch")
+				.hasAuthority(PermissionEnum.REMISSION_OUTPUT.toString()));
 		http.authorizeRequests(
-				requests -> requests.antMatchers(HttpMethod.GET, "/certificate/view-all/branch")
-						.hasAuthority(PermissionEnum.CERTIFICATE.toString()));
+				requests -> requests.antMatchers(HttpMethod.GET, "/remission-output/view-all/product/{branchId}")
+						.hasAuthority(PermissionEnum.REMISSION_OUTPUT.toString()));
 
 		/*
 		 * Se habiltan las para la obtención del token de acceso
