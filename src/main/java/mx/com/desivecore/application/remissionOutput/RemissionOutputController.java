@@ -1,5 +1,7 @@
 package mx.com.desivecore.application.remissionOutput;
 
+import java.util.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -63,7 +65,9 @@ public class RemissionOutputController {
 		log.info("INIT generateRemissionDocumentById()");
 		log.info(String.format("PARAMS:[remissionOutputId: %s]", remissionOutputId.toString()));
 		ResponseModel response = remissionOutputServicePort.generateRemissionDocumentById(remissionOutputId);
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		byte[] reporte = (byte[]) response.getData();
+		String encodedString = Base64.getEncoder().encodeToString(reporte);
+		return new ResponseEntity<>(new ResponseModel(encodedString), HttpStatus.OK);
 	}
 
 	@GetMapping("/view-all/client")

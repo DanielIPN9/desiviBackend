@@ -211,6 +211,14 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				requests -> requests.antMatchers(HttpMethod.GET, "/remission-output/view-all/product/{branchId}")
 						.hasAuthority(PermissionEnum.REMISSION_OUTPUT.toString()));
 
+		// ACCESOS PARA LA GESTION DE REPORTES
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/report/remission-entry")
+				.hasAuthority(PermissionEnum.REMISSION_ENTRY_REPORT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/report/remission-output")
+				.hasAuthority(PermissionEnum.REMISSION_OUTPUT_REPORT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/report/inventory")
+				.hasAuthority(PermissionEnum.INVENTORY_REPORT.toString()));
+
 		/*
 		 * Se habiltan las para la obtención del token de acceso
 		 */
