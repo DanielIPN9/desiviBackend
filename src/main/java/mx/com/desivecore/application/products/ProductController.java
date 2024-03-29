@@ -63,4 +63,12 @@ public class ProductController {
 		ResponseModel response = productServicePort.updateProductById(product);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+
+	@PutMapping("/change-status/{status}/{id}")
+	public ResponseEntity<?> changeProductStatusById(@PathVariable String status, @PathVariable Long productId) {
+		log.info("INIT changeUserStatusById()");
+		log.info(String.format("PARAMS:[status: %s, id: %s]", status, productId.toString()));
+		ResponseModel responseModel = productServicePort.changeStatusById(status, productId);
+		return new ResponseEntity<>(responseModel, HttpStatus.OK);
+	}
 }

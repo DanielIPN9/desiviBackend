@@ -56,7 +56,7 @@ public class RemissionEntryPersistenceImpl implements RemissionEntryPersistenceP
 
 	private static final String RE_TEMPLATE = "/remissions/entries/RemissionEntryDocument.jasper";
 	private static final String LOGO_REPORT = "/remissions/entries/logo.jpg";
-	private static final String SING_REPORT = "/remissions/entries/sing_ov.png";
+	private static final String SING_REPORT = "/remissions/entries/sing_ov.jpg";
 
 	@Autowired
 	private RemissionEntryConverter remissionEntryConverter;

@@ -50,7 +50,7 @@ public class UserEntity {
 	@Column(name = "contact_number", unique = false, nullable = false, length = 15)
 	private String contactNumber;
 
-	@Column(name = "password", unique = false, nullable = false, length = 50)
+	@Column(name = "password", unique = false, nullable = false, length = 150)
 	private String password;
 
 	@Column(name = "status")

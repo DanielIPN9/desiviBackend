@@ -113,4 +113,10 @@ public class ProductServiceImpl implements ProductServicePort {
 		productPersistencePort.saveAvailability(productAvailabilityList, product);
 	}
 
+	@Override
+	public ResponseModel changeStatusById(String status, Long productId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

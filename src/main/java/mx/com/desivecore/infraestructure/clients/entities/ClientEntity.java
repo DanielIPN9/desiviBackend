@@ -25,19 +25,19 @@ public class ClientEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long clientId;
 
-	@Column(name = "business_name", unique = false, nullable = false, length = 40)
+	@Column(name = "business_name", unique = false, nullable = false, length = 150)
 	private String businessName;
 
 	@Column(name = "rfc", unique = false, nullable = false, length = 15)
 	private String rfc;
 
-	@Column(name = "contact_name", unique = false, nullable = false, length = 20)
+	@Column(name = "contact_name", unique = false, nullable = false, length = 150)
 	private String contactName;
 
 	@Column(name = "contact_number", unique = false, nullable = false, length = 20)
 	private String contactNumber;
 
-	@Column(name = "email", unique = false, nullable = false, length = 30)
+	@Column(name = "email", unique = false, nullable = false, length = 65)
 	private String email;
 
 	@Column(name = "street", unique = false, nullable = false, length = 30)

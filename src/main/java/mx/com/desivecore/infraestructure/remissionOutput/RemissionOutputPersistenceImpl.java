@@ -50,7 +50,7 @@ public class RemissionOutputPersistenceImpl implements RemissionOutputPersistenc
 
 	private static final String RO_TEMPLATE = "/remissions/outputs/RemissionOutputDocument.jasper";
 	private static final String LOGO_REPORT = "/remissions/outputs/logo.jpg";
-	private static final String SING_REPORT = "/remissions/outputs/sing_ov.png";
+	private static final String SING_REPORT = "/remissions/outputs/sing_ov.jpg";
 
 	@Autowired
 	private ClientRepository clientRepository;

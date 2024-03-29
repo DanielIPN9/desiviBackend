@@ -16,4 +16,5 @@ public interface ProductServicePort {
 
 	ResponseModel updateProductById(Product product);
 
+	ResponseModel changeStatusById(String status, Long productId);
 }
