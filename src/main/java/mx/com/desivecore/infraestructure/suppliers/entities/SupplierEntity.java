@@ -43,19 +43,19 @@ public class SupplierEntity {
 	@Column(name = "status")
 	private boolean status;
 
-	@Column(name = "street", unique = false, nullable = false, length = 25)
+	@Column(name = "street", unique = false, nullable = false, length = 150)
 	private String street;
 
-	@Column(name = "external_number", unique = false, nullable = false, length = 10)
+	@Column(name = "external_number", unique = false, nullable = false, length = 150)
 	private String externalNumber;
 
-	@Column(name = "internal_number", unique = false, nullable = false, length = 10)
+	@Column(name = "internal_number", unique = false, nullable = false, length = 150)
 	private String internalNumber;
 
-	@Column(name = "municipality", unique = false, nullable = false, length = 20)
+	@Column(name = "municipality", unique = false, nullable = false, length = 150)
 	private String municipality;
 
-	@Column(name = "colony", unique = false, nullable = false, length = 20)
+	@Column(name = "colony", unique = false, nullable = false, length = 150)
 	private String colony;
 
 	@Column(name = "cp", unique = false, nullable = false, length = 10)

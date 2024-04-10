@@ -82,6 +82,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				.hasAuthority(PermissionEnum.PRODUCT.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/product/update")
 				.hasAuthority(PermissionEnum.PRODUCT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/product/change-status/**")
+				.hasAuthority(PermissionEnum.PRODUCT.toString()));
 
 		// ACCESOS PARA LA GESTION DE CLIENTES
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/client/create")

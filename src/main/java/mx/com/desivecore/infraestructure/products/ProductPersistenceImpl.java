@@ -35,7 +35,7 @@ public class ProductPersistenceImpl implements ProductPersistencePort {
 
 	@Autowired
 	private ProductAvailabilityConverter productAvailabilityConverter;
-	
+
 	@Autowired
 	private CustomDSLProductRepository customDSLProductRepository;
 
@@ -165,6 +165,31 @@ public class ProductPersistenceImpl implements ProductPersistencePort {
 	public List<ProductOutputSummary> findAllByBranchId(Long branchId) {
 		try {
 			return customDSLProductRepository.findAllByBranchId(branchId);
+		} catch (Exception e) {
+			log.severe("EXCEPTION: " + e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public boolean changeProductStatusById(boolean status, Long productId) {
+		try {
+			int updatedRow = productRepository.enableById(productId, status);
+			if (updatedRow <= 0)
+				return false;
+			return true;
+		} catch (Exception e) {
+			log.severe("EXCEPTION: " + e.getMessage());
+			return false;
+		}
+	}
+
+	@Override
+	public List<Product> viewALLProductByStatus(boolean status) {
+		try {
+			log.info("INIT viewALLProductByStatus()");
+			List<ProductEntity> productEntityList = productRepository.findAllByStatus(status);
+			return productConverter.productEntityListToProductList(productEntityList);
 		} catch (Exception e) {
 			log.severe("EXCEPTION: " + e.getMessage());
 			return null;

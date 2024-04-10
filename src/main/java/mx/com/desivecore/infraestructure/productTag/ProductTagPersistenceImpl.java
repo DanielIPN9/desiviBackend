@@ -31,10 +31,10 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 public class ProductTagPersistenceImpl implements ProductTagPersistencePort {
 
 	private static final String RE_TEMPLATE = "/tag/ProductTagV2.jasper";
-	private static final String TAG_1 = "/tag/tag_fondo_v2_1.jpeg";
-	private static final String TAG_2 = "/tag/tag_fondo_v2_2.jpeg";
-	private static final String TAG_3 = "/tag/tag_fondo_v2_3.jpeg";
-	private static final String TAG_4 = "/tag/tag_fondo_v2_4.jpeg";
+	private static final String TAG_1 = "/tag/tag_fondo_v2_1.png";
+	private static final String TAG_2 = "/tag/tag_fondo_v2_2.png";
+	private static final String TAG_3 = "/tag/tag_fondo_v2_3.png";
+	private static final String TAG_4 = "/tag/tag_fondo_v2_4.png";
 
 	@Autowired
 	private ProductTagRepository productTagRepository;

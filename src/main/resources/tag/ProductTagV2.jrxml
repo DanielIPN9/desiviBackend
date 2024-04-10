@@ -199,42 +199,6 @@
 				<textFieldExpression><![CDATA[$F{um}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="185" y="218" width="166" height="27" uuid="abc48ea9-328f-4a42-8ae5-c8e0fe7a28a8">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Justified">
-					<font size="10"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{fullAddress}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="186" y="511" width="166" height="27" uuid="e254e0d4-b885-45de-9212-7bc9ca74090b">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Justified">
-					<font size="10"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{fullAddress}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="595" y="511" width="166" height="27" uuid="ce772247-1cd3-4d76-aed9-6ed708d6781f">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Justified">
-					<font size="10"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{fullAddress}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="595" y="218" width="166" height="27" uuid="d4a9bbfd-4bb5-4aa0-8b7e-2fb06b3dae05">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Justified">
-					<font size="10"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{fullAddress}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="282" y="16" width="76" height="20" uuid="759fd4e1-a382-4f38-8618-def02b047f2a">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -305,6 +269,42 @@
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{urlSite}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="152" y="219" width="200" height="27" uuid="25113b9b-9e22-491b-a41b-7ec73f5db67f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fullAddress}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="563" y="218" width="207" height="27" uuid="6c202c84-a355-463d-a8b7-063017e7e2fd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fullAddress}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="563" y="510" width="206" height="27" uuid="a5162bd7-fe52-49b5-af69-764fffbd342e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fullAddress}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="152" y="510" width="209" height="27" uuid="43fd14fa-e047-42df-a0ae-7862d294f7cd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fullAddress}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -43,4 +43,7 @@ public class ProductEntity {
 	@Column(name = "unit_purchase_price", unique = false, nullable = false)
 	private Double unitPurchasePrice;
 
+	@Column(name = "status", nullable = false)
+	private boolean status;
+
 }

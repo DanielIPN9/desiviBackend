@@ -115,8 +115,12 @@ public class ProductServiceImpl implements ProductServicePort {
 
 	@Override
 	public ResponseModel changeStatusById(String status, Long productId) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("INIT changeStatusById()");
+		boolean productStatus = status.equals("ACTIVE") ? true : false;
+		boolean changeStatus = productPersistencePort.changeProductStatusById(productStatus, productId);
+		if (!changeStatus)
+			throw new InternalError();
+		return new ResponseModel(changeStatus);
 	}
 
 }

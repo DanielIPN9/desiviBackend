@@ -27,4 +27,8 @@ public interface ProductPersistencePort {
 
 	List<ProductOutputSummary> findAllByBranchId(Long branchId);
 
+	boolean changeProductStatusById(boolean status, Long productId);
+	
+	List<Product> viewALLProductByStatus(boolean statis);
+
 }

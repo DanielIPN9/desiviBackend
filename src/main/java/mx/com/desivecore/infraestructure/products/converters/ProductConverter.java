@@ -22,6 +22,7 @@ public class ProductConverter {
 		productEntity.setIva(product.getIva());
 		productEntity.setUnitSellingPrice(product.getUnitSellingPrice());
 		productEntity.setUnitPurchasePrice(product.getUnitPurchasePrice());
+		productEntity.setStatus(product.isStatus());
 
 		return productEntity;
 	}
@@ -37,6 +38,7 @@ public class ProductConverter {
 		product.setIva(productEntity.getIva());
 		product.setUnitSellingPrice(productEntity.getUnitSellingPrice());
 		product.setUnitPurchasePrice(productEntity.getUnitPurchasePrice());
+		product.setStatus(productEntity.isStatus());
 
 		return product;
 	}

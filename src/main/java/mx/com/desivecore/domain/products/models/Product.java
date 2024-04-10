@@ -20,6 +20,8 @@ public class Product {
 
 	private List<ProductAvailability> availability;
 
+	private boolean status;
+
 	public Long getProductId() {
 		return productId;
 	}
@@ -84,11 +86,19 @@ public class Product {
 		this.availability = availability;
 	}
 
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", sku=" + sku + ", name=" + name + ", unitMeasure=" + unitMeasure
 				+ ", iva=" + iva + ", unitSellingPrice=" + unitSellingPrice + ", unitPurchasePrice=" + unitPurchasePrice
-				+ ", availability=" + availability + "]";
+				+ ", availability=" + availability + ", status=" + status + "]";
 	}
 
 }

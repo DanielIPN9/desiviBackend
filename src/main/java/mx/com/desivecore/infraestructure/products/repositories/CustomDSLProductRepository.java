@@ -45,6 +45,7 @@ public class CustomDSLProductRepository extends QuerydslRepositorySupport {
 		 * Start evaluation of search parameters
 		 */
 		query.where(productAvailability.branchId.eq(branchId));
+		query.where(product.status.eq(true));
 		/**
 		 * Select fields
 		 */

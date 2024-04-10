@@ -295,7 +295,7 @@ public class RemissionEntryServiceImpl implements RemissionEntryServicePort {
 	@Override
 	public ResponseModel viewProductActiveList() {
 		log.info("INIT viewProductActiveList()");
-		List<Product> productList = productPersistencePort.viewALLProduct();
+		List<Product> productList = productPersistencePort.viewALLProductByStatus(true);
 		if (productList == null) {
 			log.warning("EMPTY DATA");
 			return new ResponseModel(new ArrayList<>());
