@@ -21,6 +21,7 @@ public class ClientConverter {
 		clientEntity.setContactName(client.getContactName());
 		clientEntity.setContactNumber(client.getContactNumber());
 		clientEntity.setEmail(client.getEmail());
+		clientEntity.setStatus(client.isStatus());
 		clientEntity.setStreet(client.getStreet());
 		clientEntity.setExternalNumber(client.getExternalNumber());
 		clientEntity.setInternalNumber(client.getInternalNumber());
@@ -41,6 +42,7 @@ public class ClientConverter {
 		client.setContactName(clientEntity.getContactName());
 		client.setContactNumber(clientEntity.getContactNumber());
 		client.setEmail(clientEntity.getEmail());
+		client.setStatus(clientEntity.isStatus());
 		client.setStreet(clientEntity.getStreet());
 		client.setExternalNumber(clientEntity.getExternalNumber());
 		client.setInternalNumber(clientEntity.getInternalNumber());

@@ -12,5 +12,7 @@ public interface ClientServicePort {
 	ResponseModel viewClientDetailById(Long clientId);
 
 	ResponseModel updateClientById(Client client);
+	
+	ResponseModel changeStatusById(Long clientId, String status);
 
 }

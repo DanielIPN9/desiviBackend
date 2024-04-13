@@ -94,6 +94,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				.hasAuthority(PermissionEnum.CLIENT.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/client/update")
 				.hasAuthority(PermissionEnum.CLIENT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/client/change-status/{status}/{clientId}")
+				.hasAuthority(PermissionEnum.CLIENT.toString()));
 
 		// ACCESOS PARA LA GESTION DE PROVEEDORES
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/supplier/create")

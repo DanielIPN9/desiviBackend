@@ -14,6 +14,8 @@ public class Client {
 
 	private String email;
 
+	private boolean status;
+
 	private String street;
 
 	private String externalNumber;
@@ -132,12 +134,20 @@ public class Client {
 		this.state = state;
 	}
 
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "Client [clientId=" + clientId + ", businessName=" + businessName + ", rfc=" + rfc + ", contactName="
-				+ contactName + ", contactNumber=" + contactNumber + ", email=" + email + ", street=" + street
-				+ ", externalNumber=" + externalNumber + ", internalNumber=" + internalNumber + ", municipality="
-				+ municipality + ", colony=" + colony + ", cp=" + cp + ", state=" + state + "]";
+				+ contactName + ", contactNumber=" + contactNumber + ", email=" + email + ", status=" + status
+				+ ", street=" + street + ", externalNumber=" + externalNumber + ", internalNumber=" + internalNumber
+				+ ", municipality=" + municipality + ", colony=" + colony + ", cp=" + cp + ", state=" + state + "]";
 	}
 
 }

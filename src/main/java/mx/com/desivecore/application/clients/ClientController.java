@@ -54,4 +54,12 @@ public class ClientController {
 		ResponseModel response = clientServicePort.updateClientById(client);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+
+	@PutMapping("/change-status/{status}/{clientId}")
+	public ResponseEntity<?> changeStatusById(@PathVariable String status, @PathVariable Long clientId) {
+		log.info("INIT changeStatusById()");
+		log.info(String.format("PARAMS:[status: %s, clientId: %s]", status, clientId.toString()));
+		ResponseModel responseModel = clientServicePort.changeStatusById(clientId, status);
+		return new ResponseEntity<>(responseModel, HttpStatus.OK);
+	}
 }

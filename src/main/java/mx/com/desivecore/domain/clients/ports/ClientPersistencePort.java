@@ -19,5 +19,7 @@ public interface ClientPersistencePort {
 	Client findClientByEmail(String email);
 
 	Client findClientByEmailAndIdNot(String email, Long clientId);
+	
+	boolean changeStatusById(Long clientId, boolean status);
 
 }

@@ -40,7 +40,7 @@ public class ClientPersistenceImpl implements ClientPersistencePort {
 	public List<Client> viewAllClients() {
 		try {
 			log.info("INIT viewAllClients()");
-			List<ClientEntity> clientEntityList = clientRepository.findAll();
+			List<ClientEntity> clientEntityList = clientRepository.findAllByState(true);
 			return clientConverter.clientEntityListToClientList(clientEntityList);
 		} catch (Exception e) {
 			log.severe("EXCEPTION: " + e.getMessage());
@@ -115,6 +115,20 @@ public class ClientPersistenceImpl implements ClientPersistencePort {
 		} catch (Exception e) {
 			log.severe("EXCEPTION: " + e.getMessage());
 			return null;
+		}
+	}
+
+	@Override
+	public boolean changeStatusById(Long clientId, boolean status) {
+		try {
+			log.info("INIT changeStatusById()");
+			int updatedRow = clientRepository.enableById(clientId, status);
+			if (updatedRow <= 0)
+				return false;
+			return true;
+		} catch (Exception e) {
+			log.info("EXCEPTION: " + e.getMessage());
+			return false;
 		}
 	}
 

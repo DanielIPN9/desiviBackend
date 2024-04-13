@@ -80,4 +80,14 @@ public class ClientServiceImpl implements ClientServicePort {
 		return new ResponseModel(clientUpdated);
 	}
 
+	@Override
+	public ResponseModel changeStatusById(Long clientId, String status) {
+		log.info("INIT changeStatusById()");
+		boolean userStatus = status.equals("ACTIVE") ? true : false;
+		boolean changeStatus = clientPersistencePort.changeStatusById(clientId, userStatus);
+		if (!changeStatus)
+			throw new InternalError();
+		return new ResponseModel(changeStatus);
+	}
+
 }

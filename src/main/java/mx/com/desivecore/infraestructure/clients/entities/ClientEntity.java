@@ -39,7 +39,10 @@ public class ClientEntity {
 
 	@Column(name = "email", unique = false, nullable = false, length = 65)
 	private String email;
-
+	
+	@Column(name = "status")
+	private boolean status;
+	
 	@Column(name = "street", unique = false, nullable = false, length = 150)
 	private String street;
 
