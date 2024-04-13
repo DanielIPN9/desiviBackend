@@ -47,6 +47,18 @@ public class SupplierPersistenceImpl implements SupplierPersistencePort {
 			return null;
 		}
 	}
+	
+	@Override
+	public List<Supplier> viewAllSupplierActive() {
+		try {
+			log.info("INIT viewAllSupplier()");
+			List<SupplierEntity> supplierEntityList = supplierRepository.findAllByStatus(true);
+			return supplierConverter.supplierEntityListToSupplierList(supplierEntityList);
+		} catch (Exception e) {
+			log.info("EXCEPTION: " + e.getMessage());
+			return null;
+		}
+	}
 
 	@Override
 	public Supplier viewSupplierDetailById(Long supplierId) {
@@ -80,7 +92,7 @@ public class SupplierPersistenceImpl implements SupplierPersistencePort {
 	public Supplier findSupplierByRfc(String rfc) {
 		try {
 			log.info("INIT findSupplierByRfc()");
-			Optional<SupplierEntity> supplierOptional = supplierRepository.findByRfc(rfc);
+			Optional<SupplierEntity> supplierOptional = supplierRepository.findByRfcAndActive(rfc, true);
 			if (supplierOptional.isPresent())
 				return supplierConverter.supplierEntityToSupplier(supplierOptional.get());
 			return null;
@@ -94,7 +106,8 @@ public class SupplierPersistenceImpl implements SupplierPersistencePort {
 	public Supplier findSupplierByRfcAndIdNot(String rfc, Long supplierId) {
 		try {
 			log.info("INIT findSupplierByRfcAndIdNot()");
-			Optional<SupplierEntity> supplierOptional = supplierRepository.findByRfcAndIdNot(rfc, supplierId);
+			Optional<SupplierEntity> supplierOptional = supplierRepository.findByRfcAndIdNotAndActive(rfc, supplierId,
+					true);
 			if (supplierOptional.isPresent())
 				return supplierConverter.supplierEntityToSupplier(supplierOptional.get());
 			return null;

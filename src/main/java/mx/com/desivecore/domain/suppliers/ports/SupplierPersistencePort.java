@@ -9,6 +9,8 @@ public interface SupplierPersistencePort {
 	Supplier saveSupplier(Supplier supplier);
 
 	List<Supplier> viewAllSupplier();
+	
+	List<Supplier> viewAllSupplierActive();
 
 	Supplier viewSupplierDetailById(Long supplierId);
 

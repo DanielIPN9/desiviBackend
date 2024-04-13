@@ -20,7 +20,7 @@
 	<title>
 		<band height="32" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="180" height="30" forecolor="#FFFFFF" backcolor="#664CFC" uuid="ea5a208c-4951-4e73-a34c-2ae40e78ab12"/>
+				<reportElement mode="Opaque" x="0" y="0" width="180" height="30" forecolor="#FFFFFF" backcolor="#2149FC" uuid="ea5a208c-4951-4e73-a34c-2ae40e78ab12"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -33,7 +33,7 @@
 				<text><![CDATA[CARACTERÍSTICAS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="180" y="0" width="120" height="30" forecolor="#FFFFFF" backcolor="#664CFC" uuid="6a1cd486-3382-45f4-a707-65d46116b494"/>
+				<reportElement mode="Opaque" x="180" y="0" width="120" height="30" forecolor="#FFFFFF" backcolor="#2149FC" uuid="6a1cd486-3382-45f4-a707-65d46116b494"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -46,7 +46,7 @@
 				<text><![CDATA[VALOR]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="300" y="0" width="120" height="30" forecolor="#FFFFFF" backcolor="#664CFC" uuid="a69cfe45-a80d-4312-b338-04d0f1e0d1bc"/>
+				<reportElement mode="Opaque" x="300" y="0" width="120" height="30" forecolor="#FFFFFF" backcolor="#2149FC" uuid="a69cfe45-a80d-4312-b338-04d0f1e0d1bc"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -59,7 +59,7 @@
 				<text><![CDATA[RESULTADO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="420" y="0" width="175" height="30" forecolor="#FFFFFF" backcolor="#664CFC" uuid="8c2cc5ae-2aaf-402b-983c-a0c9bf99466f"/>
+				<reportElement mode="Opaque" x="420" y="0" width="175" height="30" forecolor="#FFFFFF" backcolor="#2149FC" uuid="8c2cc5ae-2aaf-402b-983c-a0c9bf99466f"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>

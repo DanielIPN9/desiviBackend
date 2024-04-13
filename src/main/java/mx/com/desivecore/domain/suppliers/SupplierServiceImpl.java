@@ -44,7 +44,7 @@ public class SupplierServiceImpl implements SupplierServicePort {
 	@Override
 	public ResponseModel viewAllSupplier() {
 		log.info("INIT viewAllSupplier()");
-		List<Supplier> supplierLits = supplierPersistencePort.viewAllSupplier();
+		List<Supplier> supplierLits = supplierPersistencePort.viewAllSupplierActive();
 		if (supplierLits == null) {
 			log.info("EMPTY DATA");
 			return new ResponseModel(new ArrayList<>());

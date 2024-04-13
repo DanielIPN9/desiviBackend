@@ -18,11 +18,6 @@ public class ClientValidator {
 
 		Client clientSearch = null;
 
-		if (client.getEmail() != null) {
-			clientSearch = clientPersistencePort.findClientByEmail(client.getEmail());
-			validations += clientSearch != null ? "-El correo ingresado ya esta registrado a un cliente" : "";
-		}
-
 		if (client.getRfc() != null) {
 			clientSearch = clientPersistencePort.findClientByRfc(client.getRfc());
 			validations += clientSearch != null ? "El RFC ingresado ya esta registrado a un cliente" : "";
@@ -40,11 +35,6 @@ public class ClientValidator {
 		validations = validRequiredFields(client, validations);
 
 		Client clientSearch = null;
-
-		if (client.getEmail() != null) {
-			clientSearch = clientPersistencePort.findClientByEmailAndIdNot(client.getEmail(), client.getClientId());
-			validations += clientSearch != null ? "-El correo ingresado ya esta registrado a un cliente" : "";
-		}
 
 		if (client.getRfc() != null) {
 			clientSearch = clientPersistencePort.findClientByRfcAndIdNot(client.getRfc(), client.getClientId());

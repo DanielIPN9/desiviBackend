@@ -14,8 +14,6 @@ public class SupplierValidator {
 		validations = validRequiredFields(supplier, validations);
 
 		Supplier supplierSearch = null;
-		supplierSearch = supplierPersistencePort.findSupplierByEmail(supplier.getEmail());
-		validations += supplierSearch != null ? "- El corre ingresado ya existe para un proveedor" : "";
 
 		supplierSearch = supplierPersistencePort.findSupplierByRfc(supplier.getRfc());
 		validations += supplierSearch != null ? " -El RFC ingresado ya existe para un proveedor" : "";
@@ -30,9 +28,6 @@ public class SupplierValidator {
 		validations = validRequiredFields(supplier, validations);
 
 		Supplier supplierSearch = null;
-		supplierSearch = supplierPersistencePort.findSupplierByEmailAndIdNot(supplier.getEmail(),
-				supplier.getSupplierId());
-		validations += supplierSearch != null ? "- El corre ingresado ya existe para un proveedor" : "";
 
 		supplierSearch = supplierPersistencePort.findSupplierByRfcAndIdNot(supplier.getRfc(), supplier.getSupplierId());
 		validations += supplierSearch != null ? " -El RFC ingresado ya existe para un proveedor" : "";

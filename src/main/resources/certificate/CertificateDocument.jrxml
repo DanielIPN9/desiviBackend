@@ -15,7 +15,7 @@
 	<title>
 		<band height="126" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="190" height="55" uuid="c99a2255-45fe-4184-a76f-101ce6b40d97"/>
+				<reportElement x="0" y="0" width="190" height="70" uuid="c99a2255-45fe-4184-a76f-101ce6b40d97"/>
 				<imageExpression><![CDATA[$F{logo}]]></imageExpression>
 			</image>
 			<line>
@@ -42,7 +42,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
-					<font size="12"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DESIVI S. A. DE C. V.]]></text>
 			</staticText>
@@ -53,7 +53,7 @@
 				<textElement>
 					<font size="12"/>
 				</textElement>
-				<text><![CDATA[SUSTENTABILIDAD Y PRODUCTOS INDUSTRIALES.]]></text>
+				<text><![CDATA[ " 10 años siendo parte de tu industria "]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="70" width="583" height="20" uuid="f3fad3b1-720e-4329-8de2-864e118886d6"/>

@@ -28,6 +28,7 @@ public class SupplierConverter {
 		supplierEntity.setMunicipality(supplier.getMunicipality());
 		supplierEntity.setColony(supplier.getColony());
 		supplierEntity.setCp(supplier.getCp());
+		supplierEntity.setState(supplier.getState());
 
 		return supplierEntity;
 	}
@@ -49,6 +50,7 @@ public class SupplierConverter {
 		supplier.setMunicipality(supplierEntity.getMunicipality());
 		supplier.setColony(supplierEntity.getColony());
 		supplier.setCp(supplierEntity.getCp());
+		supplier.setState(supplierEntity.getState());
 
 		return supplier;
 	}

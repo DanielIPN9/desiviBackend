@@ -28,6 +28,8 @@ public class Supplier {
 
 	private String cp;
 
+	private String state;
+
 	public Long getSupplierId() {
 		return supplierId;
 	}
@@ -132,12 +134,21 @@ public class Supplier {
 		this.cp = cp;
 	}
 
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	@Override
 	public String toString() {
 		return "Supplier [supplierId=" + supplierId + ", businessName=" + businessName + ", rfc=" + rfc
 				+ ", contactName=" + contactName + ", contactNumber=" + contactNumber + ", email=" + email + ", status="
 				+ status + ", street=" + street + ", externalNumber=" + externalNumber + ", internalNumber="
-				+ internalNumber + ", municipality=" + municipality + ", colony=" + colony + ", cp=" + cp + "]";
+				+ internalNumber + ", municipality=" + municipality + ", colony=" + colony + ", cp=" + cp + ", state="
+				+ state + "]";
 	}
 
 }

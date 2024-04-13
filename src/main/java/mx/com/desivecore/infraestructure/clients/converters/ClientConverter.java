@@ -27,7 +27,7 @@ public class ClientConverter {
 		clientEntity.setMunicipality(client.getMunicipality());
 		clientEntity.setColony(client.getColony());
 		clientEntity.setCp(client.getCp());
-
+		clientEntity.setState(client.getState());
 		return clientEntity;
 	}
 
@@ -47,6 +47,7 @@ public class ClientConverter {
 		client.setMunicipality(clientEntity.getMunicipality());
 		client.setColony(clientEntity.getColony());
 		client.setCp(clientEntity.getCp());
+		client.setState(clientEntity.getState());
 
 		return client;
 	}

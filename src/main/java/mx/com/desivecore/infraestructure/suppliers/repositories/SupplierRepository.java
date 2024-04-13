@@ -1,5 +1,6 @@
 package mx.com.desivecore.infraestructure.suppliers.repositories;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -14,12 +15,22 @@ import mx.com.desivecore.infraestructure.suppliers.entities.SupplierEntity;
 
 @Repository
 public interface SupplierRepository extends JpaRepository<SupplierEntity, Long> {
+	
+	@Query("SELECT s FROM SupplierEntity s WHERE s.status=:active")
+	List<SupplierEntity> findAllByStatus(@Param("active") boolean active);
 
 	@Query("SELECT s FROM SupplierEntity s WHERE s.rfc=:rfc")
 	Optional<SupplierEntity> findByRfc(@Param("rfc") String rfc);
 
+	@Query("SELECT s FROM SupplierEntity s WHERE s.rfc=:rfc AND s.status=:active")
+	Optional<SupplierEntity> findByRfcAndActive(@Param("rfc") String rfc, @Param("active") boolean active);
+
 	@Query("SELECT s FROM SupplierEntity s WHERE s.rfc=:rfc AND s.supplierId!=:id")
 	Optional<SupplierEntity> findByRfcAndIdNot(@Param("rfc") String rfc, @Param("id") Long id);
+
+	@Query("SELECT s FROM SupplierEntity s WHERE s.rfc=:rfc AND s.supplierId!=:id AND s.status=:active")
+	Optional<SupplierEntity> findByRfcAndIdNotAndActive(@Param("rfc") String rfc, @Param("id") Long id,
+			@Param("active") boolean active);
 
 	@Query("SELECT s FROM SupplierEntity s WHERE s.email=:email")
 	Optional<SupplierEntity> findByEmail(@Param("email") String email);

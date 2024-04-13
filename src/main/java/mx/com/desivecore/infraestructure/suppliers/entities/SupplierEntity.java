@@ -60,5 +60,8 @@ public class SupplierEntity {
 
 	@Column(name = "cp", unique = false, nullable = false, length = 10)
 	private String cp;
+	
+	@Column(name = "state", unique = false, nullable = false, length = 150)
+	private String state;
 
 }

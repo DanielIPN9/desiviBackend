@@ -63,7 +63,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
-					<font size="12"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DESIVI S. A. DE C. V.]]></text>
 			</staticText>
@@ -74,7 +74,7 @@
 				<textElement>
 					<font size="12"/>
 				</textElement>
-				<text><![CDATA[SUSTENTABILIDAD Y PRODUCTOS INDUSTRIALES.]]></text>
+				<text><![CDATA[DESARROLLOS ECOLOGICOS Y COMERCIALES MEXICO]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
@@ -546,9 +546,7 @@ producto:]]></text>
 				<reportElement x="20" y="8" width="550" height="59" uuid="93e0e07e-4798-4828-9d30-5506b238813b"/>
 				<box topPadding="12"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[Av. Ferrocarriles Nacionales No. 43 Col. Ahuizotla, Naucalpan de Juárez, Estado de México C.P. 53378
-WWW.DESIVI.JIMDO.COM
-CEL. 5511526395 TEL. (55)84349778 * E-MAIL: industrialesvillegas@gmail.com * RFC: DIV140204QZ9]]></text>
+				<text><![CDATA[Av. Ferrocarriles Nacionales No. 43 Col. Ahuizotla, Naucalpan de Juárez, Estado de México C.P. 53378                                                      WWW.DESIVI.COM.MX   RFC: DIV140204QZ9    WHATSAPP: 5511526395  TELS.: 5589528024 - 5589528027                                                                                                                                            E-MAIL: industrialesvillegas@gmail.com]]></text>
 			</staticText>
 			<line>
 				<reportElement x="20" y="7" width="550" height="1" uuid="8a678114-53bf-4c17-a7a1-d39815cbbdfe">
@@ -574,9 +572,7 @@ CEL. 5511526395 TEL. (55)84349778 * E-MAIL: industrialesvillegas@gmail.com * RFC
 				<reportElement x="20" y="28" width="550" height="59" uuid="94ba407d-508c-4d92-85b5-3e2e88a0f69e"/>
 				<box topPadding="12"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[Av. Ferrocarriles Nacionales No. 43 Col. Ahuizotla, Naucalpan de Juárez, Estado de México C.P. 53378
-WWW.DESIVI.JIMDO.COM
-CEL. 5511526395 TEL. (55)84349778 * E-MAIL: industrialesvillegas@gmail.com * RFC: DIV140204QZ9]]></text>
+				<text><![CDATA[Av. Ferrocarriles Nacionales No. 43 Col. Ahuizotla, Naucalpan de Juárez, Estado de México C.P. 53378                                                      WWW.DESIVI.COM.MX   RFC: DIV140204QZ9    WHATSAPP: 5511526395  TELS.: 5589528024 - 5589528027                                                                                                                                            E-MAIL: industrialesvillegas@gmail.com]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="20" y="7" width="550" height="15" uuid="327d89de-f52f-4f35-9fb0-21f9e9f2b9e7">

@@ -26,6 +26,8 @@ public class Client {
 
 	private String cp;
 
+	private String state;
+
 	public Long getClientId() {
 		return clientId;
 	}
@@ -122,12 +124,20 @@ public class Client {
 		this.cp = cp;
 	}
 
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	@Override
 	public String toString() {
 		return "Client [clientId=" + clientId + ", businessName=" + businessName + ", rfc=" + rfc + ", contactName="
 				+ contactName + ", contactNumber=" + contactNumber + ", email=" + email + ", street=" + street
 				+ ", externalNumber=" + externalNumber + ", internalNumber=" + internalNumber + ", municipality="
-				+ municipality + ", colony=" + colony + ", cp=" + cp + "]";
+				+ municipality + ", colony=" + colony + ", cp=" + cp + ", state=" + state + "]";
 	}
 
 }
