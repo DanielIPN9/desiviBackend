@@ -37,6 +37,7 @@ public class ProductServiceImpl implements ProductServicePort {
 			log.warning("VALIDATION ERROR: " + validations);
 			throw new ValidationError("Los datos ingresados son invalidos: " + validations);
 		}
+		product.setStatus(true);
 		Product productCreated = productPersistencePort.saveProduc(product);
 		if (productCreated == null) {
 			log.severe("ERROR EN CREACION DE REGISTRO");

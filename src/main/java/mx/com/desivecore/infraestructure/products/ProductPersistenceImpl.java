@@ -85,7 +85,7 @@ public class ProductPersistenceImpl implements ProductPersistencePort {
 	public List<Product> viewALLProduct() {
 		try {
 			log.info("INIT viewALLProduct()");
-			List<ProductEntity> productEntityList = productRepository.findAll();
+			List<ProductEntity> productEntityList = productRepository.findAllByStatus(true);
 			return productConverter.productEntityListToProductList(productEntityList);
 		} catch (Exception e) {
 			log.severe("EXCEPTION: " + e.getMessage());
