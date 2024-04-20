@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.java.Log;
 import mx.com.desivecore.commons.models.ResponseModel;
+import mx.com.desivecore.domain.branches.models.Branch;
+import mx.com.desivecore.domain.branches.models.BranchPhone;
+import mx.com.desivecore.domain.branches.models.BranchSummary;
+import mx.com.desivecore.domain.branches.ports.BranchPersistencePort;
 import mx.com.desivecore.domain.productTag.models.ProductTag;
 import mx.com.desivecore.domain.productTag.models.ProductTagDocument;
 import mx.com.desivecore.domain.productTag.models.ProductTagSummary;
@@ -28,6 +32,9 @@ public class ProductTagServiceImpl implements ProductTagServicePort {
 	@Autowired
 	private ProductTagPersistencePort productTagPersistencePort;
 
+	@Autowired
+	private BranchPersistencePort branchPersistencePort;
+
 	private TagValidator tagValidator = new TagValidator();
 
 	@Override
@@ -38,10 +45,25 @@ public class ProductTagServiceImpl implements ProductTagServicePort {
 			log.warning("BAD PARAMS: " + validations);
 			throw new ValidationError(validations);
 		}
+		setPhoneNumber(productTag);
 		ProductTag productTagCreated = productTagPersistencePort.saveProductTag(productTag);
 		if (productTagCreated == null)
 			throw new InternalError();
 		return new ResponseModel(productTagCreated);
+	}
+
+	private void setPhoneNumber(ProductTag productTag) {
+		String phoneNumber = "";
+		if (productTag.getPhone() != null) {
+			if(productTag.getPhone().getPhone() != null) {
+				phoneNumber = productTag.getPhone().getPhone();
+			}
+			
+		} else {
+			phoneNumber = productTag.getPhoneNumber();
+		}
+		
+		productTag.setPhoneNumber(phoneNumber);
 	}
 
 	@Override
@@ -75,6 +97,7 @@ public class ProductTagServiceImpl implements ProductTagServicePort {
 			log.warning("BAD PARAMS: " + validations);
 			throw new ValidationError(validations);
 		}
+		setPhoneNumber(productTag);
 		ProductTag productTagUpdated = productTagPersistencePort.saveProductTag(productTag);
 		if (productTagUpdated == null)
 			throw new InternalError();
@@ -102,13 +125,35 @@ public class ProductTagServiceImpl implements ProductTagServicePort {
 	}
 
 	@Override
+	public ResponseModel viewBranchList() {
+		log.info("INIT viewBranchList()");
+		List<Branch> branchList = branchPersistencePort.findAllBranch();
+		List<BranchSummary> branchSummaryList = new ArrayList<>();
+		if (branchList == null)
+			return new ResponseModel(branchSummaryList);
+		for (Branch branch : branchList) {
+			branchSummaryList.add(new BranchSummary(branch.getBranchId(), branch.getName()));
+		}
+		return new ResponseModel(branchSummaryList);
+	}
+
+	@Override
+	public ResponseModel viewBranchPhoneList(Long branchId) {
+		log.info("INIT viewBranchPhoneList()");
+		List<BranchPhone> branchPhoneList = branchPersistencePort.findRecordListByBranchId(branchId);
+		if (branchPhoneList == null)
+			return new ResponseModel(new ArrayList<>());
+		return new ResponseModel(branchPhoneList);
+	}
+
+	@Override
 	public ResponseModel generateDocumentTag(Long tagId) {
 		log.info("INIT generateDocumentTag()");
 		ProductTag productTag = productTagPersistencePort.viewProductTagById(tagId);
 		if (productTag == null)
 			throw new ValidationError("Etiqueta no encontrada");
-		ProductTagDocument productTagDocument = new ProductTagDocument(productTag);
-		log.info(productTagDocument.toString());
+		Branch branch = branchPersistencePort.findBranchById(productTag.getBranch().getBranchId());
+		ProductTagDocument productTagDocument = new ProductTagDocument(productTag, branch);
 		ResponseModel response = productTagPersistencePort.generateDocumentTag(productTagDocument);
 		return response;
 	}

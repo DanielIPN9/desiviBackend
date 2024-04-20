@@ -28,19 +28,22 @@ public class BranchEntity {
 	@Column(name = "name", unique = false, nullable = false, length = 30)
 	private String name;
 
-	@Column(name = "street", unique = false, nullable = true, length = 30)
+	@Column(name = "street", unique = false, nullable = true, length = 150)
 	private String street;
 
-	@Column(name = "external_number", unique = false, nullable = true, length = 15)
+	@Column(name = "external_number", unique = false, nullable = true, length = 150)
 	private String externalNumber;
 
-	@Column(name = "municipality", unique = false, nullable = true, length = 30)
+	@Column(name = "municipality", unique = false, nullable = true, length = 150)
 	private String municipality;
 
-	@Column(name = "colony", unique = false, nullable = true, length = 30)
+	@Column(name = "colony", unique = false, nullable = true, length = 150)
 	private String colony;
 
 	@Column(name = "cp", unique = false, nullable = true, length = 10)
 	private String cp;
+
+	@Column(name = "state", unique = false, nullable = true, length = 150)
+	private String state;
 
 }

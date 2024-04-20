@@ -15,6 +15,10 @@ public interface ProductTagServicePort {
 	ResponseModel deleteTabById(Long tagId);
 
 	ResponseModel viewProductActiveList();
+	
+	ResponseModel viewBranchList();
+	
+	ResponseModel viewBranchPhoneList(Long branchId);
 
 	ResponseModel generateDocumentTag(Long tagId);
 }

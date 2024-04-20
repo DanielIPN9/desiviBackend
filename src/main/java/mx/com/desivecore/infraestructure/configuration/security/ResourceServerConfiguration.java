@@ -94,8 +94,9 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				.hasAuthority(PermissionEnum.CLIENT.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/client/update")
 				.hasAuthority(PermissionEnum.CLIENT.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/client/change-status/{status}/{clientId}")
-				.hasAuthority(PermissionEnum.CLIENT.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.PUT, "/client/change-status/{status}/{clientId}")
+						.hasAuthority(PermissionEnum.CLIENT.toString()));
 
 		// ACCESOS PARA LA GESTION DE PROVEEDORES
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/supplier/create")
@@ -156,6 +157,11 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				.hasAuthority(PermissionEnum.PRODUCT_TAG.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/product-tag/view-all/product")
 				.hasAuthority(PermissionEnum.PRODUCT_TAG.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/product-tag/view-all/branch")
+				.hasAuthority(PermissionEnum.PRODUCT_TAG.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/product-tag/view-all/branch/phone/{branchId}")
+						.hasAuthority(PermissionEnum.PRODUCT_TAG.toString()));
 		http.authorizeRequests(
 				requests -> requests.antMatchers(HttpMethod.GET, "/product-tag/generate/document/{tagId}")
 						.hasAuthority(PermissionEnum.PRODUCT_TAG.toString()));

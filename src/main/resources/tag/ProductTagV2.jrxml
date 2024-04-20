@@ -199,7 +199,7 @@
 				<textFieldExpression><![CDATA[$F{um}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="282" y="16" width="76" height="20" uuid="759fd4e1-a382-4f38-8618-def02b047f2a">
+				<reportElement x="282" y="16" width="118" height="20" uuid="759fd4e1-a382-4f38-8618-def02b047f2a">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -208,7 +208,7 @@
 				<textFieldExpression><![CDATA[$F{phoneNumber}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="691" y="15" width="76" height="20" uuid="50702f4d-17d3-4ca2-931b-bbc162c42426">
+				<reportElement x="691" y="15" width="108" height="20" uuid="50702f4d-17d3-4ca2-931b-bbc162c42426">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -217,7 +217,7 @@
 				<textFieldExpression><![CDATA[$F{phoneNumber}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="692" y="307" width="76" height="20" uuid="26d64763-afb1-4644-a23f-10cf7b1c932d">
+				<reportElement x="692" y="307" width="106" height="20" uuid="26d64763-afb1-4644-a23f-10cf7b1c932d">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -226,7 +226,7 @@
 				<textFieldExpression><![CDATA[$F{phoneNumber}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="282" y="308" width="76" height="20" uuid="caa999dc-9883-4bb4-81b7-60c1ca7b618c">
+				<reportElement x="282" y="308" width="118" height="20" uuid="caa999dc-9883-4bb4-81b7-60c1ca7b618c">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -275,7 +275,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Justified">
-					<font size="10"/>
+					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fullAddress}]]></textFieldExpression>
 			</textField>
@@ -284,7 +284,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Justified">
-					<font size="10"/>
+					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fullAddress}]]></textFieldExpression>
 			</textField>
@@ -293,7 +293,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Justified">
-					<font size="10"/>
+					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fullAddress}]]></textFieldExpression>
 			</textField>
@@ -302,7 +302,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Justified">
-					<font size="10"/>
+					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fullAddress}]]></textFieldExpression>
 			</textField>

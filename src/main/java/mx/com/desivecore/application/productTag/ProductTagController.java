@@ -73,6 +73,22 @@ public class ProductTagController {
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	
+	@GetMapping("/view-all/branch")
+	public ResponseEntity<?> viewBranchActiveList(){
+		log.info("INIT viewBranchActiveList()");
+		ResponseModel response = productTagServicePort.viewBranchList();
+		return new ResponseEntity<>(response,HttpStatus.OK);
+	}
+	
+	@GetMapping("/view-all/branch/phone/{branchId}")
+	public ResponseEntity<?> viewBranchPhoneList(@PathVariable Long branchId){
+		log.info("INIT viewBranchActiveList()");
+		log.info(String.format("PARAMS: [branchId: %s]", branchId.toString()));
+		ResponseModel response = productTagServicePort.viewBranchPhoneList(branchId);
+		return new ResponseEntity<>(response,HttpStatus.OK);
+	}
+	
+	
 	@GetMapping("/generate/document/{tagId}")
 	public ResponseEntity<?> generateDocumentTag(@PathVariable Long tagId){
 		log.info("INIT generateDocumentTag()");

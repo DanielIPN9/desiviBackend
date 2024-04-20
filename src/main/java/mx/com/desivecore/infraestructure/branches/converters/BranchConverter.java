@@ -22,6 +22,7 @@ public class BranchConverter {
 		branchEntity.setMunicipality(branch.getMunicipality());
 		branchEntity.setColony(branch.getColony());
 		branchEntity.setCp(branch.getCp());
+		branchEntity.setState(branch.getState());
 
 		return branchEntity;
 	}
@@ -37,6 +38,7 @@ public class BranchConverter {
 		branch.setMunicipality(branchEntity.getMunicipality());
 		branch.setColony(branchEntity.getColony());
 		branch.setCp(branchEntity.getCp());
+		branch.setState(branchEntity.getState());
 
 		return branch;
 	}

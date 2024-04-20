@@ -21,7 +21,7 @@ public class ProductTagConverter {
 		productTagEntity.setCreationDate(productTag.getCreationDate());
 		productTagEntity.setNetWeight(productTag.getNetWeight());
 		productTagEntity.setUm(productTag.getUm());
-		productTagEntity.setFullAddress(productTag.getFullAddress());
+		productTagEntity.setBarnchId(productTag.getBranch().getBranchId());
 		productTagEntity.setUrlSite(productTag.getUrlSite());
 		productTagEntity.setPhoneNumber(productTag.getPhoneNumber());
 
@@ -37,7 +37,6 @@ public class ProductTagConverter {
 		productTag.setCreationDate(productTagEntity.getCreationDate());
 		productTag.setNetWeight(productTagEntity.getNetWeight());
 		productTag.setUm(productTagEntity.getUm());
-		productTag.setFullAddress(productTagEntity.getFullAddress());
 		productTag.setUrlSite(productTagEntity.getUrlSite());
 		productTag.setPhoneNumber(productTagEntity.getPhoneNumber());
 

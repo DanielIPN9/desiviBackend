@@ -1,5 +1,7 @@
 package mx.com.desivecore.domain.branches.models;
 
+import java.util.List;
+
 public class Branch {
 
 	private Long branchId;
@@ -15,6 +17,10 @@ public class Branch {
 	private String colony;
 
 	private String cp;
+
+	private String state;
+
+	private List<BranchPhone> phones;
 
 	public Long getBranchId() {
 		return branchId;
@@ -72,10 +78,27 @@ public class Branch {
 		this.cp = cp;
 	}
 
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public List<BranchPhone> getPhones() {
+		return phones;
+	}
+
+	public void setPhones(List<BranchPhone> phones) {
+		this.phones = phones;
+	}
+
 	@Override
 	public String toString() {
 		return "Branch [branchId=" + branchId + ", name=" + name + ", street=" + street + ", externalNumber="
-				+ externalNumber + ", municipality=" + municipality + ", colony=" + colony + ", cp=" + cp + "]";
+				+ externalNumber + ", municipality=" + municipality + ", colony=" + colony + ", cp=" + cp + ", state="
+				+ state + ", phones=" + phones + "]";
 	}
 
 }

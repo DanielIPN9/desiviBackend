@@ -1,7 +1,11 @@
 package mx.com.desivecore.domain.branches;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import lombok.extern.java.Log;
 import mx.com.desivecore.domain.branches.models.Branch;
+import mx.com.desivecore.domain.branches.models.BranchPhone;
 import mx.com.desivecore.domain.branches.ports.BranchPersistencePort;
 
 @Log
@@ -15,10 +19,29 @@ public class BranchValidator {
 			return "Datos inválidos";
 
 		validations = validRequiredFields(branch, validations);
+		validations = validPhoneNumberList(branch, validations);
 
 		Branch branchSearch = branchPersistencePort.findBranchByName(branch.getName());
 		validations += branchSearch != null ? "El nombre ingresado ya existe" : "";
 
+		return validations;
+	}
+
+	private String validPhoneNumberList(Branch branch, String validations) {
+		if (branch.getPhones() != null) {
+			for (BranchPhone branchPhone : branch.getPhones()) {
+
+				validations += branchPhone.getPhone() == null ? " -Número invalido"  : "";
+				validations += branchPhone.getPhone() != null
+						? validNumberString(branchPhone.getPhone()) ? "" : " -El télefono no puede contener caracteres"
+						: "";
+
+				validations += branchPhone.getExtension() != null ? !branchPhone.getExtension().isEmpty()
+						? validNumberString(branchPhone.getExtension()) ? "" : " -Extensión invalida"
+						: "" : "";
+
+			}
+		}
 		return validations;
 	}
 
@@ -30,9 +53,10 @@ public class BranchValidator {
 			return "Datos inválidos";
 
 		validations = validRequiredFields(branch, validations);
+		validations = validPhoneNumberList(branch, validations);
 
 		Branch branchSearch = branchPersistencePort.findBranchByNameAndIdNot(branch.getName(), branch.getBranchId());
-		validations += branchSearch != null ? "El nombre ingresado ya existe" : "";
+		validations += branchSearch != null ? " -El nombre ingresado ya existe" : "";
 
 		return validations;
 	}
@@ -44,6 +68,7 @@ public class BranchValidator {
 		validations += validString("Municipio/Delegación", branch.getMunicipality());
 		validations += validString("Colonia", branch.getColony());
 		validations += validString("Código Postal", branch.getCp());
+		validations += validString("Estado", branch.getState());
 		return validations;
 	}
 
@@ -53,5 +78,11 @@ public class BranchValidator {
 		validations = value != null ? value.isEmpty() ? "- El campo " + fieldName + " es requerido" : validations
 				: validations;
 		return validations;
+	}
+
+	private boolean validNumberString(String number) {
+		Pattern pattern = Pattern.compile("[0-9]+");
+		Matcher matcher = pattern.matcher(number);
+		return matcher.matches();
 	}
 }

@@ -3,6 +3,8 @@ package mx.com.desivecore.domain.productTag.models;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 
+import mx.com.desivecore.domain.branches.models.Branch;
+
 public class ProductTagDocument {
 
 	private InputStream tag1;
@@ -33,12 +35,14 @@ public class ProductTagDocument {
 		super();
 	}
 
-	public ProductTagDocument(ProductTag productTag) {
+	public ProductTagDocument(ProductTag productTag, Branch branch) {
 		super();
 		this.productName = productTag.getProduct().getName();
 		this.netWeight = productTag.getNetWeight();
 		this.urlSite = productTag.getUrlSite();
-		this.fullAddress = productTag.getFullAddress();
+		this.fullAddress = String.format("%s  %s, %s , %s C.P. %s , %s",
+				branch.getStreet(), branch.getExternalNumber(), branch.getColony(), branch.getMunicipality(),
+				branch.getCp(), branch.getState());
 		this.phoneNumber = productTag.getPhoneNumber();
 		this.lot = productTag.getLot();
 		this.um = productTag.getUm();

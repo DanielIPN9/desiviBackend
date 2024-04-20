@@ -42,13 +42,13 @@ public class ProductTagEntity {
 	@Column(name = "um", unique = false, nullable = false, length = 6)
 	private String um;
 
-	@Column(name = "full_address", unique = false, nullable = false, length = 300)
-	private String fullAddress;
+	@Column(name = "branch_id", nullable = false)
+	private Long barnchId;
 
 	@Column(name = "url_site", unique = false, nullable = false, length = 40)
 	private String urlSite;
 
-	@Column(name = "phone_number", unique = false, nullable = false, length = 15)
+	@Column(name = "phone_number", unique = false, nullable = false, length = 30)
 	private String phoneNumber;
 
 }

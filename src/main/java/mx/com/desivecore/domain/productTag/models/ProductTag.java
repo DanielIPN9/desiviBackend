@@ -2,6 +2,8 @@ package mx.com.desivecore.domain.productTag.models;
 
 import java.util.Date;
 
+import mx.com.desivecore.domain.branches.models.BranchPhone;
+import mx.com.desivecore.domain.branches.models.BranchSummary;
 import mx.com.desivecore.domain.products.models.Product;
 
 public class ProductTag {
@@ -18,7 +20,9 @@ public class ProductTag {
 
 	private String um;
 
-	private String fullAddress;
+	private BranchSummary branch;
+
+	private BranchPhone phone;
 
 	private String urlSite;
 
@@ -64,12 +68,28 @@ public class ProductTag {
 		this.netWeight = netWeight;
 	}
 
-	public String getFullAddress() {
-		return fullAddress;
+	public String getUm() {
+		return um;
 	}
 
-	public void setFullAddress(String fullAddress) {
-		this.fullAddress = fullAddress;
+	public void setUm(String um) {
+		this.um = um;
+	}
+
+	public BranchSummary getBranch() {
+		return branch;
+	}
+
+	public void setBranch(BranchSummary branch) {
+		this.branch = branch;
+	}
+
+	public BranchPhone getPhone() {
+		return phone;
+	}
+
+	public void setPhone(BranchPhone phone) {
+		this.phone = phone;
 	}
 
 	public String getUrlSite() {
@@ -88,19 +108,11 @@ public class ProductTag {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getUm() {
-		return um;
-	}
-
-	public void setUm(String um) {
-		this.um = um;
-	}
-
 	@Override
 	public String toString() {
 		return "ProductTag [tagId=" + tagId + ", product=" + product + ", lot=" + lot + ", creationDate=" + creationDate
-				+ ", netWeight=" + netWeight + ", um=" + um + ", fullAddress=" + fullAddress + ", urlSite=" + urlSite
-				+ ", phoneNumber=" + phoneNumber + "]";
+				+ ", netWeight=" + netWeight + ", um=" + um + ", branch=" + branch + ", phone=" + phone + ", urlSite="
+				+ urlSite + ", phoneNumber=" + phoneNumber + "]";
 	}
 
 }

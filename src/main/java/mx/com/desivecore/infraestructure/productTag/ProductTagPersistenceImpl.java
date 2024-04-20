@@ -12,9 +12,12 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.java.Log;
 import mx.com.desivecore.commons.models.ResponseModel;
+import mx.com.desivecore.domain.branches.models.BranchSummary;
 import mx.com.desivecore.domain.productTag.models.ProductTag;
 import mx.com.desivecore.domain.productTag.models.ProductTagDocument;
 import mx.com.desivecore.domain.productTag.ports.ProductTagPersistencePort;
+import mx.com.desivecore.infraestructure.branches.entities.BranchEntity;
+import mx.com.desivecore.infraestructure.branches.repositories.BranchReposirory;
 import mx.com.desivecore.infraestructure.productTag.converters.ProductTagConverter;
 import mx.com.desivecore.infraestructure.productTag.entities.ProductTagEntity;
 import mx.com.desivecore.infraestructure.productTag.repositories.ProductTagRepository;
@@ -48,6 +51,9 @@ public class ProductTagPersistenceImpl implements ProductTagPersistencePort {
 	@Autowired
 	private ProductConverter productConverter;
 
+	@Autowired
+	private BranchReposirory branchReposirory;
+
 	@Override
 	public ProductTag saveProductTag(ProductTag productTag) {
 		try {
@@ -72,6 +78,15 @@ public class ProductTagPersistenceImpl implements ProductTagPersistencePort {
 				Optional<ProductEntity> product = productRepository.findById(productTagOptional.get().getProductId());
 				productTag = productTagConverter.productTagEntityToProductTag(productTagOptional.get());
 				productTag.setProduct(productConverter.productEntityToProduct(product.get()));
+
+				Optional<BranchEntity> branchOptional = branchReposirory
+						.findById(productTagOptional.get().getBarnchId());
+				if (branchOptional.isPresent()) {
+					BranchEntity branchEntity = branchOptional.get();
+					BranchSummary branchSummary = new BranchSummary(branchEntity.getBranchId(), branchEntity.getName());
+					productTag.setBranch(branchSummary);
+				}
+
 			}
 			return productTag;
 		} catch (Exception e) {

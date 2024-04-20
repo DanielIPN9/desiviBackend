@@ -19,11 +19,13 @@ public class TagValidator {
 			validations += "Poducto es Requerido";
 		}
 		validations += validString("Lote", productTag.getLot());
-		validations += validString("Dirección ", productTag.getFullAddress());
+		validations += validString("Sucursal ", productTag.getBranch().getName());
 		validations += validString("URL Sitio", productTag.getUrlSite());
-		validations += validString("Número contacto", productTag.getPhoneNumber());
 		validations += productTag.getNetWeight() == null ? " -Peso Neto Requerido" : "";
 		validations += productTag.getCreationDate() == null ? " -Fecha Ingreso Requerido" : "";
+		validations += productTag.getPhone() == null
+				? productTag.getPhoneNumber() == null ? "Ingrese una opción de número telefónico" : ""
+				: "";
 
 		return validations;
 	}
