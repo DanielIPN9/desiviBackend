@@ -142,6 +142,23 @@ public class RemissionOutputServiceImpl implements RemissionOutputServicePort {
 		return new ResponseModel(remissionOtputUpdated);
 	}
 
+	@Override
+	public ResponseModel viewAllByUserLogin(String emailUser) {
+		log.info("INIT viewAllByUserLogin()");
+		UserModel user = userPersistencePort.findUserByEmail(emailUser, true);
+		if (user == null) {
+			log.severe("USER NOT FOUND");
+			throw new InternalError();
+		}
+
+		List<RemissionOutputSummary> remissionOutputSummaryList = remissionOutputPersistencePort
+				.searchByUserId(user.getUserId());
+		if(remissionOutputSummaryList == null)
+			return new ResponseModel(new ArrayList<>());
+
+		return new ResponseModel(remissionOutputSummaryList);
+	}
+
 	private void updateProductAvailabilityByUpdate(RemissionOutput remissionOutput,
 			RemissionOutput remissionOutputSaved) {
 		log.info("INIT updateProductAvailabilityByUpdate()");

@@ -21,5 +21,7 @@ public interface RemissionOutputServicePort {
 	ResponseModel viewBranchActiveList();
 	
 	ResponseModel viewProductActiveList(Long branchId);
+	
+	ResponseModel viewAllByUserLogin(String emailUser);
 
 }

@@ -32,7 +32,7 @@ public class ClientServiceImpl implements ClientServicePort {
 			log.warning("BAD PARAMS: " + validations);
 			throw new ValidationError(validations);
 		}
-
+		client.setStatus(true);
 		Client clientCreated = clientPersistencePort.saveClient(client);
 		if (clientCreated == null) {
 			log.severe("ERROR ON SAVE CLIENT");

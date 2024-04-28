@@ -58,7 +58,6 @@ public class ProductTagServiceImpl implements ProductTagServicePort {
 			if(productTag.getPhone().getPhone() != null) {
 				phoneNumber = productTag.getPhone().getPhone();
 			}
-			
 		} else {
 			phoneNumber = productTag.getPhoneNumber();
 		}

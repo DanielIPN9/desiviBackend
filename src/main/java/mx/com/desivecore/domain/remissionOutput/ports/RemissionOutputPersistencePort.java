@@ -20,6 +20,8 @@ public interface RemissionOutputPersistencePort {
 	RemissionOutput viewRemissionById(Long remissionOutputId);
 
 	List<RemissionOutputSummary> searchRemissionOutputByParams(RemissionOutputSearchParams outputSearchParams);
+	
+	List<RemissionOutputSummary> searchByUserId(Long userId);
 
 	ResponseModel generateRemissionDocument(RemissionOutputDocument remissionOutputDocument);
 

@@ -25,10 +25,10 @@ public class ProductEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long productId;
 
-	@Column(name = "sku", unique = true, nullable = false, length = 30)
+	@Column(name = "sku", unique = false, nullable = false, length = 30)
 	private String sku;
 
-	@Column(name = "name", unique = false, nullable = false, length = 30)
+	@Column(name = "name", unique = false, nullable = false, length = 150)
 	private String name;
 
 	@Column(name = "unit_measure", unique = false, nullable = false, length = 5)

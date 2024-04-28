@@ -244,4 +244,17 @@ public class RemissionOutputPersistenceImpl implements RemissionOutputPersistenc
 		}
 	}
 
+	@Override
+	public List<RemissionOutputSummary> searchByUserId(Long userId) {
+		try {
+			log.info("INIT searchByUserId()");
+			List<RemissionOutputSummary> remissionOutputSummaryList = customDSLRemissionOutputRepository
+					.findRemissionOutputByUserId(userId);
+			return remissionOutputSummaryList;
+		} catch (Exception e) {
+			log.severe("EXCEPTION: " + e.getMessage());
+			return null;
+		}
+	}
+
 }

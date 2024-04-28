@@ -92,6 +92,6 @@ public class CustomDSLRemissionEntryRepository extends QuerydslRepositorySupport
 				remissionEntry.folio, remissionEntry.creationDate, remissionEntry.requestDate, supplier.businessName,
 				branch.name, remissionEntry.remissionTotal));
 
-		return query.orderBy(remissionEntry.creationDate.asc()).fetch();
+		return query.orderBy(remissionEntry.creationDate.asc()).limit(40).fetch();
 	}
 }

@@ -22,12 +22,12 @@ import mx.com.desivecore.infraestructure.remissionOutput.entities.QRemissionOutp
 
 @Log
 @Repository
-public class CustomDSLRemissionOutputRepository extends QuerydslRepositorySupport {
+public class CustomDSLRemissionOutputRepository extends QuerydslRepositorySupport{
 
 	public CustomDSLRemissionOutputRepository() {
 		super(RemissionOutputSummary.class);
 	}
-
+	
 	@Autowired
 	EntityManager em;
 
@@ -93,4 +93,36 @@ public class CustomDSLRemissionOutputRepository extends QuerydslRepositorySuppor
 
 		return query.orderBy(remissionOutput.creationDate.asc()).fetch();
 	}
+	
+	public List<RemissionOutputSummary> findRemissionOutputByUserId(Long userId){
+		
+		log.info("INIT searchRemissionOutputByParams()");
+		JPAQuery<RemissionOutputSummary> query = new JPAQuery<>(em);
+
+		QRemissionOutputEntity remissionOutput = QRemissionOutputEntity.remissionOutputEntity;
+		QClientEntity client = QClientEntity.clientEntity;
+		QBranchEntity branch = QBranchEntity.branchEntity;
+
+		/**
+		 * Start evaluation of tables
+		 */
+		query.from(remissionOutput);
+		query.innerJoin(client).on(remissionOutput.clientId.eq(client.clientId));
+		query.innerJoin(branch).on(remissionOutput.branchId.eq(branch.branchId));
+		
+		
+		/**
+		 * Start evaluation of search parameters
+		 */
+		query.where(remissionOutput.userId.eq(userId));
+		/**
+		 * Select fields
+		 */
+		query.select(Projections.constructor(RemissionOutputSummary.class, remissionOutput.remissionOutputId,
+				remissionOutput.folio, remissionOutput.creationDate, remissionOutput.requestDay, client.businessName,
+				branch.name, remissionOutput.remissionTotal));
+
+		return query.orderBy(remissionOutput.creationDate.asc()).limit(40).fetch();
+	}
+
 }

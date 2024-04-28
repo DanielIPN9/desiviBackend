@@ -66,7 +66,7 @@ public class ClientPersistenceImpl implements ClientPersistencePort {
 	public Client findClientByRfc(String rfc) {
 		try {
 			log.info("INIT findClientByRfc()");
-			Optional<ClientEntity> clientOptional = clientRepository.findByRfc(rfc);
+			Optional<ClientEntity> clientOptional = clientRepository.findByRfcAndStatus(rfc, true);
 			if (clientOptional.isPresent())
 				return clientConverter.clientEntityToClient(clientOptional.get());
 			return null;
@@ -80,7 +80,7 @@ public class ClientPersistenceImpl implements ClientPersistencePort {
 	public Client findClientByRfcAndIdNot(String rfc, Long clientId) {
 		try {
 			log.info("INIT findClientByRfcAndIdNot()");
-			Optional<ClientEntity> clientOptional = clientRepository.findByRfcAndIdNot(rfc, clientId);
+			Optional<ClientEntity> clientOptional = clientRepository.findByRfcAndIdNotAndStatus(rfc, clientId, true);
 			if (clientOptional.isPresent())
 				return clientConverter.clientEntityToClient(clientOptional.get());
 			return null;

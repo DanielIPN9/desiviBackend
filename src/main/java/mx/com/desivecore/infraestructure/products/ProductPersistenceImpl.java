@@ -122,7 +122,7 @@ public class ProductPersistenceImpl implements ProductPersistencePort {
 	public Product findProductBySku(String sku) {
 		try {
 			log.info("INIT findProductBySku()");
-			Optional<ProductEntity> productOptional = productRepository.findBySku(sku);
+			Optional<ProductEntity> productOptional = productRepository.findBySkuAndStatus(sku, true);
 			if (productOptional.isPresent())
 				return productConverter.productEntityToProduct(productOptional.get());
 			return null;
@@ -136,7 +136,7 @@ public class ProductPersistenceImpl implements ProductPersistencePort {
 	public Product findProductBySkuAndIdNot(String sku, Long productId) {
 		try {
 			log.info("INIT findProductBySkuAndIdNot()");
-			Optional<ProductEntity> productOptional = productRepository.findBySkuAndIdNot(null, productId);
+			Optional<ProductEntity> productOptional = productRepository.findBySkuAndIdNotAndStatus(sku, productId, true);
 			if (productOptional.isPresent())
 				return productConverter.productEntityToProduct(productOptional.get());
 			return null;

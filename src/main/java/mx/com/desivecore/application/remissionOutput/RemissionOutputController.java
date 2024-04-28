@@ -5,6 +5,8 @@ import java.util.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,6 +54,15 @@ public class RemissionOutputController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
+	@GetMapping("/view-all")
+	public ResponseEntity<?> viewAllByUser() {
+		log.info("INIT viewAllByUser()");
+		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+		String emailUser = loggedInUser.getName();
+		ResponseModel response = remissionOutputServicePort.viewAllByUserLogin(emailUser);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
 	@PutMapping("/update")
 	public ResponseEntity<?> updateRemissionOutputById(@RequestBody RemissionOutput remissionOutput) {
 		log.info("INIT updateRemissionOutputById()");
