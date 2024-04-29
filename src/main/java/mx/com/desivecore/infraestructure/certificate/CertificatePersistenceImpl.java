@@ -41,7 +41,7 @@ public class CertificatePersistenceImpl implements CertificatePersistencePort {
 
 	private static final String RE_TEMPLATE = "/certificate/CertificateDocument.jasper";
 	private static final String LOGO_REPORT = "/certificate/logo.jpg";
-	private static final String SING_REPORT = "/certificate/sing_ov.png";
+	private static final String SING_REPORT = "/certificate/sing_ov.jpg";
 
 	@Autowired
 	private ProductCertificateRepository productCertificateRepository;

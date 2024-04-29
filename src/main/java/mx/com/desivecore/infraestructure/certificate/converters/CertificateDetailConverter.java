@@ -21,6 +21,7 @@ public class CertificateDetailConverter {
 		certificateDetailEntity.setResult(certificateDetail.getValue());
 		certificateDetailEntity.setResult(certificateDetail.getResult());
 		certificateDetailEntity.setNormative(certificateDetail.getNormative());
+		certificateDetailEntity.setUnitMeasure(certificateDetail.getUnitMeasure());
 
 		return certificateDetailEntity;
 	}
@@ -34,6 +35,7 @@ public class CertificateDetailConverter {
 		certificateDetail.setValue(certificateDetailEntity.getValue());
 		certificateDetail.setResult(certificateDetailEntity.getResult());
 		certificateDetail.setNormative(certificateDetailEntity.getNormative());
+		certificateDetail.setUnitMeasure(certificateDetailEntity.getUnitMeasure());
 
 		return certificateDetail;
 	}

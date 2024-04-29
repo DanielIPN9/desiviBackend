@@ -24,6 +24,8 @@ public class CertificateDocument {
 
 	private String clientName;
 
+	private String description;
+
 	private List<CertificateDetailDocument> certificateDetail;
 
 	public CertificateDocument(ProductCertificate productCertificate) {
@@ -37,6 +39,8 @@ public class CertificateDocument {
 
 		this.lot = productCertificate.getLot();
 		this.clientName = productCertificate.getClientName();
+
+		this.description = productCertificate.getDescription() == null ? " " : productCertificate.getDescription();
 
 		certificateDetail = new ArrayList<>();
 
@@ -110,11 +114,19 @@ public class CertificateDocument {
 		this.certificateDetail = certificateDetail;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	@Override
 	public String toString() {
 		return "CertificateDocument [logo=" + logo + ", sing=" + sing + ", productName=" + productName + ", sku=" + sku
-				+ ", creationDate=" + creationDate + ", lot=" + lot + ", clientName=" + clientName
-				+ ", certificateDetail=" + certificateDetail + "]";
+				+ ", creationDate=" + creationDate + ", lot=" + lot + ", clientName=" + clientName + ", description="
+				+ description + ", certificateDetail=" + certificateDetail + "]";
 	}
 
 }

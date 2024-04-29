@@ -23,6 +23,7 @@ public class ProductCertificateConverter {
 		productCertificateEntity.setClientName(productCertificate.getClientName());
 		productCertificateEntity.setLot(productCertificate.getLot());
 		productCertificateEntity.setCreationDate(productCertificate.getCreationDate());
+		productCertificateEntity.setDescription(productCertificate.getDescription());
 
 		return productCertificateEntity;
 	}
@@ -39,6 +40,7 @@ public class ProductCertificateConverter {
 		productCertificate.setClientName(productCertificateEntity.getClientName());
 		productCertificate.setLot(productCertificateEntity.getLot());
 		productCertificate.setCreationDate(productCertificateEntity.getCreationDate());
+		productCertificate.setDescription(productCertificateEntity.getDescription());
 
 		return productCertificate;
 	}

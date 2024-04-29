@@ -30,6 +30,9 @@ public class CertificateDetailEntity {
 
 	@Column(name = "characteristic", unique = false, nullable = false, length = 200)
 	private String characteristic;
+	
+	@Column(name = "unit_measure", unique = false, nullable = false, length = 20)
+	private String unitMeasure;
 
 	@Column(name = "value", unique = false, nullable = false, length = 100)
 	private String value;

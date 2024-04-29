@@ -5,9 +5,11 @@ public class CertificateDetail {
 	private Long certificateId;
 
 	private String characteristic;
+	
+	private String unitMeasure;
 
 	private String value;
-
+	
 	private String result;
 
 	private String normative;
@@ -52,10 +54,18 @@ public class CertificateDetail {
 		this.normative = normative;
 	}
 
+	public String getUnitMeasure() {
+		return unitMeasure;
+	}
+
+	public void setUnitMeasure(String unitMeasure) {
+		this.unitMeasure = unitMeasure;
+	}
+
 	@Override
 	public String toString() {
 		return "CertificateDetail [certificateId=" + certificateId + ", characteristic=" + characteristic + ", value="
-				+ value + ", result=" + result + ", normative=" + normative + "]";
+				+ value + ", unitMeasure=" + unitMeasure + ", result=" + result + ", normative=" + normative + "]";
 	}
 
 }

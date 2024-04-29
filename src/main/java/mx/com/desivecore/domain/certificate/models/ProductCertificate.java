@@ -25,6 +25,8 @@ public class ProductCertificate {
 
 	private Date creationDate;
 
+	private String description;
+
 	private List<CertificateDetail> certificateDetail;
 
 	public ProductCertificate() {
@@ -33,10 +35,10 @@ public class ProductCertificate {
 
 	public ProductCertificate(RemissionEntry remissionEntry, Long productId) {
 		this.certificateId = null;
-		this.productId = productId;
 		this.remissionEntryId = remissionEntry.getRemissionEntryId();
 		for (ProductEntry productEntry : remissionEntry.getProducts()) {
-			if (productEntry.getProduct().getProductId() == productId) {
+			if (productEntry.getProduct().getProductId().compareTo(productId) == 0) {
+				this.productId = productEntry.getProduct().getProductId();
 				this.productName = productEntry.getProduct().getName();
 				this.sku = productEntry.getProduct().getSku();
 				break;
@@ -120,13 +122,20 @@ public class ProductCertificate {
 		this.productId = productId;
 	}
 
-	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductCertificate [certificateId=" + certificateId + ", remissionEntryId=" + remissionEntryId
 				+ ", productId=" + productId + ", productName=" + productName + ", sku=" + sku + ", clientName="
-				+ clientName + ", lot=" + lot + ", creationDate=" + creationDate + ", certificateDetail="
-				+ certificateDetail + "]";
+				+ clientName + ", lot=" + lot + ", creationDate=" + creationDate + ", description=" + description
+				+ ", certificateDetail=" + certificateDetail + "]";
 	}
 
 }

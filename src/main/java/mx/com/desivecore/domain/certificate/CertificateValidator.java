@@ -72,6 +72,7 @@ public class CertificateValidator {
 		for (CertificateDetail certificateD : certificateDetail) {
 			validations += validString("Características", certificateD.getCharacteristic());
 			validations += validString("Valor", certificateD.getValue());
+			validations += validString("UM", certificateD.getUnitMeasure());
 			validations += validString("Resultado", certificateD.getResult());
 			validations += validString("Referencia Normativa", certificateD.getNormative());
 		}

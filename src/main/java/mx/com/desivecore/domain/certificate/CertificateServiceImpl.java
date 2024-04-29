@@ -33,10 +33,10 @@ public class CertificateServiceImpl implements CertificateServicePort {
 
 	@Autowired
 	private RemissionEntryPersistencePort remissionEntryPersistencePort;
-	
+
 	@Autowired
 	private BranchPersistencePort branchPersistencePort;
-	
+
 	@Autowired
 	private SupplierPersistencePort supplierPersistencePort;
 
@@ -63,13 +63,13 @@ public class CertificateServiceImpl implements CertificateServicePort {
 		if (productCertificate != null)
 			return new ResponseModel(productCertificate);
 
-		log.info("GENERATE SUMMARY");
 		RemissionEntry remissionEntry = remissionEntryPersistencePort.viewRemissionById(remissionId);
 		if (remissionEntry == null)
 			throw new ValidationError("Remisión de entrada invaldia.");
 
+		log.info("GENERATE SUMMARY");
 		ProductCertificate productCertificateSummary = new ProductCertificate(remissionEntry, productId);
-
+		log.info(productCertificateSummary.toString());
 		if (productCertificateSummary.getProductName() == null || productCertificateSummary.getSku() == null)
 			throw new InternalError();
 

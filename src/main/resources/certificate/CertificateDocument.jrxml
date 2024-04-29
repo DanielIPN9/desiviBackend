@@ -12,6 +12,7 @@
 	<field name="lot" class="java.lang.String"/>
 	<field name="clientName" class="java.lang.String"/>
 	<field name="certificateDetail" class="java.util.List"/>
+	<field name="description" class="java.lang.String"/>
 	<title>
 		<band height="126" splitType="Stretch">
 			<image>
@@ -19,7 +20,7 @@
 				<imageExpression><![CDATA[$F{logo}]]></imageExpression>
 			</image>
 			<line>
-				<reportElement x="190" y="44" width="391" height="1" uuid="65dee6bf-61f1-4951-9549-b11012bcec82">
+				<reportElement x="190" y="44" width="391" height="1" forecolor="#2149FC" uuid="65dee6bf-61f1-4951-9549-b11012bcec82">
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -29,7 +30,7 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="190" y="55" width="391" height="1" uuid="d9ef2074-dab1-4b92-8e39-8a7bf549dc91">
+				<reportElement x="190" y="55" width="391" height="1" forecolor="#2149FC" uuid="d9ef2074-dab1-4b92-8e39-8a7bf549dc91">
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -41,7 +42,7 @@
 				<reportElement x="190" y="0" width="393" height="19" uuid="d7095af9-c555-4e51-8712-19ab1baf7165">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DESIVI S. A. DE C. V.]]></text>
@@ -50,13 +51,13 @@
 				<reportElement x="190" y="19" width="393" height="19" uuid="7bbb4589-3ebf-47ae-a355-a06ff23861a0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[ " 10 años siendo parte de tu industria "]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="70" width="583" height="20" uuid="f3fad3b1-720e-4329-8de2-864e118886d6"/>
+				<reportElement x="0" y="70" width="583" height="20" forecolor="#1DCF2C" uuid="f3fad3b1-720e-4329-8de2-864e118886d6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -72,9 +73,26 @@
 		</band>
 	</title>
 	<detail>
-		<band height="61" splitType="Stretch">
+		<band height="93" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="0" width="582" height="93" uuid="097c03b4-9d63-435d-8c80-ef35d85353f7"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="0" y="0" width="50" height="30" uuid="d1a25698-f99b-44fb-8269-ec0c901c5213"/>
+				<reportElement x="1" y="0" width="579" height="20" uuid="2e280dc2-7a57-4f2d-9ecc-e96b98b7630e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN Y APLICACIONES DEL PRODUCTO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2" y="20" width="579" height="70" uuid="6287693b-29e4-4106-a666-26cc25f415cb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="77">
+			<staticText>
+				<reportElement x="0" y="13" width="50" height="30" uuid="d1a25698-f99b-44fb-8269-ec0c901c5213"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -87,7 +105,7 @@
 				<text><![CDATA[A 00]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="50" y="0" width="90" height="30" uuid="2a0dd611-5d7b-4107-97a5-90a56b756048"/>
+				<reportElement x="50" y="13" width="90" height="30" uuid="2a0dd611-5d7b-4107-97a5-90a56b756048"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -100,7 +118,7 @@
 				<text><![CDATA[CLIENTE:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="140" y="0" width="443" height="30" uuid="3ebebb41-e487-4a2d-a41c-df77feef13aa"/>
+				<reportElement x="140" y="13" width="443" height="30" uuid="3ebebb41-e487-4a2d-a41c-df77feef13aa"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -113,7 +131,7 @@
 				<textFieldExpression><![CDATA[$F{clientName}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="30" width="50" height="30" uuid="6e11ed10-e3b5-4707-8799-ff0a506d0006"/>
+				<reportElement x="0" y="43" width="50" height="30" uuid="6e11ed10-e3b5-4707-8799-ff0a506d0006"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -126,7 +144,7 @@
 				<text><![CDATA[FECHA:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="50" y="30" width="110" height="30" uuid="de63d377-b500-4d97-aaf7-bb88626709e3"/>
+				<reportElement x="50" y="43" width="110" height="30" uuid="de63d377-b500-4d97-aaf7-bb88626709e3"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -139,7 +157,7 @@
 				<textFieldExpression><![CDATA[$F{creationDate}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="160" y="30" width="50" height="30" uuid="e1588547-fce6-4148-b5d2-92f4364f6148"/>
+				<reportElement x="160" y="43" width="50" height="30" uuid="e1588547-fce6-4148-b5d2-92f4364f6148"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -152,7 +170,7 @@
 				<text><![CDATA[SKU:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="350" y="30" width="50" height="30" uuid="9ddc17d6-c364-4a3c-9c83-c1f06cc96de5"/>
+				<reportElement x="350" y="43" width="50" height="30" uuid="9ddc17d6-c364-4a3c-9c83-c1f06cc96de5"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -165,7 +183,7 @@
 				<text><![CDATA[LOTE:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="210" y="30" width="140" height="30" uuid="36c86cac-c92b-4914-b376-da9780a07ba8"/>
+				<reportElement x="210" y="43" width="140" height="30" uuid="36c86cac-c92b-4914-b376-da9780a07ba8"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -178,7 +196,7 @@
 				<textFieldExpression><![CDATA[$F{sku}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="400" y="30" width="183" height="30" uuid="49aa8f0f-5a51-49a1-8405-77195c87dcf1"/>
+				<reportElement x="400" y="43" width="183" height="30" uuid="49aa8f0f-5a51-49a1-8405-77195c87dcf1"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -191,54 +209,74 @@
 				<textFieldExpression><![CDATA[$F{lot}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="100">
+		<band height="60">
 			<subreport>
-				<reportElement x="0" y="10" width="580" height="80" uuid="328b8d23-80fb-4b1b-94c5-f45203437cf1"/>
+				<reportElement x="1" y="10" width="559" height="40" uuid="328b8d23-80fb-4b1b-94c5-f45203437cf1"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{certificateDetail})]]></dataSourceExpression>
 				<subreportExpression><![CDATA["certificate/CertificateDetail.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-	</detail>
-	<lastPageFooter>
-		<band height="315">
+		<band height="162">
+			<rectangle>
+				<reportElement x="11" y="6" width="565" height="150" uuid="38486c31-2010-4ea8-8c01-94ed356917fa"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="20" y="10" width="554" height="30" uuid="bee77ab8-c8b1-4cf4-9874-2f400e23a0c8"/>
-				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[1.- Los valores de la presente tabla, reflejan los resultados de análisis proporcionados por nuestro proveedor; esto no exime al cliente de realizar sus propios muestreos.]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="20" y="40" width="554" height="30" uuid="a9ab42d1-f4fa-415d-baea-cb354641a811"/>
-				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[2.- La cantidad y presentación de nuestros productos están regidas por nuestras condiciones generales de venta.]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="20" y="70" width="554" height="30" uuid="7dcd3be3-86b3-4479-8bdf-dd4d6275cc05"/>
-				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[3.- DESIVI no se hace responsable por el mal uso que se haga del producto.]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="20" y="100" width="554" height="30" uuid="b7e6f0fb-366f-4471-b31e-d0050f98d5b3"/>
+				<reportElement x="17" y="126" width="554" height="30" uuid="84eed167-ad75-4451-9a72-40ba609108bb"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[4.- No se limita el derecho del cliente de aprobar la recepción del producto.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="210" width="583" height="20" uuid="7e4a240f-2f35-4ae3-83e3-dd1e9cd7ce63"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement x="17" y="96" width="554" height="30" uuid="2f5e3ac0-e78f-4710-84f2-206a19f0d429"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[3.- DESIVI no se hace responsable por el mal uso que se haga del producto.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="66" width="554" height="30" uuid="6f5f09e5-54cc-462e-bb05-00bce985b168"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[2.- La cantidad y presentación de nuestros productos están regidas por nuestras condiciones generales de venta.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="36" width="554" height="30" uuid="44c16938-2a09-43dd-a5ad-093bff6c0fcc"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[1.- Los valores de la presente tabla, reflejan los resultados de análisis proporcionados por nuestro proveedor; esto no exime al cliente de realizar sus propios muestreos.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="11" width="554" height="20" uuid="943b3ff0-26de-4da1-b342-743430e3acf2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOTA INFORMATIVA DE CALIDAD]]></text>
+			</staticText>
+		</band>
+		<band height="133">
+			<staticText>
+				<reportElement x="1" y="81" width="583" height="20" uuid="6f40537a-3671-4416-b112-e2c8fc9c4365"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[CONTROL DE CALIDAD]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="230" width="583" height="85" uuid="c3b05eb3-f6b4-454c-b4cd-37023340a5e5"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Las propiedades son meramente informativas y no deben ser consideradas como especificación rígida.
-Av. Ferrocarriles Nacionales No. 43 Col. Ahuizotla, Naucalpan de Juárez, Estado de México C.P. 53378
-
-WWW.DESIVI.COM.MX
-TEL. 5511526395-5588481241 * E-MAIL: industrialesvillegas@gmail.com * RFC: DIV140204QZ9]]></text>
+				<reportElement x="1" y="101" width="583" height="20" uuid="d1610b1d-5f38-4126-8130-ba8c36d50706"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Las propiedades típicas son meramente informativas y no deben ser consideradas como especificación.
+]]></text>
 			</staticText>
 			<image>
-				<reportElement x="200" y="140" width="200" height="70" uuid="77a4b003-4b69-48df-bbaf-53283e9d1337"/>
+				<reportElement x="230" y="10" width="150" height="70" uuid="a47efc33-efb1-4676-99de-8add378aeef8"/>
 				<imageExpression><![CDATA[$F{sing}]]></imageExpression>
 			</image>
 		</band>
-	</lastPageFooter>
+		<band height="75">
+			<staticText>
+				<reportElement x="4" y="25" width="583" height="50" uuid="349c4231-a960-4a35-9bb6-c2cec7a85c43"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Av. Ferrocarriles Nacionales No. 43 Col. Ahuizotla, Naucalpan de Juárez, Estado de México C.P. 53378
+WWW.DESIVI.COM.MX
+TEL. 5511526395-5588481241 * E-MAIL: industrialesvillegas@gmail.com * RFC: DIV140204QZ9]]></text>
+			</staticText>
+		</band>
+	</detail>
 </jasperReport>

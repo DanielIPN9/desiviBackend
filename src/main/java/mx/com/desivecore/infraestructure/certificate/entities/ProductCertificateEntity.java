@@ -48,4 +48,7 @@ public class ProductCertificateEntity {
 	@Column(name = "creation_date", unique = false, nullable = true)
 	private Date creationDate;
 	
+	@Column(name = "description", unique = false, nullable = true, length = 250)
+	private String description;
+	
 }
