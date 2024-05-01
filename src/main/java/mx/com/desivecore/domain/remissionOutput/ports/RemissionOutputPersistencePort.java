@@ -18,6 +18,8 @@ public interface RemissionOutputPersistencePort {
 	BigInteger getConsecutiveByCode(String code);
 
 	RemissionOutput viewRemissionById(Long remissionOutputId);
+	
+	boolean cancelRemissionById(Long remissionOutputId);
 
 	List<RemissionOutputSummary> searchRemissionOutputByParams(RemissionOutputSearchParams outputSearchParams);
 	

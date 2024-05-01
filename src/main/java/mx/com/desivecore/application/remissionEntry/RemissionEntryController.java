@@ -44,6 +44,14 @@ public class RemissionEntryController {
 		ResponseModel response = remissionEntryServicePort.viewRemissionById(remissionEntryId);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+	
+	@PutMapping("/cancel/{remissionEntryId}")
+	public ResponseEntity<?> cancelRemissionById(@PathVariable Long remissionEntryId) {
+		log.info("INIT viewRemissionById()");
+		log.info(String.format("PARAMS: [%s]", remissionEntryId.toString()));
+		ResponseModel response = remissionEntryServicePort.cancelRemissionById(remissionEntryId);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
 
 	@GetMapping("/view-all")
 	public ResponseEntity<?> viewAllByUser() {

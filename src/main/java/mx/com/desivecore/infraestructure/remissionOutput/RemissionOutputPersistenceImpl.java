@@ -201,6 +201,18 @@ public class RemissionOutputPersistenceImpl implements RemissionOutputPersistenc
 			return null;
 		}
 	}
+	
+	@Override
+	public boolean cancelRemissionById(Long remissionOutputId) {
+		try {
+			log.info("INIT cancelRemissionById()");
+			remissionOutputRepository.changeRemissionStatusById(false, remissionOutputId);
+			return true;
+		} catch (Exception e) {
+			log.severe("EXCEPTION: " + e.getMessage());
+			return false;
+		}
+	}
 
 	@Override
 	public List<RemissionOutputSummary> searchRemissionOutputByParams(RemissionOutputSearchParams outputSearchParams) {

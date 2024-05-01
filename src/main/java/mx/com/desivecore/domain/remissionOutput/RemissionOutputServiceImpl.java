@@ -107,6 +107,33 @@ public class RemissionOutputServiceImpl implements RemissionOutputServicePort {
 	}
 
 	@Override
+	public ResponseModel cancelRemissionById(Long remssionOutputId) {
+
+		RemissionOutput remissionOutput = remissionOutputPersistencePort.viewRemissionById(remssionOutputId);
+		if (remissionOutput == null)
+			throw new ValidationError("Registro no encontrado");
+
+		if (!remissionOutput.isStatus())
+			throw new ValidationError("La orden ha sido cancelada");
+
+		List<ProductAvailability> availabilityPlusList = new ArrayList<>();
+		for (ProductOutput productOutput : remissionOutput.getProducts()) {
+			ProductAvailability productAvailability = productPersistencePort.findByProducIdAndBranchId(
+					productOutput.getProduct().getProductId(), remissionOutput.getBranch().getBranchId());
+			productAvailability.updateAvailability(productOutput.getAmount());
+			availabilityPlusList.add(productAvailability);
+		}
+		productPersistencePort.saveAvailability(availabilityPlusList, null);
+
+		boolean cancelStatus = remissionOutputPersistencePort.cancelRemissionById(remssionOutputId);
+
+		if (!cancelStatus)
+			throw new ValidationError("Error al cambiar estado de cancelación. Contacte a su Administrador");
+
+		return new ResponseModel(cancelStatus);
+	}
+
+	@Override
 	public ResponseModel searchRemissionOutputByParams(RemissionOutputSearchParams remissionOutputSearchParams) {
 		List<RemissionOutputSummary> remissionOutputSummaryList = remissionOutputPersistencePort
 				.searchRemissionOutputByParams(remissionOutputSearchParams);
@@ -150,10 +177,11 @@ public class RemissionOutputServiceImpl implements RemissionOutputServicePort {
 			log.severe("USER NOT FOUND");
 			throw new InternalError();
 		}
-
+		RemissionOutputSearchParams searchParams = new RemissionOutputSearchParams();
 		List<RemissionOutputSummary> remissionOutputSummaryList = remissionOutputPersistencePort
-				.searchByUserId(user.getUserId());
-		if(remissionOutputSummaryList == null)
+				.searchRemissionOutputByParams(searchParams);
+
+		if (remissionOutputSummaryList == null)
 			return new ResponseModel(new ArrayList<>());
 
 		return new ResponseModel(remissionOutputSummaryList);

@@ -23,6 +23,7 @@ public class RemissionEntryConverter {
 		remissionEntryEntity.setConditions(remissionEntry.getConditions());
 		remissionEntryEntity.setRemissionTotal(remissionEntry.getRemissionTotal());
 		remissionEntryEntity.setIvaTotal(remissionEntry.getIvaTotal());
+		remissionEntryEntity.setStatus(remissionEntry.isStatus());
 
 		return remissionEntryEntity;
 	}
@@ -39,6 +40,7 @@ public class RemissionEntryConverter {
 		remissionEntry.setConditions(remissionEntryEntity.getConditions());
 		remissionEntry.setRemissionTotal(remissionEntryEntity.getRemissionTotal());
 		remissionEntry.setIvaTotal(remissionEntryEntity.getIvaTotal());
+		remissionEntry.setStatus(remissionEntryEntity.getStatus());
 
 		return remissionEntry;
 	}

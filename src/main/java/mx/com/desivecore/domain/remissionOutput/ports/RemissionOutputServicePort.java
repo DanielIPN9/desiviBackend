@@ -10,6 +10,8 @@ public interface RemissionOutputServicePort {
 	
 	ResponseModel viewRemissionById(Long remssionOutputId);
 	
+	ResponseModel cancelRemissionById(Long remssionOutputId);
+	
 	ResponseModel searchRemissionOutputByParams(RemissionOutputSearchParams remissionOutputSearchParams);
 	
 	ResponseModel updateRemissionOutput(RemissionOutput remissionOutput);

@@ -18,8 +18,10 @@ public class RemissionOutputSummary {
 
 	private Double remissionTotal;
 
+	private Boolean status;
+
 	public RemissionOutputSummary(Long remissionOutputId, String folio, Date creationDate, Date requestDate,
-			String clientBusinessName, String branchName, Double remissionTotal) {
+			String clientBusinessName, String branchName, Double remissionTotal, Boolean status) {
 		super();
 		this.remissionOutputId = remissionOutputId;
 		this.folio = folio;
@@ -28,6 +30,7 @@ public class RemissionOutputSummary {
 		this.clientBusinessName = clientBusinessName;
 		this.branchName = branchName;
 		this.remissionTotal = remissionTotal;
+		this.status = status;
 	}
 
 	public Long getRemissionOutputId() {
@@ -86,11 +89,19 @@ public class RemissionOutputSummary {
 		this.remissionTotal = remissionTotal;
 	}
 
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "RemissionOutputSummary [remissionOutputId=" + remissionOutputId + ", folio=" + folio + ", creationDate="
 				+ creationDate + ", requestDate=" + requestDate + ", clientBusinessName=" + clientBusinessName
-				+ ", branchName=" + branchName + ", remissionTotal=" + remissionTotal + "]";
+				+ ", branchName=" + branchName + ", remissionTotal=" + remissionTotal + ", status=" + status + "]";
 	}
 
 }

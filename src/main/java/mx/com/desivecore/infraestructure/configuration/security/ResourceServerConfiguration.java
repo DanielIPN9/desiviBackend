@@ -122,6 +122,10 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				requests -> requests.antMatchers(HttpMethod.GET, "/remission-entry/view-detail/{remissionEntryId}")
 						.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(),
 								PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.PUT, "/remission-entry/cancel/{remissionEntryId}")
+						.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(),
+								PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/remission-entry/search")
 				.hasAnyAuthority(PermissionEnum.REMISSION_ENTRY_GENERAL.toString(),
 						PermissionEnum.REMISSION_ENTRY_OPERATIONAL.toString()));
@@ -205,6 +209,9 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				.hasAuthority(PermissionEnum.REMISSION_OUTPUT.toString()));
 		http.authorizeRequests(
 				requests -> requests.antMatchers(HttpMethod.GET, "/remission-output/view-detail/{remissionOutputId}")
+						.hasAuthority(PermissionEnum.REMISSION_OUTPUT.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.PUT, "/remission-output/cancel/{remissionOutputId}")
 						.hasAuthority(PermissionEnum.REMISSION_OUTPUT.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/remission-output/search")
 				.hasAuthority(PermissionEnum.REMISSION_OUTPUT.toString()));

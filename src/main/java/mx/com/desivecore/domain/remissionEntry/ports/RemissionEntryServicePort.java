@@ -10,6 +10,8 @@ public interface RemissionEntryServicePort {
 	
 	ResponseModel viewRemissionById(Long remissionEntryId);
 	
+	ResponseModel cancelRemissionById(Long remissionEntryId);
+	
 	ResponseModel searchRemissionEntryByParams(RemissionSearchParams remissionSearchParams);
 	
 	ResponseModel viewAllByUserLogin(String userEmail);

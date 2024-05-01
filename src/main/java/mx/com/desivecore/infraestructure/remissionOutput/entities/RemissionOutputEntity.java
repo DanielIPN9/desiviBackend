@@ -50,5 +50,8 @@ public class RemissionOutputEntity {
 
 	@Column(name = "remission_total", unique = false, nullable = false)
 	private Double remissionTotal;
+	
+	@Column(name = "status", nullable = false)
+	private Boolean status;
 
 }

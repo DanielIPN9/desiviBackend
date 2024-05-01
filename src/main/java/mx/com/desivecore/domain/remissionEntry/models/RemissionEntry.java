@@ -34,6 +34,8 @@ public class RemissionEntry {
 
 	private Double ivaTotal;
 
+	private boolean status;
+
 	public void generateRemissionEntrySummary(UserModel user, String serialNumber) {
 		Calendar calendar = Calendar.getInstance();
 		creationDate = calendar.getTime();
@@ -49,15 +51,16 @@ public class RemissionEntry {
 
 		ivaTotal = (double) Math.round(ivaTotal * 100) / 100;
 		remissionTotal = (double) Math.round(remissionTotal * 100) / 100;
+		status = true;
 	}
-	
+
 	public void generateRemissionEntrySummaryToUpdate(RemissionEntry remissionEntrySaved) {
-		
+
 		remissionEntryId = remissionEntrySaved.getRemissionEntryId();
 		folio = remissionEntrySaved.getFolio();
 		creationDate = remissionEntrySaved.getCreationDate();
 		user = remissionEntrySaved.getUser();
-		
+
 		remissionTotal = 0.0;
 		ivaTotal = 0.0;
 		for (ProductEntry productEntry : products) {
@@ -67,6 +70,7 @@ public class RemissionEntry {
 		}
 		ivaTotal = (double) Math.round(ivaTotal * 100) / 100;
 		remissionTotal = (double) Math.round(remissionTotal * 100) / 100;
+		status = true;
 	}
 
 	public Double getIvaTotal() {
@@ -165,12 +169,21 @@ public class RemissionEntry {
 		this.products = products;
 	}
 
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "RemissionEntry [remissionEntryId=" + remissionEntryId + ", folio=" + folio + ", creationDate="
 				+ creationDate + ", requestDate=" + requestDate + ", branch=" + branch + ", supplier=" + supplier
 				+ ", user=" + user + ", observations=" + observations + ", conditions=" + conditions + ", products="
-				+ products + ", remissionTotal=" + remissionTotal + ", ivaTotal=" + ivaTotal + "]";
+				+ products + ", remissionTotal=" + remissionTotal + ", ivaTotal=" + ivaTotal + ", status=" + status
+				+ "]";
 	}
 
 }

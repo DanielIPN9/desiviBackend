@@ -22,12 +22,12 @@ import mx.com.desivecore.infraestructure.remissionOutput.entities.QRemissionOutp
 
 @Log
 @Repository
-public class CustomDSLRemissionOutputRepository extends QuerydslRepositorySupport{
+public class CustomDSLRemissionOutputRepository extends QuerydslRepositorySupport {
 
 	public CustomDSLRemissionOutputRepository() {
 		super(RemissionOutputSummary.class);
 	}
-	
+
 	@Autowired
 	EntityManager em;
 
@@ -89,13 +89,13 @@ public class CustomDSLRemissionOutputRepository extends QuerydslRepositorySuppor
 		 */
 		query.select(Projections.constructor(RemissionOutputSummary.class, remissionOutput.remissionOutputId,
 				remissionOutput.folio, remissionOutput.creationDate, remissionOutput.requestDay, client.businessName,
-				branch.name, remissionOutput.remissionTotal));
+				branch.name, remissionOutput.remissionTotal, remissionOutput.status));
 
 		return query.orderBy(remissionOutput.creationDate.asc()).fetch();
 	}
-	
-	public List<RemissionOutputSummary> findRemissionOutputByUserId(Long userId){
-		
+
+	public List<RemissionOutputSummary> findRemissionOutputByUserId(Long userId) {
+
 		log.info("INIT searchRemissionOutputByParams()");
 		JPAQuery<RemissionOutputSummary> query = new JPAQuery<>(em);
 
@@ -109,8 +109,7 @@ public class CustomDSLRemissionOutputRepository extends QuerydslRepositorySuppor
 		query.from(remissionOutput);
 		query.innerJoin(client).on(remissionOutput.clientId.eq(client.clientId));
 		query.innerJoin(branch).on(remissionOutput.branchId.eq(branch.branchId));
-		
-		
+
 		/**
 		 * Start evaluation of search parameters
 		 */

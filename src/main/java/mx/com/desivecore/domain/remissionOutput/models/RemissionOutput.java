@@ -30,6 +30,8 @@ public class RemissionOutput {
 
 	private Double remissionTotal;
 
+	private boolean status;
+
 	public void generateRemissionOutputSummary(UserModel user, String serialNumber) {
 		Calendar calendar = Calendar.getInstance();
 		creationDate = calendar.getTime();
@@ -45,6 +47,7 @@ public class RemissionOutput {
 		}
 		ivaTotal = (double) Math.round(ivaTotal * 100) / 100;
 		remissionTotal = (double) Math.round(remissionTotal * 100) / 100;
+		status = true;
 	}
 
 	public void generateRemissionOutputToUpdate(RemissionOutput remissionOutputSaved) {
@@ -62,6 +65,7 @@ public class RemissionOutput {
 		}
 		ivaTotal = (double) Math.round(ivaTotal * 100) / 100;
 		remissionTotal = (double) Math.round(remissionTotal * 100) / 100;
+		status = true;
 	}
 
 	public Long getRemissionOutputId() {
@@ -144,12 +148,20 @@ public class RemissionOutput {
 		this.products = products;
 	}
 
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "RemissionOutput [remissionOutputId=" + remissionOutputId + ", folio=" + folio + ", creationDate="
 				+ creationDate + ", requestDay=" + requestDay + ", branch=" + branch + ", client=" + client + ", user="
 				+ user + ", products=" + products + ", ivaTotal=" + ivaTotal + ", remissionTotal=" + remissionTotal
-				+ "]";
+				+ ", status=" + status + "]";
 	}
 
 }

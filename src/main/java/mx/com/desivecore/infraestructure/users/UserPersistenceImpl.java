@@ -14,6 +14,7 @@ import mx.com.desivecore.domain.users.models.UserModel;
 import mx.com.desivecore.domain.users.models.UserSearchParams;
 import mx.com.desivecore.domain.users.ports.UserPersistencePort;
 import mx.com.desivecore.infraestructure.branches.converters.BranchConverter;
+import mx.com.desivecore.infraestructure.branches.entities.BranchEntity;
 import mx.com.desivecore.infraestructure.branches.repositories.BranchReposirory;
 import mx.com.desivecore.infraestructure.security.converters.RoleConverter;
 import mx.com.desivecore.infraestructure.security.entities.RolEntity;
@@ -69,7 +70,7 @@ public class UserPersistenceImpl implements UserPersistencePort {
 			if (userEntity.getBranchId() != null)
 				userSaved.setBranch(branchConverter
 						.branchEntityToBranch(branchReposirory.findById(userEntity.getBranchId()).get()));
-			
+
 			return userSaved;
 
 		} catch (Exception e) {
@@ -131,8 +132,15 @@ public class UserPersistenceImpl implements UserPersistencePort {
 			log.info("INIT findUserByEmail()");
 			Optional<UserEntity> userOptional = userRepository.findByEmail(email);
 			UserModel user = null;
-			if (userOptional.isPresent())
+			if (userOptional.isPresent()) {
 				user = userConverter.userEntityToUser(userOptional.get(), excludePassword);
+				if (userOptional.get().getBranchId() != null) {
+					Optional<BranchEntity> branchOptional = branchReposirory.findById(userOptional.get().getBranchId());
+					if (branchOptional.isPresent())
+						user.setBranch(branchConverter.branchEntityToBranch(branchOptional.get()));
+				}
+			}
+
 			return user;
 		} catch (Exception e) {
 			log.severe("EXCEPTION: " + e.getMessage());

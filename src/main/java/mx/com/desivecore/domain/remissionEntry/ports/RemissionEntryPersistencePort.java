@@ -21,6 +21,8 @@ public interface RemissionEntryPersistencePort {
 	RemissionEntryHistory saveRemissionEntryHistory(RemissionEntryHistory remissionEntryHistory);
 
 	RemissionEntry viewRemissionById(Long remissionEntryId);
+	
+	boolean cancelRemissionById(Long remissionEntryId);
 
 	List<RemissionEntrySummary> searchRemissionEntryByParams(RemissionSearchParams remissionSearchParams);
 

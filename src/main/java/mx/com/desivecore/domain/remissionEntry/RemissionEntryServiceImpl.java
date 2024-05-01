@@ -131,18 +131,12 @@ public class RemissionEntryServiceImpl implements RemissionEntryServicePort {
 			log.severe("USER NOT FOUND");
 			throw new InternalError();
 		}
-		List<RemissionEntry> remissionEntryList = remissionEntryPersistencePort
-				.searchRemissionEntryByUserId(user.getUserId());
-		if (remissionEntryList == null)
-			return new ResponseModel(new ArrayList<>());
+		RemissionSearchParams remissionEntryParams = new RemissionSearchParams();
+		List<RemissionEntrySummary> remissionEntrySummaryList = remissionEntryPersistencePort
+				.searchRemissionEntryByParams(remissionEntryParams);
 
-		List<RemissionEntrySummary> remissionEntrySummaryList = new ArrayList<>();
-		for (RemissionEntry remissionEntry : remissionEntryList) {
-			remissionEntrySummaryList.add(new RemissionEntrySummary(remissionEntry.getRemissionEntryId(),
-					remissionEntry.getFolio(), remissionEntry.getCreationDate(), remissionEntry.getRequestDate(),
-					remissionEntry.getSupplier().getBusinessName(), remissionEntry.getBranch().getName(),
-					remissionEntry.getRemissionTotal()));
-		}
+		if (remissionEntrySummaryList == null)
+			return new ResponseModel(new ArrayList<>());
 
 		return new ResponseModel(remissionEntrySummaryList);
 	}
@@ -154,6 +148,33 @@ public class RemissionEntryServiceImpl implements RemissionEntryServicePort {
 		if (remissionEntry == null)
 			throw new ValidationError("Registro no encontrado");
 		return new ResponseModel(remissionEntry);
+	}
+
+	@Override
+	public ResponseModel cancelRemissionById(Long remissionEntryId) {
+		log.info("INIT cancelRemissionById()");
+		RemissionEntry remissionEntry = remissionEntryPersistencePort.viewRemissionById(remissionEntryId);
+		if (remissionEntry == null)
+			throw new ValidationError("Registro no encontrado");
+
+		if(!remissionEntry.isStatus())
+			throw new ValidationError("La orden ha sido cancelada");
+		
+		List<ProductAvailability> availabilitySubtractionList = new ArrayList<>();
+		for (ProductEntry productEntry : remissionEntry.getProducts()) {
+			ProductAvailability productAvailability = productPersistencePort.findByProducIdAndBranchId(
+					productEntry.getProduct().getProductId(), remissionEntry.getBranch().getBranchId());
+			productAvailability.updateAvailability(-productEntry.getAmount());
+			availabilitySubtractionList.add(productAvailability);
+		}
+		productPersistencePort.saveAvailability(availabilitySubtractionList, null);
+
+		boolean cancelStatus = remissionEntryPersistencePort.cancelRemissionById(remissionEntryId);
+
+		if (!cancelStatus)
+			throw new ValidationError("Error al cambiar estado de cancelación. Contacte a su Administrador");
+
+		return new ResponseModel(cancelStatus);
 	}
 
 	@Override

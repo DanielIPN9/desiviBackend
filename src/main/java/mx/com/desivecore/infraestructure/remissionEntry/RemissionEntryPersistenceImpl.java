@@ -249,6 +249,18 @@ public class RemissionEntryPersistenceImpl implements RemissionEntryPersistenceP
 			return null;
 		}
 	}
+	
+	@Override
+	public boolean cancelRemissionById(Long remissionEntryId) {
+		try {
+			log.info("INIT cancelRemissionById()");
+			remissionEntryRepository.changeRemissionStatusById(false,remissionEntryId);
+			return true;
+		} catch (Exception e) {
+			log.severe("EXCEPTION: " + e.getMessage());
+			return false;
+		}
+	}
 
 	@Override
 	public List<RemissionEntrySummary> searchRemissionEntryByParams(RemissionSearchParams remissionSearchParams) {
@@ -285,10 +297,10 @@ public class RemissionEntryPersistenceImpl implements RemissionEntryPersistenceP
 
 			InputStream logoImage = this.getClass().getResourceAsStream(LOGO_REPORT);
 			remissionEntryDocument.setLogo(logoImage);
-			
+
 			InputStream logoSing = this.getClass().getResourceAsStream(SING_REPORT);
 			remissionEntryDocument.setSing(logoSing);
-			
+
 			Collection<RemissionEntryDocument> collection = Collections.singletonList(remissionEntryDocument);
 
 			JasperPrint jasperPrint = JasperFillManager.fillReport(file, null,

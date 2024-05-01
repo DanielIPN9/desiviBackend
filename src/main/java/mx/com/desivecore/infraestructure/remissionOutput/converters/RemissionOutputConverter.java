@@ -21,6 +21,7 @@ public class RemissionOutputConverter {
 		remissionOutputEntity.setUserId(remissionOutput.getUser().getUserId());
 		remissionOutputEntity.setIvaTotal(remissionOutput.getIvaTotal());
 		remissionOutputEntity.setRemissionTotal(remissionOutput.getRemissionTotal());
+		remissionOutputEntity.setStatus(remissionOutput.isStatus());
 
 		return remissionOutputEntity;
 	}
@@ -35,6 +36,7 @@ public class RemissionOutputConverter {
 		remissionOutput.setRequestDay(remissionOutputEntity.getRequestDay());
 		remissionOutput.setIvaTotal(remissionOutputEntity.getIvaTotal());
 		remissionOutput.setRemissionTotal(remissionOutputEntity.getRemissionTotal());
+		remissionOutput.setStatus(remissionOutputEntity.getStatus());
 
 		return remissionOutput;
 	}

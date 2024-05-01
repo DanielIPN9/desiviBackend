@@ -56,4 +56,7 @@ public class RemissionEntryEntity {
 
 	@Column(name = "remission_total", unique = false, nullable = false)
 	private Double remissionTotal;
+	
+	@Column(name = "status", unique = false, nullable = false)
+	private Boolean status;
 }

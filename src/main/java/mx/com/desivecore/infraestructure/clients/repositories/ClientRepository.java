@@ -40,6 +40,6 @@ public interface ClientRepository extends JpaRepository<ClientEntity, Long> {
 	@Query("UPDATE ClientEntity c SET c.status=:status WHERE c.clientId=:id")
 	int enableById(@Param("id") Long id, @Param("status") boolean status);
 
-	@Query("SELECT c FROM ClientEntity c WHERE c.status=:active")
+	@Query("SELECT c FROM ClientEntity c WHERE c.status=:active ORDER BY c.businessName ASC")
 	List<ClientEntity> findAllByState(@Param("active") boolean active);
 }

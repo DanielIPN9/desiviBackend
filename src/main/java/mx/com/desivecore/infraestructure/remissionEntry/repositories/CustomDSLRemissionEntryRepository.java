@@ -90,7 +90,7 @@ public class CustomDSLRemissionEntryRepository extends QuerydslRepositorySupport
 		 */
 		query.select(Projections.constructor(RemissionEntrySummary.class, remissionEntry.remissionEntryId,
 				remissionEntry.folio, remissionEntry.creationDate, remissionEntry.requestDate, supplier.businessName,
-				branch.name, remissionEntry.remissionTotal));
+				branch.name, remissionEntry.remissionTotal, remissionEntry.status));
 
 		return query.orderBy(remissionEntry.creationDate.asc()).limit(40).fetch();
 	}
