@@ -51,7 +51,9 @@ public class CustomDSLRemissionEntryRepository extends QuerydslRepositorySupport
 		/**
 		 * Start evaluation of search parameters
 		 */
-
+		
+		query.where(remissionEntry.status.eq(true));
+		
 		if (remissionSearchParams.getFolio() != null) {
 			if (!remissionSearchParams.getFolio().isEmpty()) {
 				query.where(remissionEntry.folio.eq(remissionSearchParams.getFolio()));

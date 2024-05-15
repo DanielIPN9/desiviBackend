@@ -46,4 +46,6 @@ public class ProductEntity {
 	@Column(name = "status", nullable = false)
 	private boolean status;
 
+	@Column(name = "category", unique = false, nullable = false, length = 30)
+	private String category;
 }

@@ -33,6 +33,9 @@ public class ProductOutputEntity {
 
 	@Column(name = "amount", unique = false, nullable = false)
 	private Double amount;
+	
+	@Column(name = "product_description", unique = false, nullable = false)
+	private String productDescription;
 
 	@Column(name = "unit_measure", unique = false, nullable = false)
 	private String unitMeasure;

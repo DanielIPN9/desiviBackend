@@ -59,7 +59,7 @@ public class RemissionOutputServiceImpl implements RemissionOutputServicePort {
 
 	@Override
 	public ResponseModel createRemissionOutput(RemissionOutput remissionOutput) {
-		String validations = reOutputValidator.validOperativeDataToCreate(remissionOutput);
+		String validations = reOutputValidator.validOperativeDataToCreate(remissionOutput, productPersistencePort);
 		if (!validations.isEmpty()) {
 			log.warning("BAD PARAMS: " + validations);
 			throw new ValidationError(validations);
@@ -146,17 +146,19 @@ public class RemissionOutputServiceImpl implements RemissionOutputServicePort {
 
 	@Override
 	public ResponseModel updateRemissionOutput(RemissionOutput remissionOutput) {
-		String validations = reOutputValidator.validOperativeDataToCreate(remissionOutput);
-		if (!validations.isEmpty()) {
-			log.warning("BAD PARAMS: " + validations);
-			throw new ValidationError(validations);
-		}
 
 		RemissionOutput remissionOutputSaved = remissionOutputPersistencePort
 				.viewRemissionById(remissionOutput.getRemissionOutputId());
 		if (remissionOutputSaved == null) {
 			log.warning("DATA NOT FOUND ");
 			throw new InternalError();
+		}
+
+		String validations = reOutputValidator.validOperativeDataToUpdate(remissionOutput, remissionOutputSaved,
+				productPersistencePort);
+		if (!validations.isEmpty()) {
+			log.warning("BAD PARAMS: " + validations);
+			throw new ValidationError(validations);
 		}
 
 		remissionOutput.generateRemissionOutputToUpdate(remissionOutputSaved);

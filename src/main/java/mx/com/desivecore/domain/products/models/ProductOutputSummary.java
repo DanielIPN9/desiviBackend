@@ -14,8 +14,10 @@ public class ProductOutputSummary {
 
 	private Double iva;
 
+	private String unitMeasure;
+	
 	public ProductOutputSummary(Long productId, String sku, String productName, Double amount, Double sellingUnitPrice,
-			Double iva) {
+			Double iva, String unitMeasure) {
 		super();
 		this.productId = productId;
 		this.sku = sku;
@@ -23,6 +25,7 @@ public class ProductOutputSummary {
 		this.amount = amount;
 		this.sellingUnitPrice = sellingUnitPrice;
 		this.iva = iva;
+		this.unitMeasure = unitMeasure;
 	}
 
 	public Long getProductId() {
@@ -73,10 +76,21 @@ public class ProductOutputSummary {
 		this.iva = iva;
 	}
 
+	public String getUnitMeasure() {
+		return unitMeasure;
+	}
+
+	public void setUnitMeasure(String unitMeasure) {
+		this.unitMeasure = unitMeasure;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductOutputSummary [productId=" + productId + ", sku=" + sku + ", productName=" + productName
-				+ ", amount=" + amount + ", sellingUnitPrice=" + sellingUnitPrice + ", iva=" + iva + "]";
+				+ ", amount=" + amount + ", sellingUnitPrice=" + sellingUnitPrice + ", iva=" + iva + ", unitMeasure="
+				+ unitMeasure + "]";
 	}
+
+
 
 }

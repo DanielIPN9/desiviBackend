@@ -15,6 +15,7 @@ public class ProductOutputConverter {
 		productOutputEntity.setId(productOutput.getId());
 		productOutputEntity.setRemissionOutputId(remissionOutputId);
 		productOutputEntity.setProductId(productOutput.getProduct().getProductId());
+		productOutputEntity.setProductDescription(productOutput.getProductDescription());
 		productOutputEntity.setAmount(productOutput.getAmount());
 		productOutputEntity.setUnitMeasure(productOutput.getUnitMeasure());
 		productOutputEntity.setSellingPrice(productOutput.getSellingPrice());
@@ -31,6 +32,7 @@ public class ProductOutputConverter {
 
 		productOutput.setId(productOutputEntity.getId());
 		productOutput.setAmount(productOutputEntity.getAmount());
+		productOutput.setProductDescription(productOutputEntity.getProductDescription());
 		productOutput.setUnitMeasure(productOutputEntity.getUnitMeasure());
 		productOutput.setSellingPrice(productOutputEntity.getSellingPrice());
 		productOutput.setIva(productOutputEntity.getIva());

@@ -20,9 +20,9 @@
 	<field name="sellingPrice" class="java.lang.Double"/>
 	<field name="subTotal" class="java.lang.Double"/>
 	<title>
-		<band height="24" splitType="Stretch">
+		<band height="30" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="2" y="1" width="90" height="18" forecolor="#FFFFFF" backcolor="#368A47" uuid="68b7b932-df08-425d-8939-08dfd4845f12">
+				<reportElement mode="Opaque" x="2" y="1" width="90" height="29" forecolor="#FFFFFF" backcolor="#368A47" uuid="68b7b932-df08-425d-8939-08dfd4845f12">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -37,7 +37,7 @@
 				<text><![CDATA[SKU]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="94" y="1" width="176" height="18" forecolor="#FFFFFF" backcolor="#368A47" uuid="e9605e59-d50b-4e92-9dbf-696a52547a9b">
+				<reportElement mode="Opaque" x="92" y="1" width="251" height="29" forecolor="#FFFFFF" backcolor="#368A47" uuid="e9605e59-d50b-4e92-9dbf-696a52547a9b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -52,7 +52,7 @@
 				<text><![CDATA[PRODUCTO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="272" y="1" width="90" height="18" forecolor="#FFFFFF" backcolor="#368A47" uuid="80fedba3-7fc9-4d55-8376-c331b2c13f1f">
+				<reportElement mode="Opaque" x="343" y="1" width="42" height="29" forecolor="#FFFFFF" backcolor="#368A47" uuid="80fedba3-7fc9-4d55-8376-c331b2c13f1f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -64,10 +64,10 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[CANTIDAD]]></text>
+				<text><![CDATA[CANT.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="364" y="1" width="45" height="18" forecolor="#FFFFFF" backcolor="#368A47" uuid="eb4ae024-6577-46d9-8273-fc804d15a650">
+				<reportElement mode="Opaque" x="385" y="1" width="45" height="29" forecolor="#FFFFFF" backcolor="#368A47" uuid="eb4ae024-6577-46d9-8273-fc804d15a650">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -82,7 +82,7 @@
 				<text><![CDATA[UM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="411" y="1" width="106" height="18" forecolor="#FFFFFF" backcolor="#368A47" uuid="851d066f-02fc-4a94-ba2a-bd6cdbc08feb">
+				<reportElement mode="Opaque" x="430" y="1" width="70" height="29" forecolor="#FFFFFF" backcolor="#368A47" uuid="851d066f-02fc-4a94-ba2a-bd6cdbc08feb">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -97,7 +97,7 @@
 				<text><![CDATA[PRECIO UNITARIO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="520" y="1" width="70" height="18" forecolor="#FFFFFF" backcolor="#368A47" uuid="c1e9539f-211b-4869-a892-5a667092cfc9">
+				<reportElement mode="Opaque" x="500" y="1" width="60" height="29" forecolor="#FFFFFF" backcolor="#368A47" uuid="c1e9539f-211b-4869-a892-5a667092cfc9">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -114,36 +114,37 @@
 		</band>
 	</title>
 	<detail>
-		<band height="23" splitType="Stretch">
+		<band height="40" splitType="Stretch">
 			<textField>
-				<reportElement x="2" y="0" width="90" height="18" uuid="5906f2fe-b951-4303-859f-bc9fa2b984be">
+				<reportElement x="2" y="0" width="90" height="40" uuid="5906f2fe-b951-4303-859f-bc9fa2b984be">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{sku}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="94" y="0" width="176" height="18" uuid="08e39e93-8a62-4490-b13d-2e9aca19421c"/>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="92" y="0" width="251" height="40" uuid="08e39e93-8a62-4490-b13d-2e9aca19421c"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{productName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="272" y="0" width="90" height="18" uuid="9f2311a3-6381-4041-9dd4-89db18559bfe"/>
+				<reportElement x="343" y="0" width="42" height="40" uuid="9f2311a3-6381-4041-9dd4-89db18559bfe"/>
+				<box rightPadding="3"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="364" y="0" width="45" height="18" uuid="075eb998-3d19-4f3c-8dc6-a25c583e2fe9"/>
+				<reportElement x="385" y="0" width="45" height="40" uuid="075eb998-3d19-4f3c-8dc6-a25c583e2fe9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{unitMeasure}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="411" y="0" width="106" height="18" uuid="fc08a150-8787-461f-a629-28edb50a0415"/>
+				<reportElement x="430" y="0" width="70" height="40" uuid="fc08a150-8787-461f-a629-28edb50a0415"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{sellingPrice}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="520" y="0" width="70" height="18" uuid="b539c14d-5898-469e-a0f2-0436c828319e"/>
+				<reportElement x="500" y="0" width="60" height="40" uuid="b539c14d-5898-469e-a0f2-0436c828319e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{subTotal}]]></textFieldExpression>
 			</textField>

@@ -50,12 +50,12 @@ public class CustomDSLProductRepository extends QuerydslRepositorySupport {
 		 * Select fields
 		 */
 		query.select(Projections.constructor(ProductOutputSummary.class, product.productId, product.sku, product.name,
-				productAvailability.amount, product.unitSellingPrice, product.iva));
+				productAvailability.amount, product.unitSellingPrice, product.iva, product.unitMeasure));
 
 		return query.fetch();
 
 	}
-	
+
 	public ProductOutputSummary findByProductIdAndBranchId(Long branchId, Long productId) {
 		log.info("INIT findByProductIdAndBranchId()");
 		JPAQuery<ProductOutputSummary> query = new JPAQuery<>(em);
@@ -77,7 +77,7 @@ public class CustomDSLProductRepository extends QuerydslRepositorySupport {
 		 * Select fields
 		 */
 		query.select(Projections.constructor(ProductOutputSummary.class, product.productId, product.sku, product.name,
-				productAvailability.amount, product.unitSellingPrice, product.iva));
+				productAvailability.amount, product.unitSellingPrice, product.iva, product.unitMeasure));
 
 		return query.fetch().get(0);
 	}

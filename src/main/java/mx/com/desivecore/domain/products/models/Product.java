@@ -22,6 +22,8 @@ public class Product {
 
 	private boolean status;
 
+	private String category;
+
 	public Long getProductId() {
 		return productId;
 	}
@@ -94,11 +96,19 @@ public class Product {
 		this.status = status;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", sku=" + sku + ", name=" + name + ", unitMeasure=" + unitMeasure
 				+ ", iva=" + iva + ", unitSellingPrice=" + unitSellingPrice + ", unitPurchasePrice=" + unitPurchasePrice
-				+ ", availability=" + availability + ", status=" + status + "]";
+				+ ", availability=" + availability + ", status=" + status + ", category=" + category + "]";
 	}
 
 }

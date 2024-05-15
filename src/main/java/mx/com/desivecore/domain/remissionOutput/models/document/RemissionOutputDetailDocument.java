@@ -18,7 +18,7 @@ public class RemissionOutputDetailDocument {
 
 	public RemissionOutputDetailDocument(ProductOutput productOutput) {
 		sku = productOutput.getProduct().getSku();
-		productName = productOutput.getProduct().getProductName();
+		productName = productOutput.getProduct().getProductName() + " - " + productOutput.getProductDescription();
 		amount = productOutput.getAmount();
 		unitMeasure = productOutput.getUnitMeasure();
 		sellingPrice = productOutput.getSellingPrice();

@@ -8,6 +8,8 @@ public class ProductOutput {
 
 	private ProductOutputSummary product;
 
+	private String productDescription;
+
 	private Double amount;
 
 	private String unitMeasure;
@@ -23,6 +25,7 @@ public class ProductOutput {
 	public void generateRemissionSummary() {
 		net = amount * sellingPrice;
 		net = (double) Math.round(net * 100) / 100;
+
 		total = net * (1 + iva);
 		total = (double) Math.round(total * 100) / 100;
 	}
@@ -91,10 +94,19 @@ public class ProductOutput {
 		this.id = id;
 	}
 
+	public String getProductDescription() {
+		return productDescription;
+	}
+
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
+	}
+
 	@Override
 	public String toString() {
-		return "ProductOutput [product=" + product + ", amount=" + amount + ", unitMeasure=" + unitMeasure
-				+ ", sellingPrice=" + sellingPrice + ", iva=" + iva + ", net=" + net + ", total=" + total + "]";
+		return "ProductOutput [id=" + id + ", product=" + product + ", productDescription=" + productDescription
+				+ ", amount=" + amount + ", unitMeasure=" + unitMeasure + ", sellingPrice=" + sellingPrice + ", iva="
+				+ iva + ", net=" + net + ", total=" + total + "]";
 	}
 
 }

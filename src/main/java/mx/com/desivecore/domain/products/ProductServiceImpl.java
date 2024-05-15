@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.java.Log;
 import mx.com.desivecore.commons.models.ResponseModel;
-import mx.com.desivecore.domain.branches.ports.BranchPersistencePort;
 import mx.com.desivecore.domain.products.models.Product;
-import mx.com.desivecore.domain.products.models.ProductAvailability;
 import mx.com.desivecore.domain.products.models.ProductSearchParams;
 import mx.com.desivecore.domain.products.ports.ProductPersistencePort;
 import mx.com.desivecore.domain.products.ports.ProductServicePort;
@@ -23,9 +21,6 @@ public class ProductServiceImpl implements ProductServicePort {
 
 	@Autowired
 	private ProductPersistencePort productPersistencePort;
-
-	@Autowired
-	private BranchPersistencePort branchPersistencePort;
 
 	private ProductValidator productValidator = new ProductValidator();
 
@@ -44,10 +39,6 @@ public class ProductServiceImpl implements ProductServicePort {
 			throw new InternalError();
 		}
 
-		if (product.getAvailability() != null) {
-			log.info("SAVE AVAILABILITY");
-			saveAvailability(product.getAvailability(), productCreated);
-		}
 		return new ResponseModel(productCreated);
 	}
 
@@ -94,24 +85,7 @@ public class ProductServiceImpl implements ProductServicePort {
 			throw new InternalError();
 		}
 
-		if (product.getAvailability() != null) {
-			log.info("SAVE AVAILABILITY");
-			saveAvailability(product.getAvailability(), productUpdated);
-		}
 		return new ResponseModel(productUpdated);
-	}
-
-	private void saveAvailability(List<ProductAvailability> productAvailabilityList, Product product) {
-		String validations = productValidator.validAvailabilityToSave(productAvailabilityList, branchPersistencePort,
-				productPersistencePort);
-		if (!validations.isEmpty()) {
-			log.warning("ERROR SAVING PRODUCT AVAILABILITY");
-			throw new ValidationError(validations);
-		}
-		for (ProductAvailability productAvailability : productAvailabilityList) {
-			productAvailability.setProductId(product.getProductId());
-		}
-		productPersistencePort.saveAvailability(productAvailabilityList, product);
 	}
 
 	@Override

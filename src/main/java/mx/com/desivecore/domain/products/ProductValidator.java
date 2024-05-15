@@ -107,6 +107,7 @@ public class ProductValidator {
 	}
 
 	private String validRequiredFields(Product product, String validations) {
+		validations += validString("Categoria", product.getCategory());
 		validations += validString("SKU ", product.getSku());
 		validations += validString("Nombre ", product.getName());
 		validations += validString("UM ", product.getUnitMeasure());

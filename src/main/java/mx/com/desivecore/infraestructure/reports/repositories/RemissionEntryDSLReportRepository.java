@@ -57,6 +57,7 @@ public class RemissionEntryDSLReportRepository extends QuerydslRepositorySupport
 		/**
 		 * Start evaluation of search parameters
 		 */
+		query.where(remissionEntry.status.eq(true));
 		if (remissionEntryParamsReport.getSupplier() != null) {
 			if (remissionEntryParamsReport.getSupplier().getSupplierId() != null) {
 				query.where(remissionEntry.supplierId.eq(remissionEntryParamsReport.getSupplier().getSupplierId()));
