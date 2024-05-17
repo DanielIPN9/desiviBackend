@@ -57,7 +57,9 @@ public class RemissionEntryDSLReportRepository extends QuerydslRepositorySupport
 		/**
 		 * Start evaluation of search parameters
 		 */
+
 		query.where(remissionEntry.status.eq(true));
+
 		if (remissionEntryParamsReport.getSupplier() != null) {
 			if (remissionEntryParamsReport.getSupplier().getSupplierId() != null) {
 				query.where(remissionEntry.supplierId.eq(remissionEntryParamsReport.getSupplier().getSupplierId()));
@@ -75,7 +77,7 @@ public class RemissionEntryDSLReportRepository extends QuerydslRepositorySupport
 				query.where(remissionEntry.branchId.eq(remissionEntryParamsReport.getBranch().getBranchId()));
 			}
 		}
-		
+
 		if (remissionEntryParamsReport.getDateFrom() != null) {
 			Date from = remissionEntryParamsReport.getDateFrom();
 			Calendar calendar = Calendar.getInstance();
@@ -89,7 +91,7 @@ public class RemissionEntryDSLReportRepository extends QuerydslRepositorySupport
 			query.where(remissionEntry.creationDate.goe(from));
 
 		}
-		
+
 		if (remissionEntryParamsReport.getDateTo() != null) {
 			Date to = remissionEntryParamsReport.getDateTo();
 			Calendar calendar = Calendar.getInstance();

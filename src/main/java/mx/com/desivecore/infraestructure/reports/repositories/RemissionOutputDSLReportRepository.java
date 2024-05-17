@@ -57,6 +57,9 @@ public class RemissionOutputDSLReportRepository extends QuerydslRepositorySuppor
 		/**
 		 * Start evaluation of search parameters
 		 */
+		
+		query.where(remissionOutput.status.eq(true));
+		
 		if (remissionOutputParamsReport.getClient() != null) {
 			if (remissionOutputParamsReport.getClient().getClientId() != null) {
 				query.where(remissionOutput.clientId.eq(remissionOutputParamsReport.getClient().getClientId()));

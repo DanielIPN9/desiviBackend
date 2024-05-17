@@ -28,13 +28,13 @@ public class RemissionEntrySearch {
 
 		for (RemissionEntryDetail remissionEntryDetail : remissionDetailSearch) {
 			remissionSubTotal += remissionEntryDetail.getSubTotal();
-			ivaTotal += remissionEntryDetail.getIva();
+			ivaTotal += remissionEntryDetail.getIva() * remissionEntryDetail.getSubTotal();
 			remissionTotal += remissionEntryDetail.getTotal();
 		}
 
 		remissionSubTotal = (double) Math.round(remissionSubTotal * 100) / 100;
 		ivaTotal = (double) Math.round(ivaTotal * 100) / 100;
-		ivaTotal = (double) Math.round(ivaTotal * 100) / 100;
+		remissionTotal = (double) Math.round(remissionTotal * 100) / 100;
 
 		remissionDetail = remissionDetailSearch;
 	}
