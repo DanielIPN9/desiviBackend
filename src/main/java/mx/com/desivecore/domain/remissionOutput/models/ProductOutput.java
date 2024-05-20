@@ -1,6 +1,8 @@
 package mx.com.desivecore.domain.remissionOutput.models;
 
+import mx.com.desivecore.domain.products.models.Product;
 import mx.com.desivecore.domain.products.models.ProductOutputSummary;
+import mx.com.desivecore.domain.quote.models.QuoteProduct;
 
 public class ProductOutput {
 
@@ -21,6 +23,23 @@ public class ProductOutput {
 	private Double net;
 
 	private Double total;
+
+	public ProductOutput() {
+		super();
+	}
+
+	public ProductOutput(QuoteProduct quoteProduct) {
+		Product product = quoteProduct.getProduct();
+		this.product = new ProductOutputSummary(product.getProductId(), product.getSku(), product.getName(), null, null,
+				null, product.getUnitMeasure());
+		this.productDescription = quoteProduct.getProductDescription();
+		this.amount = quoteProduct.getAmount();
+		this.unitMeasure = quoteProduct.getUnitMeasure();
+		this.sellingPrice = quoteProduct.getSellingPrice();
+		this.iva = quoteProduct.getIva();
+		this.net = quoteProduct.getNet();
+		this.total = quoteProduct.getTotal();
+	}
 
 	public void generateRemissionSummary() {
 		net = amount * sellingPrice;

@@ -227,9 +227,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		http.authorizeRequests(
 				requests -> requests.antMatchers(HttpMethod.GET, "/remission-output/view-all/product/{branchId}")
 						.hasAuthority(PermissionEnum.REMISSION_OUTPUT.toString()));
-		http.authorizeRequests(
-				requests -> requests.antMatchers(HttpMethod.GET, "/remission-output/view-all")
-						.hasAuthority(PermissionEnum.REMISSION_OUTPUT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/remission-output/view-all")
+				.hasAuthority(PermissionEnum.REMISSION_OUTPUT.toString()));
 
 		// ACCESOS PARA LA GESTION DE REPORTES
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/report/remission-entry")
@@ -238,6 +237,26 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				.hasAuthority(PermissionEnum.REMISSION_OUTPUT_REPORT.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/report/inventory")
 				.hasAuthority(PermissionEnum.INVENTORY_REPORT.toString()));
+
+		// ACCESOS PARA LA GESTION DE COTIZACIONES
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/quote/create")
+				.hasAuthority(PermissionEnum.QUOTE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/quote/view-detail/{quoteId}")
+				.hasAuthority(PermissionEnum.QUOTE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.PUT, "/quote/update")
+				.hasAuthority(PermissionEnum.QUOTE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/quote/convert/{quoteId}")
+				.hasAuthority(PermissionEnum.QUOTE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/quote/search")
+				.hasAuthority(PermissionEnum.QUOTE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/quote/view-all/client")
+				.hasAuthority(PermissionEnum.QUOTE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/quote/view-all/branch")
+				.hasAuthority(PermissionEnum.QUOTE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/quote/view-all/product")
+				.hasAuthority(PermissionEnum.QUOTE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/quote/document/{quoteId}")
+				.hasAuthority(PermissionEnum.QUOTE.toString()));
 
 		/*
 		 * Se habiltan las para la obtención del token de acceso

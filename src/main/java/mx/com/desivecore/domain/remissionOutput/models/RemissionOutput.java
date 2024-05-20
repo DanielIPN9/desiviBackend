@@ -68,6 +68,7 @@ public class RemissionOutput {
 		status = true;
 	}
 
+
 	public Long getRemissionOutputId() {
 		return remissionOutputId;
 	}

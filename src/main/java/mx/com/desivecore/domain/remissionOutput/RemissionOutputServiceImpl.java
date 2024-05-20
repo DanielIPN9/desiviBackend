@@ -250,7 +250,6 @@ public class RemissionOutputServiceImpl implements RemissionOutputServicePort {
 		}
 		Client client = clientPersistencePort.findClientById(remissionOutputSaved.getClient().getClientId());
 		RemissionOutputDocument reOutputDocument = new RemissionOutputDocument(remissionOutputSaved, client);
-		log.info(reOutputDocument.toString());
 		ResponseModel responseDocument = remissionOutputPersistencePort.generateRemissionDocument(reOutputDocument);
 		return responseDocument;
 	}
