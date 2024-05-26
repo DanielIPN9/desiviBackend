@@ -258,6 +258,20 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/quote/document/{quoteId}")
 				.hasAuthority(PermissionEnum.QUOTE.toString()));
 
+		// ACCESOS PARA LA GESTION DE DEVOLUCION DE REMISIONES DE ENTRADA
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/return-remission-entry/search-re/{folio}")
+				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/return-remission-entry/create")
+				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-entry/view-detail/{returnREId}")
+				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-entry/document/{returnREId}")
+				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-entry/view-all")
+				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/return-remission-entry/search")
+				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
+		
 		/*
 		 * Se habiltan las para la obtención del token de acceso
 		 */
