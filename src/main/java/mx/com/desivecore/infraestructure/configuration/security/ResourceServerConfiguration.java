@@ -272,6 +272,23 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/return-remission-entry/search")
 				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
 		
+		// ACCESOS PARA LA GESTION DE PRODUCTOS EN CUARENTENA
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/cuarantine/view-all")
+				.hasAuthority(PermissionEnum.QUARANTINE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/cuarantine/search")
+				.hasAuthority(PermissionEnum.QUARANTINE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/cuarantine/view-detail/{productId}")
+				.hasAuthority(PermissionEnum.QUARANTINE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/cuarantine/change/location")
+				.hasAuthority(PermissionEnum.QUARANTINE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/cuarantine/view-all/actions")
+				.hasAuthority(PermissionEnum.QUARANTINE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/cuarantine/view-all/branch")
+				.hasAuthority(PermissionEnum.QUARANTINE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/cuarantine/view-all/product")
+				.hasAuthority(PermissionEnum.QUARANTINE.toString()));
+
+		
 		/*
 		 * Se habiltan las para la obtención del token de acceso
 		 */

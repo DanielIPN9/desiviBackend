@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.java.Log;
 import mx.com.desivecore.commons.models.ResponseModel;
+import mx.com.desivecore.domain.products.models.ProductAvailability;
+import mx.com.desivecore.domain.products.ports.ProductPersistencePort;
+import mx.com.desivecore.domain.quarantine.ports.QuarantineServicePort;
 import mx.com.desivecore.domain.remissionEntry.models.ProductEntry;
 import mx.com.desivecore.domain.remissionEntry.models.RemissionEntry;
 import mx.com.desivecore.domain.remissionEntry.models.RemissionEntrySummary;
@@ -36,6 +39,12 @@ public class ReturnRemissionEntryServiceImpl implements ReturnREServicePort {
 
 	@Autowired
 	private RemissionEntryPersistencePort remissionEntryPersistencePort;
+
+	@Autowired
+	private QuarantineServicePort quarantineServicePort;
+
+	@Autowired
+	private ProductPersistencePort productPersistencePort;
 
 	private ReturnRemissionEntryValidator remissionEntryValidator = new ReturnRemissionEntryValidator();
 
@@ -106,12 +115,36 @@ public class ReturnRemissionEntryServiceImpl implements ReturnREServicePort {
 			throw new ValidationError(validations);
 
 		ReturnRemissionEntry returnRemissionEntry = new ReturnRemissionEntry(remissionEntry);
-		returnRemissionEntry = returnREPersistencePort.generateReturnRemissionEntry(returnRemissionEntry);
+		ReturnRemissionEntry returnRemissionEntryCreated = returnREPersistencePort
+				.generateReturnRemissionEntry(returnRemissionEntry);
 
-		if (returnRemissionEntry == null)
+		if (returnRemissionEntryCreated == null)
 			throw new InternalError();
 
-		return new ResponseModel(returnRemissionEntry);
+		try {
+			quarantineServicePort.inputProductByRemissionEntry(returnRemissionEntry);
+			updateProductAvailability(returnRemissionEntry);
+		} catch (Exception e) {
+			log.severe(e.getMessage());
+		}
+
+		return new ResponseModel(returnRemissionEntryCreated);
+	}
+
+	private void updateProductAvailability(ReturnRemissionEntry returnRemissionEntry) {
+		log.info("INIT updateProductAvailability()");
+		List<ProductAvailability> availabilityList = new ArrayList<>();
+		for (ReturnProductEntry returnProductEntry : returnRemissionEntry.getProducts()) {
+
+			ProductAvailability productAvailability = productPersistencePort.findByProducIdAndBranchId(
+					returnProductEntry.getProduct().getProductId(), returnRemissionEntry.getBranch().getBranchId());
+
+			if (productAvailability != null) {
+				productAvailability.updateAvailability(-returnProductEntry.getAmountReturn());
+				availabilityList.add(productAvailability);
+			}
+		}
+		productPersistencePort.saveAvailability(availabilityList, null);
 	}
 
 	@Override
