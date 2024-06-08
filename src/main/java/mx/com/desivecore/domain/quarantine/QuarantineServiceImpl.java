@@ -25,6 +25,7 @@ import mx.com.desivecore.domain.quarantine.models.QuarantineSearchParams;
 import mx.com.desivecore.domain.quarantine.ports.QuarantinePersistencePort;
 import mx.com.desivecore.domain.quarantine.ports.QuarantineServicePort;
 import mx.com.desivecore.domain.returnRemissionEntry.models.ReturnRemissionEntry;
+import mx.com.desivecore.domain.returnRemissionOutput.models.ReturnRemissionOutput;
 import mx.com.desivecore.infraestructure.configuration.exceptions.ValidationError;
 
 @Log
@@ -100,8 +101,26 @@ public class QuarantineServiceImpl implements QuarantineServicePort {
 	}
 
 	@Override
-	public void inputProductByRemissionOutput() {
-		// TODO Auto-generated method stub
+	public void inputProductByRemissionOutput(ReturnRemissionOutput returnRemissionOutput) {
+		log.info("GENERATE LIST BY RETRUN REMISSION ENTRY");
+		List<ProductQuarantine> productQuarantineROList = returnRemissionGenerator
+				.generateByRemssionOutput(returnRemissionOutput);
+
+		List<ProductQuarantine> productQuarantineUpdatedList = new ArrayList<>();
+		for (ProductQuarantine productQuarantine : productQuarantineROList) {
+			ProductQuarantine productQuarantineSaved = quarantinePersistencePort
+					.viewProductQuarantineDetailByProductIdAndBranchId(productQuarantine.getProductId(),
+							productQuarantine.getBranchId());
+			if (productQuarantineSaved != null) {
+				Double finalAmount = productQuarantineSaved.getAmount() + productQuarantine.getAmount();
+				productQuarantineSaved.setAmount(finalAmount);
+				productQuarantineUpdatedList.add(productQuarantineSaved);
+			} else {
+				productQuarantineUpdatedList.add(productQuarantine);
+			}
+		}
+
+		quarantinePersistencePort.updateProductQuarantineList(productQuarantineUpdatedList);
 
 	}
 

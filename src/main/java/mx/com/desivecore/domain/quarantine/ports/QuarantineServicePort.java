@@ -4,6 +4,7 @@ import mx.com.desivecore.commons.models.ResponseModel;
 import mx.com.desivecore.domain.quarantine.models.ProductQuarantineAction;
 import mx.com.desivecore.domain.quarantine.models.QuarantineSearchParams;
 import mx.com.desivecore.domain.returnRemissionEntry.models.ReturnRemissionEntry;
+import mx.com.desivecore.domain.returnRemissionOutput.models.ReturnRemissionOutput;
 
 public interface QuarantineServicePort {
 
@@ -17,7 +18,7 @@ public interface QuarantineServicePort {
 
 	void inputProductByRemissionEntry(ReturnRemissionEntry remissionEntry);
 
-	void inputProductByRemissionOutput();
+	void inputProductByRemissionOutput(ReturnRemissionOutput remissionOutput);
 
 	ResponseModel viewQuarantineActionList();
 

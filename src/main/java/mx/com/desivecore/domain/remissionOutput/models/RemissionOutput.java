@@ -24,6 +24,8 @@ public class RemissionOutput {
 
 	private UserModel user;
 
+	private String obserbations;
+
 	private List<ProductOutput> products;
 
 	private Double ivaTotal;
@@ -67,7 +69,6 @@ public class RemissionOutput {
 		remissionTotal = (double) Math.round(remissionTotal * 100) / 100;
 		status = true;
 	}
-
 
 	public Long getRemissionOutputId() {
 		return remissionOutputId;
@@ -155,6 +156,14 @@ public class RemissionOutput {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public String getObserbations() {
+		return obserbations;
+	}
+
+	public void setObserbations(String obserbations) {
+		this.obserbations = obserbations;
 	}
 
 	@Override
