@@ -16,6 +16,10 @@ public class ProductDetail {
 
 	private Double iva;
 
+	private Double minAvailability;
+
+	private String alertMessage;
+
 	private Double subTotalPurchase;
 
 	private Double totalPurchase;
@@ -25,6 +29,8 @@ public class ProductDetail {
 	private Double totalSelling;
 
 	public void generateSummary() {
+		
+		alertMessage = amount <= minAvailability ? "ALERTADO" : " ";
 
 		subTotalPurchase = amount * unitPurchasePrice;
 		subTotalPurchase = (double) Math.round(subTotalPurchase * 100) / 100;
@@ -40,7 +46,7 @@ public class ProductDetail {
 	}
 
 	public ProductDetail(String branchName, String productName, String unitMeasure, Double amount,
-			Double unitPurchasePrice, Double unitSellingPrice, Double iva) {
+			Double unitPurchasePrice, Double unitSellingPrice, Double iva, Double minAvailability) {
 		super();
 		this.branchName = branchName;
 		this.productName = productName;
@@ -49,6 +55,7 @@ public class ProductDetail {
 		this.unitPurchasePrice = unitPurchasePrice;
 		this.unitSellingPrice = unitSellingPrice;
 		this.iva = iva;
+		this.minAvailability = minAvailability;
 	}
 
 	public String getBranchName() {
@@ -139,13 +146,29 @@ public class ProductDetail {
 		this.totalSelling = totalSelling;
 	}
 
+	public Double getMinAvailability() {
+		return minAvailability;
+	}
+
+	public void setMinAvailability(Double minAvailability) {
+		this.minAvailability = minAvailability;
+	}
+
+	public String getAlertMessage() {
+		return alertMessage;
+	}
+
+	public void setAlertMessage(String alertMessage) {
+		this.alertMessage = alertMessage;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductDetail [branchName=" + branchName + ", productName=" + productName + ", unitMeasure="
 				+ unitMeasure + ", amount=" + amount + ", unitPurchasePrice=" + unitPurchasePrice
-				+ ", unitSellingPrice=" + unitSellingPrice + ", iva=" + iva + ", subTotalPurchase=" + subTotalPurchase
-				+ ", totalPurchase=" + totalPurchase + ", subTotalSelling=" + subTotalSelling + ", totalSelling="
-				+ totalSelling + "]";
+				+ ", unitSellingPrice=" + unitSellingPrice + ", iva=" + iva + ", minAvailability=" + minAvailability
+				+ ", subTotalPurchase=" + subTotalPurchase + ", totalPurchase=" + totalPurchase + ", subTotalSelling="
+				+ subTotalSelling + ", totalSelling=" + totalSelling + "]";
 	}
 
 }

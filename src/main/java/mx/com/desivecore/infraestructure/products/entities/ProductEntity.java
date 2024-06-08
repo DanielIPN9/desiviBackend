@@ -48,4 +48,7 @@ public class ProductEntity {
 
 	@Column(name = "category", unique = false, nullable = false, length = 30)
 	private String category;
+	
+	@Column(name = "min_availability")
+	private Double minAvailability;
 }

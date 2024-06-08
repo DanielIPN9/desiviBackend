@@ -24,6 +24,7 @@ public class ProductConverter {
 		productEntity.setUnitPurchasePrice(product.getUnitPurchasePrice());
 		productEntity.setStatus(product.isStatus());
 		productEntity.setCategory(product.getCategory());
+		productEntity.setMinAvailability(product.getMinAvailability());
 
 		return productEntity;
 	}
@@ -41,6 +42,7 @@ public class ProductConverter {
 		product.setUnitPurchasePrice(productEntity.getUnitPurchasePrice());
 		product.setStatus(productEntity.isStatus());
 		product.setCategory(productEntity.getCategory());
+		product.setMinAvailability(productEntity.getMinAvailability());
 
 		return product;
 	}

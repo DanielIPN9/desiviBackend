@@ -111,6 +111,9 @@ public class ProductValidator {
 		validations += validString("SKU ", product.getSku());
 		validations += validString("Nombre ", product.getName());
 		validations += validString("UM ", product.getUnitMeasure());
+		validations += product.getMinAvailability() == null || product.getMinAvailability() <= 0
+				? "-Debe ingresar un valor para la cantidad mínima en almacenamiento"
+				: "";
 		return validations;
 	}
 

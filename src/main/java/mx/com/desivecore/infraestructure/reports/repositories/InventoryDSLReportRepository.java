@@ -52,7 +52,8 @@ public class InventoryDSLReportRepository extends QuerydslRepositorySupport {
 		 * Select fields
 		 */
 		query.select(Projections.constructor(ProductDetail.class, branch.name, product.name, product.unitMeasure,
-				productAvailability.amount, product.unitPurchasePrice, product.unitSellingPrice, product.iva));
+				productAvailability.amount, product.unitPurchasePrice, product.unitSellingPrice, product.iva,
+				product.minAvailability));
 
 		return query.fetch();
 

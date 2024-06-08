@@ -24,6 +24,8 @@ public class Product {
 
 	private String category;
 
+	private Double minAvailability;
+
 	public Long getProductId() {
 		return productId;
 	}
@@ -104,11 +106,20 @@ public class Product {
 		this.category = category;
 	}
 
+	public Double getMinAvailability() {
+		return minAvailability;
+	}
+
+	public void setMinAvailability(Double minAvailability) {
+		this.minAvailability = minAvailability;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", sku=" + sku + ", name=" + name + ", unitMeasure=" + unitMeasure
 				+ ", iva=" + iva + ", unitSellingPrice=" + unitSellingPrice + ", unitPurchasePrice=" + unitPurchasePrice
-				+ ", availability=" + availability + ", status=" + status + ", category=" + category + "]";
+				+ ", availability=" + availability + ", status=" + status + ", category=" + category
+				+ ", minAvailability=" + minAvailability + "]";
 	}
 
 }
