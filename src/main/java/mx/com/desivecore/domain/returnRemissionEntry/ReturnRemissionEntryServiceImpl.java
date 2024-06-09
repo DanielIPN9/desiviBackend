@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.java.Log;
 import mx.com.desivecore.commons.models.ResponseModel;
+import mx.com.desivecore.domain.branches.models.Branch;
+import mx.com.desivecore.domain.branches.ports.BranchPersistencePort;
 import mx.com.desivecore.domain.products.models.ProductAvailability;
 import mx.com.desivecore.domain.products.ports.ProductPersistencePort;
 import mx.com.desivecore.domain.quarantine.ports.QuarantineServicePort;
@@ -25,6 +27,8 @@ import mx.com.desivecore.domain.returnRemissionEntry.models.ReturnRESummary;
 import mx.com.desivecore.domain.returnRemissionEntry.models.ReturnRemissionEntry;
 import mx.com.desivecore.domain.returnRemissionEntry.ports.ReturnREPersistencePort;
 import mx.com.desivecore.domain.returnRemissionEntry.ports.ReturnREServicePort;
+import mx.com.desivecore.domain.suppliers.models.Supplier;
+import mx.com.desivecore.domain.suppliers.ports.SupplierPersistencePort;
 import mx.com.desivecore.infraestructure.configuration.exceptions.InternalError;
 import mx.com.desivecore.infraestructure.configuration.exceptions.ValidationError;
 
@@ -46,6 +50,12 @@ public class ReturnRemissionEntryServiceImpl implements ReturnREServicePort {
 	@Autowired
 	private ProductPersistencePort productPersistencePort;
 
+	@Autowired
+	private SupplierPersistencePort supplierPersistencePort;
+
+	@Autowired
+	private BranchPersistencePort branchPersistencePort;
+
 	private ReturnRemissionEntryValidator remissionEntryValidator = new ReturnRemissionEntryValidator();
 
 	@Override
@@ -63,6 +73,10 @@ public class ReturnRemissionEntryServiceImpl implements ReturnREServicePort {
 				.orElseThrow(() -> new ValidationError(ERROR_MESSAGE));
 
 		generateReturnProductSummary(folio, remissionEntry);
+
+		Double totalProductAmount = remissionEntry.getProducts().stream().mapToDouble(ProductEntry::getAmount).sum();
+		if (totalProductAmount == 0)
+			throw new ValidationError("La orden no cuenta con cantidad disponible para proceso de devolución");
 
 		return new ResponseModel(remissionEntry);
 	}
@@ -182,6 +196,33 @@ public class ReturnRemissionEntryServiceImpl implements ReturnREServicePort {
 			return new ResponseModel(new ArrayList<>());
 		}
 		return new ResponseModel(returnRESummaryList);
+	}
+
+	@Override
+	public ResponseModel viewSupplierActiveList() {
+		log.info("INIT viewSupplierActiveList()");
+		List<Supplier> supplierList = supplierPersistencePort.viewAllSupplier();
+		if (supplierList == null) {
+			log.warning("EMPTY DATA");
+			return new ResponseModel(new ArrayList<>());
+		}
+		List<Supplier> supplierActiveList = new ArrayList<>();
+		for (Supplier supplier : supplierList) {
+			if (supplier.isStatus())
+				supplierActiveList.add(supplier);
+		}
+		return new ResponseModel(supplierActiveList);
+	}
+
+	@Override
+	public ResponseModel viewBranchActiveList() {
+		log.info("INIT viewBranchActiveList()");
+		List<Branch> branchList = branchPersistencePort.findAllBranch();
+		if (branchList == null) {
+			log.warning("EMPTY DATA");
+			return new ResponseModel(new ArrayList<>());
+		}
+		return new ResponseModel(branchList);
 	}
 
 }

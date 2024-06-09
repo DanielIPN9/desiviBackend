@@ -71,4 +71,18 @@ public class ReturnRemisionOutputController {
 		ResponseModel response = returnROServicePort.searchReturnRemissionOutputByParams(returnROSearchParams);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+	
+	@GetMapping("/view-all/client")
+	public ResponseEntity<?> viewClientActiveList() {
+		log.info("INIT viewClientActiveList()");
+		ResponseModel response = returnROServicePort.viewClientActiveList();
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	@GetMapping("/view-all/branch")
+	public ResponseEntity<?> viewBranchActiveList() {
+		log.info("INIT viewBranchActiveList()");
+		ResponseModel response = returnROServicePort.viewBranchActiveList();
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
 }

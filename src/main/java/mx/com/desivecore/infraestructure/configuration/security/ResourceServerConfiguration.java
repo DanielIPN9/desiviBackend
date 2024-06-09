@@ -271,6 +271,10 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/return-remission-entry/search")
 				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-entry/view-all/sipplier")
+				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-entry/view-all/branch")
+				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
 		
 		// ACCESOS PARA LA GESTION DE PRODUCTOS EN CUARENTENA
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/cuarantine/view-all")
@@ -300,6 +304,10 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-output/view-all")
 				.hasAuthority(PermissionEnum.RETURN_RO.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/return-remission-output/search")
+				.hasAuthority(PermissionEnum.RETURN_RO.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-output/view-all/client")
+				.hasAuthority(PermissionEnum.RETURN_RO.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-output/view-all/branch")
 				.hasAuthority(PermissionEnum.RETURN_RO.toString()));
 		
 		

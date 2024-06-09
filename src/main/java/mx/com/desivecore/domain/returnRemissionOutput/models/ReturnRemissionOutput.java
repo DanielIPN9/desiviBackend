@@ -63,7 +63,7 @@ public class ReturnRemissionOutput {
 			total += returnProductOutput.getTotal();
 		}
 
-		this.iva = (double) Math.round(iva * 100) / 100;
+		this.iva = (double) Math.round(ivaTotal * 100) / 100;
 		this.subTotal = (double) Math.round(subTtal * 100) / 100;
 		this.total = (double) Math.round(total * 100) / 100;
 	}

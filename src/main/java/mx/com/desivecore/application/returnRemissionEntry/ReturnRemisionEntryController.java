@@ -71,4 +71,18 @@ public class ReturnRemisionEntryController {
 		ResponseModel response = returnREServicePort.searchReturnRemissionEntryByParams(returnRESearchParams);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+	
+	@GetMapping("/view-all/sipplier")
+	public ResponseEntity<?> viewSupplierActiveList() {
+		log.info("INIT viewSupplierActiveList()");
+		ResponseModel response = returnREServicePort.viewSupplierActiveList();
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	@GetMapping("/view-all/branch")
+	public ResponseEntity<?> viewBranchActiveList() {
+		log.info("INIT viewBranchActiveList()");
+		ResponseModel response = returnREServicePort.viewBranchActiveList();
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
 }

@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.java.Log;
 import mx.com.desivecore.commons.models.ResponseModel;
+import mx.com.desivecore.domain.branches.models.Branch;
+import mx.com.desivecore.domain.branches.ports.BranchPersistencePort;
+import mx.com.desivecore.domain.clients.models.Client;
+import mx.com.desivecore.domain.clients.models.ClientSummary;
+import mx.com.desivecore.domain.clients.ports.ClientPersistencePort;
 import mx.com.desivecore.domain.quarantine.ports.QuarantineServicePort;
 import mx.com.desivecore.domain.remissionOutput.models.ProductOutput;
 import mx.com.desivecore.domain.remissionOutput.models.RemissionOutput;
@@ -43,6 +48,12 @@ public class ReturnRemissionOutputServiceImpl implements ReturnROServicePort {
 	@Autowired
 	private RemissionOutputPersistencePort remissionOutputPersistencePort;
 
+	@Autowired
+	private BranchPersistencePort branchPersistencePort;
+
+	@Autowired
+	private ClientPersistencePort clientPersistencePort;
+
 	private ReturnRemissionOutputValidator remissionOutputValidator = new ReturnRemissionOutputValidator();
 
 	@Override
@@ -60,6 +71,10 @@ public class ReturnRemissionOutputServiceImpl implements ReturnROServicePort {
 				.orElseThrow(() -> new ValidationError(ERROR_MESSAGE));
 
 		generateReturnProductSummary(folio, remissionOutput);
+
+		Double totalProductAmount = remissionOutput.getProducts().stream().mapToDouble(ProductOutput::getAmount).sum();
+		if (totalProductAmount == 0)
+			throw new ValidationError("La orden no cuenta con cantidad disponible para proceso de devolución");
 
 		return new ResponseModel(remissionOutput);
 	}
@@ -161,6 +176,32 @@ public class ReturnRemissionOutputServiceImpl implements ReturnROServicePort {
 			return new ResponseModel(new ArrayList<>());
 		}
 		return new ResponseModel(returnROSummaryList);
+	}
+
+	@Override
+	public ResponseModel viewClientActiveList() {
+		log.info("INIT viewClientActiveList()");
+		List<Client> clientList = clientPersistencePort.viewAllClients();
+		if (clientList == null) {
+			log.warning("EMPTY DATA");
+			return new ResponseModel(new ArrayList<>());
+		}
+		List<ClientSummary> clientSummaries = new ArrayList<>();
+		for (Client client : clientList) {
+			clientSummaries.add(new ClientSummary(client.getClientId(), client.getBusinessName()));
+		}
+		return new ResponseModel(clientSummaries);
+	}
+
+	@Override
+	public ResponseModel viewBranchActiveList() {
+		log.info("INIT viewBranchActiveList()");
+		List<Branch> branchList = branchPersistencePort.findAllBranch();
+		if (branchList == null) {
+			log.warning("EMPTY DATA");
+			return new ResponseModel(new ArrayList<>());
+		}
+		return new ResponseModel(branchList);
 	}
 
 }

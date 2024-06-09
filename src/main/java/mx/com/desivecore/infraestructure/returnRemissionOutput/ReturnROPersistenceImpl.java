@@ -180,7 +180,7 @@ public class ReturnROPersistenceImpl implements ReturnROPersistencePort {
 					returnProductOutput.setProduct(productOutputSummary);
 					returnProductOutputList.add(returnProductOutput);
 				}
-
+				returnRemissionOutput.setProducts(returnProductOutputList);
 				return returnRemissionOutput;
 			}
 

@@ -17,5 +17,9 @@ public interface ReturnREServicePort {
 	ResponseModel viewAllReturnRemissionEntry();
 
 	ResponseModel searchReturnRemissionEntryByParams(ReturnRESearchParams returnRESearchParams);
+	
+	ResponseModel viewSupplierActiveList();
+	
+	ResponseModel viewBranchActiveList();
 
 }

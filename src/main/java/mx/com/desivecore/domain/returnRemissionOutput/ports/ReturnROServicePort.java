@@ -17,5 +17,9 @@ public interface ReturnROServicePort {
 	ResponseModel viewAllReturnRemissionOutput();
 
 	ResponseModel searchReturnRemissionOutputByParams(ReturnROSearchParams returnROSearchParams);
+	
+	ResponseModel viewClientActiveList();
+	
+	ResponseModel viewBranchActiveList();
 
 }
