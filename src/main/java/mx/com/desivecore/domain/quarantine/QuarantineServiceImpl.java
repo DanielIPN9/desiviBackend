@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.java.Log;
+import mx.com.desivecore.commons.constants.QuarantineMovementEnum;
 import mx.com.desivecore.commons.models.ResponseModel;
 import mx.com.desivecore.domain.branches.models.Branch;
 import mx.com.desivecore.domain.branches.models.BranchSummary;
 import mx.com.desivecore.domain.branches.ports.BranchPersistencePort;
 import mx.com.desivecore.domain.products.models.Product;
+import mx.com.desivecore.domain.products.models.ProductAvailability;
 import mx.com.desivecore.domain.products.models.ProductSummary;
 import mx.com.desivecore.domain.products.ports.ProductPersistencePort;
 import mx.com.desivecore.domain.quarantine.models.ProductQuarantine;
@@ -26,6 +28,7 @@ import mx.com.desivecore.domain.quarantine.ports.QuarantinePersistencePort;
 import mx.com.desivecore.domain.quarantine.ports.QuarantineServicePort;
 import mx.com.desivecore.domain.returnRemissionEntry.models.ReturnRemissionEntry;
 import mx.com.desivecore.domain.returnRemissionOutput.models.ReturnRemissionOutput;
+import mx.com.desivecore.infraestructure.configuration.exceptions.InternalError;
 import mx.com.desivecore.infraestructure.configuration.exceptions.ValidationError;
 
 @Log
@@ -43,6 +46,8 @@ public class QuarantineServiceImpl implements QuarantineServicePort {
 
 	private ReturnRemissionGenerator returnRemissionGenerator = new ReturnRemissionGenerator();
 
+	private QuarantineValidation quarantineValidation = new QuarantineValidation();
+
 	@Override
 	public ResponseModel viewQuarantineStatusByParams(QuarantineSearchParams quarantineSearchParams) {
 		List<ProductQuarantineSummary> productQuarantineSummaryList = Optional
@@ -52,9 +57,67 @@ public class QuarantineServiceImpl implements QuarantineServicePort {
 	}
 
 	@Override
+	public ResponseModel generateProductMovementByQuarantineId(Long quarantineId) {
+		ProductQuarantine productQuarantine = Optional
+				.ofNullable(quarantinePersistencePort.viewProductQuarantineByQuarantineId(quarantineId))
+				.orElseThrow(() -> new ValidationError("Registro no encontrado"));
+		Branch branch = branchPersistencePort.findBranchById(productQuarantine.getBranchId());
+		Product product = productPersistencePort.viewProductDetailById(productQuarantine.getProductId());
+		ProductQuarantineAction productQuarantineAction = new ProductQuarantineAction(productQuarantine, branch,
+				product);
+		return new ResponseModel(productQuarantineAction);
+	}
+
+	@Override
 	public ResponseModel changeProductLocation(ProductQuarantineAction productQuarantineAction) {
-		// TODO Auto-generated method stub
-		return null;
+		String validations = quarantineValidation.validOperativeData(productQuarantineAction);
+		if (!validations.isEmpty())
+			throw new ValidationError(validations);
+		try {
+			QuarantineMovementEnum movement = QuarantineMovementEnum
+					.valueOf(productQuarantineAction.getAction().getActionCode());
+			Long productId = productQuarantineAction.getProduct().getProductId();
+			Long branchId = productQuarantineAction.getBranch().getBranchId();
+			switch (movement) {
+			case WAREHOUSE_OUTPUT:
+				updateWarehouseOutput(productQuarantineAction, productId, branchId);
+				break;
+			case WAREHOUSE_INPUT:
+				updateWarehouseOutput(productQuarantineAction, productId, branchId);
+				updateWarehouseInput(productQuarantineAction, productId, branchId);
+				break;
+			default:
+				throw new InternalError();
+			}
+			return new ResponseModel(true);
+		} catch (Exception e) {
+			throw new InternalError();
+		}
+	}
+
+	private void updateWarehouseInput(ProductQuarantineAction productQuarantineAction, Long productId, Long branchId) {
+		List<ProductAvailability> availabilityList = new ArrayList<>();
+		ProductAvailability productAvailability = productPersistencePort.findByProducIdAndBranchId(productId, branchId);
+
+		if (productAvailability != null) {
+			productAvailability.updateAvailability(productQuarantineAction.getAmount());
+			availabilityList.add(productAvailability);
+		}
+
+		productPersistencePort.saveAvailability(availabilityList, null);
+	}
+
+	private void updateWarehouseOutput(ProductQuarantineAction productQuarantineAction, Long productId, Long branchId) {
+		ProductQuarantine productQuarantine;
+		Double finalAmount;
+		productQuarantine = Optional.ofNullable(
+				quarantinePersistencePort.viewProductQuarantineDetailByProductIdAndBranchId(productId, branchId))
+				.orElseThrow(() -> new InternalError());
+
+		finalAmount = productQuarantine.getAmount() - productQuarantineAction.getAmount();
+		productQuarantine.setAmount(finalAmount);
+
+		quarantinePersistencePort.updateProductQuarantine(productQuarantine);
 	}
 
 	@Override
@@ -161,5 +224,4 @@ public class QuarantineServiceImpl implements QuarantineServicePort {
 				.map(branch -> new BranchSummary(branch.getBranchId(), branch.getName())).collect(Collectors.toList());
 		return new ResponseModel(branchSummaryList);
 	}
-
 }

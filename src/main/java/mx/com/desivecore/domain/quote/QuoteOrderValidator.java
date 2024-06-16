@@ -72,9 +72,16 @@ public class QuoteOrderValidator {
 		for (QuoteProduct quoteProduct : quoteOrder.getProducts()) {
 			ProductAvailability productAvailability = productPersistencePort.findByProducIdAndBranchId(
 					quoteProduct.getProduct().getProductId(), quoteOrder.getBranch().getBranchId());
-			validations += productAvailability.getAmount() >= quoteProduct.getAmount() ? ""
-					: " -Cantidad insuficiente para el producto " + quoteProduct.getProduct().getName()
-							+ ". Disponible: " + productAvailability.getAmount();
+			validations += productAvailability == null
+					? "-Cantidad insuficiente para el producto" + quoteProduct.getProduct().getName()
+							+ " en la sucursal " + quoteOrder.getBranch().getName()
+					: "";
+			if (productAvailability != null) {
+				validations += productAvailability.getAmount() >= quoteProduct.getAmount() ? ""
+						: " -Cantidad insuficiente para el producto " + quoteProduct.getProduct().getName()
+								+ ". Disponible: " + productAvailability.getAmount();
+			}
+
 		}
 		return validations;
 	}

@@ -51,6 +51,7 @@ public class QuarantinePersistenceImpl implements QuarantinePersistencePort {
 
 	@Autowired
 	private CustomDSLProductQuarantineRepository customDSLProductQuarantineRepository;
+
 	@Override
 	public List<ProductQuarantineSummary> viewQuarantineStatusByParams(QuarantineSearchParams quarantineSearchParams) {
 		try {
@@ -142,6 +143,18 @@ public class QuarantinePersistenceImpl implements QuarantinePersistencePort {
 			List<QuarantineAction> quarantineActionList = actionEntities.stream()
 					.map(quarantineActionConverter::entityToQuarantineAction).collect(Collectors.toList());
 			return quarantineActionList;
+		} catch (Exception e) {
+			log.severe("EXCEPTION: " + e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public ProductQuarantine viewProductQuarantineByQuarantineId(Long quarantineId) {
+		try {
+			log.info("INIT viewProductQuarantineByQuarantineId()");
+			return productQuarantineRepository.frindByQuarantineId(quarantineId)
+					.map(productQuarantineConverter::entityToProductQuarantine).orElse(null);
 		} catch (Exception e) {
 			log.severe("EXCEPTION: " + e.getMessage());
 			return null;

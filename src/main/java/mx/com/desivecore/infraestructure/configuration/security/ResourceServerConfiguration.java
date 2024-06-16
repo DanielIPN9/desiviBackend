@@ -259,23 +259,28 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				.hasAuthority(PermissionEnum.QUOTE.toString()));
 
 		// ACCESOS PARA LA GESTION DE DEVOLUCION DE REMISIONES DE ENTRADA
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/return-remission-entry/search-re/{folio}")
-				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.POST, "/return-remission-entry/search-re/{folio}")
+						.hasAuthority(PermissionEnum.RETURN_RE.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/return-remission-entry/create")
 				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-entry/view-detail/{returnREId}")
-				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-entry/document/{returnREId}")
-				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-entry/view-detail/{returnREId}")
+						.hasAuthority(PermissionEnum.RETURN_RE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-entry/document/{returnREId}")
+						.hasAuthority(PermissionEnum.RETURN_RE.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-entry/view-all")
 				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/return-remission-entry/search")
 				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-entry/view-all/sipplier")
-				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-entry/view-all/branch")
-				.hasAuthority(PermissionEnum.RETURN_RE.toString()));
-		
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-entry/view-all/sipplier")
+						.hasAuthority(PermissionEnum.RETURN_RE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-entry/view-all/branch")
+						.hasAuthority(PermissionEnum.RETURN_RE.toString()));
+
 		// ACCESOS PARA LA GESTION DE PRODUCTOS EN CUARENTENA
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/cuarantine/view-all")
 				.hasAuthority(PermissionEnum.QUARANTINE.toString()));
@@ -291,26 +296,33 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				.hasAuthority(PermissionEnum.QUARANTINE.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/cuarantine/view-all/product")
 				.hasAuthority(PermissionEnum.QUARANTINE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/cuarantine/view-movement/{quarantineId}")
+						.hasAuthority(PermissionEnum.QUARANTINE.toString()));
 
 		// ACCESOS PARA LA GESTION DE DEVOLUCION DE REMISIONES DE ENTRADA
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/return-remission-output/search-ro/{folio}")
-				.hasAuthority(PermissionEnum.RETURN_RO.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.POST, "/return-remission-output/search-ro/{folio}")
+						.hasAuthority(PermissionEnum.RETURN_RO.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/return-remission-output/create")
 				.hasAuthority(PermissionEnum.RETURN_RO.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-output/view-detail/{returnROId}")
-				.hasAuthority(PermissionEnum.RETURN_RO.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-output/document/{returnROId}")
-				.hasAuthority(PermissionEnum.RETURN_RO.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-output/view-detail/{returnROId}")
+						.hasAuthority(PermissionEnum.RETURN_RO.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-output/document/{returnROId}")
+						.hasAuthority(PermissionEnum.RETURN_RO.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-output/view-all")
 				.hasAuthority(PermissionEnum.RETURN_RO.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/return-remission-output/search")
 				.hasAuthority(PermissionEnum.RETURN_RO.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-output/view-all/client")
-				.hasAuthority(PermissionEnum.RETURN_RO.toString()));
-		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-output/view-all/branch")
-				.hasAuthority(PermissionEnum.RETURN_RO.toString()));
-		
-		
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-output/view-all/client")
+						.hasAuthority(PermissionEnum.RETURN_RO.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-output/view-all/branch")
+						.hasAuthority(PermissionEnum.RETURN_RO.toString()));
+
 		/*
 		 * Se habiltan las para la obtención del token de acceso
 		 */

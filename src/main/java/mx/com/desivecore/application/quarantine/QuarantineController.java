@@ -47,6 +47,14 @@ public class QuarantineController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
+	@GetMapping("/view-movement/{quarantineId}")
+	public ResponseEntity<?> generateProductMovementSummaryByQuarantineId(@PathVariable Long quarantineId) {
+		log.info("INT generateProductMovementSummaryByQuarantineId()");
+		log.info(String.format("quarantineId: %s", quarantineId.toString()));
+		ResponseModel response = quarantineServicePort.generateProductMovementByQuarantineId(quarantineId);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
 	@PostMapping("/change/location")
 	public ResponseEntity<?> changeProductLocation(@RequestBody ProductQuarantineAction productQuarantineAction) {
 		log.info("INT changeProductLocation()");

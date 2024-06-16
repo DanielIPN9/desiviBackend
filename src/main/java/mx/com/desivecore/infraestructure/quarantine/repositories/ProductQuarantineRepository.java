@@ -16,4 +16,7 @@ public interface ProductQuarantineRepository extends JpaRepository<ProductQuaran
 	Optional<ProductQuarantineEntity> frindByBranchIdAndProductId(@Param("branchId") Long branchId,
 			@Param("productId") Long productId);
 
+	@Query("SELECT pq FROM ProductQuarantineEntity pq WHERE pq.productQuarantineId=:quarantineId")
+	Optional<ProductQuarantineEntity> frindByQuarantineId(@Param("quarantineId") Long quarantineId);
+
 }

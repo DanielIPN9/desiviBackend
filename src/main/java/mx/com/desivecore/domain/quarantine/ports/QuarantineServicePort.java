@@ -16,6 +16,8 @@ public interface QuarantineServicePort {
 
 	ResponseModel viewProductQuarantineDetailById(Long productId);
 
+	ResponseModel generateProductMovementByQuarantineId(Long quarantineId);
+
 	void inputProductByRemissionEntry(ReturnRemissionEntry remissionEntry);
 
 	void inputProductByRemissionOutput(ReturnRemissionOutput remissionOutput);

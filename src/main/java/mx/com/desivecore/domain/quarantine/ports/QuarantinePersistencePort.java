@@ -14,6 +14,8 @@ public interface QuarantinePersistencePort {
 	ProductQuarantineSummary viewProductQuarantineDetailByQuarantineId(Long quarantineId);
 
 	ProductQuarantine viewProductQuarantineDetailByProductIdAndBranchId(Long productId, Long branchId);
+	
+	ProductQuarantine viewProductQuarantineByQuarantineId(Long quarantineId);
 
 	Boolean updateProductQuarantine(ProductQuarantine productQuarantine);
 
