@@ -72,7 +72,8 @@ public class ReportServiceImpl implements ReportServicePort {
 				remissionEntrySearch);
 		log.info(remissionEntryReportDocument.toString());
 
-		ResponseModel response = reportPersistencePort.generateRemissionEntryReport(remissionEntryReportDocument);
+		ResponseModel response = reportPersistencePort.generateRemissionEntryReport(remissionEntryReportDocument,
+				remissionEntryParamsReport.getFormat());
 
 		return response;
 	}
@@ -94,7 +95,8 @@ public class ReportServiceImpl implements ReportServicePort {
 				remissionOutputSearch);
 		log.info(remissionOutputReportDocument.toString());
 
-		ResponseModel response = reportPersistencePort.generateRemissionOutputReport(remissionOutputReportDocument);
+		ResponseModel response = reportPersistencePort.generateRemissionOutputReport(remissionOutputReportDocument,
+				remissionOutputParamsReport.getFormat());
 
 		return response;
 	}
@@ -136,7 +138,8 @@ public class ReportServiceImpl implements ReportServicePort {
 
 		InventoryReportDocument inventoryReportDocument = new InventoryReportDocument(productDetailList);
 		log.info(inventoryReportDocument.toString());
-		ResponseModel response = reportPersistencePort.generateInventoryReport(inventoryReportDocument);
+		ResponseModel response = reportPersistencePort.generateInventoryReport(inventoryReportDocument,
+				inventoryParamsReport.getFormat());
 
 		return response;
 	}

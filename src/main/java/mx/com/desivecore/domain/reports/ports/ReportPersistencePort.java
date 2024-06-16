@@ -20,10 +20,10 @@ public interface ReportPersistencePort {
 
 	List<ProductDetail> searchInventoryDataByParams(Long branchId);
 
-	ResponseModel generateInventoryReport(InventoryReportDocument inventoryReportDocument);
+	ResponseModel generateInventoryReport(InventoryReportDocument inventoryReportDocument, String format);
 
-	ResponseModel generateRemissionEntryReport(RemissionEntryReportDocument remissionEntryReportDocument);
+	ResponseModel generateRemissionEntryReport(RemissionEntryReportDocument remissionEntryReportDocument, String format);
 
-	ResponseModel generateRemissionOutputReport(RemissionOutputReportDocument remissionOutputReportDocument);
+	ResponseModel generateRemissionOutputReport(RemissionOutputReportDocument remissionOutputReportDocument, String format7);
 
 }

@@ -1,5 +1,6 @@
 package mx.com.desivecore.infraestructure.reports;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Collection;
 import java.util.Collections;
@@ -19,6 +20,7 @@ import mx.com.desivecore.domain.reports.models.document.RemissionOutputReportDoc
 import mx.com.desivecore.domain.reports.models.search.RemissionEntryParamsReport;
 import mx.com.desivecore.domain.reports.models.search.RemissionOutputParamsReport;
 import mx.com.desivecore.domain.reports.ports.ReportPersistencePort;
+import mx.com.desivecore.infraestructure.configuration.exceptions.ValidationError;
 import mx.com.desivecore.infraestructure.reports.repositories.InventoryDSLReportRepository;
 import mx.com.desivecore.infraestructure.reports.repositories.RemissionEntryDSLReportRepository;
 import mx.com.desivecore.infraestructure.reports.repositories.RemissionOutputDSLReportRepository;
@@ -26,11 +28,16 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 
 @Log
 @Service
 public class ReportPersistenceImpl implements ReportPersistencePort {
 
+	private static final String XLS_FORMAT = "XSL";
+	private static final String PDF_FORMAT = "PDF";
 	private static final String INVENTORY_TEMPLATE = "/reports/inventory/InventoryReportDocument.jasper";
 	private static final String REMISSION_ENTRY_TEMPLATE = "/reports/remissionEntry/RemissionEntryReportDocument.jasper";
 	private static final String REMISSION_OUTPUT_TEMPLATE = "/reports/remissionOutput/RemissionOutputReportDocument.jasper";
@@ -81,7 +88,7 @@ public class ReportPersistenceImpl implements ReportPersistencePort {
 	}
 
 	@Override
-	public ResponseModel generateInventoryReport(InventoryReportDocument inventoryReportDocument) {
+	public ResponseModel generateInventoryReport(InventoryReportDocument inventoryReportDocument, String format) {
 		try {
 			log.info("INIT generateInventoryReport()");
 
@@ -96,7 +103,23 @@ public class ReportPersistenceImpl implements ReportPersistencePort {
 			JasperPrint jasperPrint = JasperFillManager.fillReport(file, null,
 					new JRBeanCollectionDataSource(collection));
 
-			byte[] remissionEntryReport = JasperExportManager.exportReportToPdf(jasperPrint);
+			byte[] remissionEntryReport = null;
+
+			if (format.equalsIgnoreCase(PDF_FORMAT)) {
+				remissionEntryReport = JasperExportManager.exportReportToPdf(jasperPrint);
+			} else if (format.equalsIgnoreCase(XLS_FORMAT)) {
+				ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+				SimpleOutputStreamExporterOutput output = new SimpleOutputStreamExporterOutput(byteArray);
+				JRXlsExporter exporter = new JRXlsExporter();
+				exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+				exporter.setExporterOutput(output);
+				exporter.exportReport();
+				output.close();
+				remissionEntryReport = byteArray.toByteArray();
+
+			} else {
+				throw new ValidationError("Formato inválido");
+			}
 
 			log.info(String.format("RETURN DATA "));
 			return new ResponseModel(remissionEntryReport);
@@ -107,7 +130,8 @@ public class ReportPersistenceImpl implements ReportPersistencePort {
 	}
 
 	@Override
-	public ResponseModel generateRemissionEntryReport(RemissionEntryReportDocument remissionEntryReportDocument) {
+	public ResponseModel generateRemissionEntryReport(RemissionEntryReportDocument remissionEntryReportDocument,
+			String format) {
 		try {
 			log.info("INIT generateRemissionEntryReport()");
 
@@ -123,7 +147,23 @@ public class ReportPersistenceImpl implements ReportPersistencePort {
 			JasperPrint jasperPrint = JasperFillManager.fillReport(file, null,
 					new JRBeanCollectionDataSource(collection));
 
-			byte[] remissionEntryReport = JasperExportManager.exportReportToPdf(jasperPrint);
+			byte[] remissionEntryReport = null;
+
+			if (format.equalsIgnoreCase(PDF_FORMAT)) {
+				remissionEntryReport = JasperExportManager.exportReportToPdf(jasperPrint);
+			} else if (format.equalsIgnoreCase(XLS_FORMAT)) {
+				ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+				SimpleOutputStreamExporterOutput output = new SimpleOutputStreamExporterOutput(byteArray);
+				JRXlsExporter exporter = new JRXlsExporter();
+				exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+				exporter.setExporterOutput(output);
+				exporter.exportReport();
+				output.close();
+				remissionEntryReport = byteArray.toByteArray();
+
+			} else {
+				throw new ValidationError("Formato inválido");
+			}
 
 			log.info(String.format("RETURN DATA "));
 			return new ResponseModel(remissionEntryReport);
@@ -134,7 +174,8 @@ public class ReportPersistenceImpl implements ReportPersistencePort {
 	}
 
 	@Override
-	public ResponseModel generateRemissionOutputReport(RemissionOutputReportDocument remissionOutputReportDocument) {
+	public ResponseModel generateRemissionOutputReport(RemissionOutputReportDocument remissionOutputReportDocument,
+			String format) {
 		try {
 			log.info("INIT generateRemissionOutputReport()");
 
@@ -150,8 +191,23 @@ public class ReportPersistenceImpl implements ReportPersistencePort {
 			JasperPrint jasperPrint = JasperFillManager.fillReport(file, null,
 					new JRBeanCollectionDataSource(collection));
 
-			byte[] remissionEntryReport = JasperExportManager.exportReportToPdf(jasperPrint);
+			byte[] remissionEntryReport = null;
 
+			if (format.equalsIgnoreCase(PDF_FORMAT)) {
+				remissionEntryReport = JasperExportManager.exportReportToPdf(jasperPrint);
+			} else if (format.equalsIgnoreCase(XLS_FORMAT)) {
+				ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+				SimpleOutputStreamExporterOutput output = new SimpleOutputStreamExporterOutput(byteArray);
+				JRXlsExporter exporter = new JRXlsExporter();
+				exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+				exporter.setExporterOutput(output);
+				exporter.exportReport();
+				output.close();
+				remissionEntryReport = byteArray.toByteArray();
+
+			} else {
+				throw new ValidationError("Formato inválido");
+			}
 			log.info(String.format("RETURN DATA "));
 			return new ResponseModel(remissionEntryReport);
 		} catch (Exception e) {

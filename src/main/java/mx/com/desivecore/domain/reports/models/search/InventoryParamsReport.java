@@ -6,6 +6,8 @@ public class InventoryParamsReport {
 
 	private Branch barnch;
 
+	private String format;
+
 	public Branch getBarnch() {
 		return barnch;
 	}
@@ -14,9 +16,17 @@ public class InventoryParamsReport {
 		this.barnch = barnch;
 	}
 
+	public String getFormat() {
+		return format;
+	}
+
+	public void setFormat(String format) {
+		this.format = format;
+	}
+
 	@Override
 	public String toString() {
-		return "InventoryParamsReport [barnch=" + barnch + "]";
+		return "InventoryParamsReport [barnch=" + barnch + ", format=" + format + "]";
 	}
 
 }

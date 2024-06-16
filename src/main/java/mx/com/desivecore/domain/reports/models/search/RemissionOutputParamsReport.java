@@ -18,6 +18,8 @@ public class RemissionOutputParamsReport {
 
 	private Branch branch;
 
+	private String format;
+
 	public Date getDateFrom() {
 		return dateFrom;
 	}
@@ -58,10 +60,18 @@ public class RemissionOutputParamsReport {
 		this.branch = branch;
 	}
 
+	public String getFormat() {
+		return format;
+	}
+
+	public void setFormat(String format) {
+		this.format = format;
+	}
+
 	@Override
 	public String toString() {
 		return "RemissionOutputParamsReport [dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", client=" + client
-				+ ", product=" + product + ", branch=" + branch + "]";
+				+ ", product=" + product + ", branch=" + branch + ", format=" + format + "]";
 	}
 
 }
