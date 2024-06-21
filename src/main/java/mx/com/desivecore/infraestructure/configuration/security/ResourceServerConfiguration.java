@@ -323,6 +323,32 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				requests -> requests.antMatchers(HttpMethod.GET, "/return-remission-output/view-all/branch")
 						.hasAuthority(PermissionEnum.RETURN_RO.toString()));
 
+		// ACCESOS PARA LA GESTION CAJA EN EL SISTEMA
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/cash/find-active")
+				.hasAuthority(PermissionEnum.CASH_OPERATIONAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/cash/new-opening")
+				.hasAuthority(PermissionEnum.CASH_OPERATIONAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/cash/new-entry/movement")
+				.hasAuthority(PermissionEnum.CASH_OPERATIONAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/cash/new-exit/movement")
+				.hasAuthority(PermissionEnum.CASH_OPERATIONAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/cash/new-paymenmt/movement")
+				.hasAuthority(PermissionEnum.CASH_OPERATIONAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/cash/summary-closing")
+				.hasAuthority(PermissionEnum.CASH_OPERATIONAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/cash/new-closing")
+				.hasAuthority(PermissionEnum.CASH_OPERATIONAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/search-ro/{folio}")
+				.hasAuthority(PermissionEnum.CASH_OPERATIONAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/cash/view-all/branch")
+				.hasAnyAuthority(PermissionEnum.CASH_OPERATIONAL.toString(), PermissionEnum.CASH_MANAGMENT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/cash/view-all/accounting-type")
+				.hasAuthority(PermissionEnum.CASH_OPERATIONAL.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/cash/search")
+				.hasAuthority(PermissionEnum.CASH_MANAGMENT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/cash/view-detail/{openingCashId}")
+				.hasAuthority(PermissionEnum.CASH_MANAGMENT.toString()));
+
 		/*
 		 * Se habiltan las para la obtención del token de acceso
 		 */

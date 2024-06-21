@@ -21,6 +21,8 @@ public enum PermissionEnum {
 	RETURN_RE,
 	RETURN_RO,
 	QUARANTINE,
+	CASH_OPERATIONAL,
+	CASH_MANAGMENT
 	;
 
 }
