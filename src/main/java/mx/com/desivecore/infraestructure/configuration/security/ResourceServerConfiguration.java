@@ -349,6 +349,25 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/cash/view-detail/{openingCashId}")
 				.hasAuthority(PermissionEnum.CASH_MANAGMENT.toString()));
 
+		// ACCESOS PARA LA GESTION DE PAGO A PROVEEDORES
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/account-payable/view-month")
+				.hasAuthority(PermissionEnum.ACCOUNT_PAYABLE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/account-payable/search")
+				.hasAuthority(PermissionEnum.ACCOUNT_PAYABLE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/account-payable/new-record")
+				.hasAuthority(PermissionEnum.ACCOUNT_PAYABLE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/account-payable/view-detail/{remissionEntryId}")
+						.hasAuthority(PermissionEnum.ACCOUNT_PAYABLE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/account-payable/view-all/supplier")
+				.hasAuthority(PermissionEnum.ACCOUNT_PAYABLE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/account-payable/view-all/payment-state")
+						.hasAuthority(PermissionEnum.ACCOUNT_PAYABLE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/account-payable/view-all/accounting-type")
+						.hasAuthority(PermissionEnum.ACCOUNT_PAYABLE.toString()));
+
 		/*
 		 * Se habiltan las para la obtención del token de acceso
 		 */

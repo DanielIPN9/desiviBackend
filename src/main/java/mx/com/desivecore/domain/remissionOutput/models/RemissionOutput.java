@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import mx.com.desivecore.commons.constants.PaymentStateEnum;
 import mx.com.desivecore.domain.branches.models.Branch;
 import mx.com.desivecore.domain.clients.models.ClientSummary;
 import mx.com.desivecore.domain.users.models.UserModel;
@@ -32,7 +33,11 @@ public class RemissionOutput {
 
 	private Double remissionTotal;
 
+	private Double balanceDue;
+
 	private boolean status;
+
+	private String paymentStatus;
 
 	public void generateRemissionOutputSummary(UserModel user, String serialNumber) {
 		Calendar calendar = Calendar.getInstance();
@@ -49,7 +54,9 @@ public class RemissionOutput {
 		}
 		ivaTotal = (double) Math.round(ivaTotal * 100) / 100;
 		remissionTotal = (double) Math.round(remissionTotal * 100) / 100;
+		balanceDue = remissionTotal;
 		status = true;
+		paymentStatus = PaymentStateEnum.NO_PAYMENT.toString();
 	}
 
 	public void generateRemissionOutputToUpdate(RemissionOutput remissionOutputSaved) {
@@ -67,7 +74,9 @@ public class RemissionOutput {
 		}
 		ivaTotal = (double) Math.round(ivaTotal * 100) / 100;
 		remissionTotal = (double) Math.round(remissionTotal * 100) / 100;
+		balanceDue = remissionTotal;
 		status = true;
+		paymentStatus = PaymentStateEnum.NO_PAYMENT.toString();
 	}
 
 	public Long getRemissionOutputId() {
@@ -166,12 +175,29 @@ public class RemissionOutput {
 		this.obserbations = obserbations;
 	}
 
+	public Double getBalanceDue() {
+		return balanceDue;
+	}
+
+	public void setBalanceDue(Double balanceDue) {
+		this.balanceDue = balanceDue;
+	}
+
+	public String getPaymentStatus() {
+		return paymentStatus;
+	}
+
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus = paymentStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "RemissionOutput [remissionOutputId=" + remissionOutputId + ", folio=" + folio + ", creationDate="
 				+ creationDate + ", requestDay=" + requestDay + ", branch=" + branch + ", client=" + client + ", user="
-				+ user + ", products=" + products + ", ivaTotal=" + ivaTotal + ", remissionTotal=" + remissionTotal
-				+ ", status=" + status + "]";
+				+ user + ", obserbations=" + obserbations + ", products=" + products + ", ivaTotal=" + ivaTotal
+				+ ", remissionTotal=" + remissionTotal + ", balanceDue=" + balanceDue + ", status=" + status
+				+ ", paymentStatus=" + paymentStatus + "]";
 	}
 
 }

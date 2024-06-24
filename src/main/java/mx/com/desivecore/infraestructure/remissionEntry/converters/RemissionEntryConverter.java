@@ -22,8 +22,10 @@ public class RemissionEntryConverter {
 		remissionEntryEntity.setObservations(remissionEntry.getObservations());
 		remissionEntryEntity.setConditions(remissionEntry.getConditions());
 		remissionEntryEntity.setRemissionTotal(remissionEntry.getRemissionTotal());
+		remissionEntryEntity.setBalanceDue(remissionEntry.getBalanceDue());
 		remissionEntryEntity.setIvaTotal(remissionEntry.getIvaTotal());
 		remissionEntryEntity.setStatus(remissionEntry.isStatus());
+		remissionEntryEntity.setPaymentStatus(remissionEntry.getPaymentStatus());
 
 		return remissionEntryEntity;
 	}
@@ -39,8 +41,10 @@ public class RemissionEntryConverter {
 		remissionEntry.setObservations(remissionEntryEntity.getObservations());
 		remissionEntry.setConditions(remissionEntryEntity.getConditions());
 		remissionEntry.setRemissionTotal(remissionEntryEntity.getRemissionTotal());
+		remissionEntry.setBalanceDue(remissionEntryEntity.getBalanceDue());
 		remissionEntry.setIvaTotal(remissionEntryEntity.getIvaTotal());
 		remissionEntry.setStatus(remissionEntryEntity.getStatus());
+		remissionEntry.setPaymentStatus(remissionEntryEntity.getPaymentStatus());
 
 		return remissionEntry;
 	}

@@ -249,12 +249,12 @@ public class RemissionEntryPersistenceImpl implements RemissionEntryPersistenceP
 			return null;
 		}
 	}
-	
+
 	@Override
 	public boolean cancelRemissionById(Long remissionEntryId) {
 		try {
 			log.info("INIT cancelRemissionById()");
-			remissionEntryRepository.changeRemissionStatusById(false,remissionEntryId);
+			remissionEntryRepository.changeRemissionStatusById(false, remissionEntryId);
 			return true;
 		} catch (Exception e) {
 			log.severe("EXCEPTION: " + e.getMessage());
@@ -313,6 +313,16 @@ public class RemissionEntryPersistenceImpl implements RemissionEntryPersistenceP
 
 		} catch (Exception e) {
 			log.severe("EXCEPTION: " + e.getMessage());
+			throw new InternalError();
+		}
+	}
+
+	@Override
+	public Boolean updateByAccountPayable(Long remissionEntryId, Double balanceDue, String paymentStatus) {
+		try {
+			remissionEntryRepository.updateBalanceAndPaymentStatusById(balanceDue, paymentStatus, remissionEntryId);
+			return true;
+		} catch (Exception e) {
 			throw new InternalError();
 		}
 	}

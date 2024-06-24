@@ -31,5 +31,7 @@ public interface RemissionEntryPersistencePort {
 	List<RemissionEntryHistory> viewRemissionHistoryById(Long remissionEntryId);
 
 	ResponseModel generateRemissionDocument(RemissionEntryDocument remissionEntryDocument);
+	
+	Boolean updateByAccountPayable(Long remissionEntryId, Double balanceDue, String paymentStatus);
 
 }

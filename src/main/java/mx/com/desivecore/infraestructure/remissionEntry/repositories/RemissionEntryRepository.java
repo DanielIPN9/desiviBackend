@@ -23,4 +23,10 @@ public interface RemissionEntryRepository extends JpaRepository<RemissionEntryEn
 	@Query("UPDATE RemissionEntryEntity re SET re.status=:status WHERE re.remissionEntryId=:id")
 	int changeRemissionStatusById(@Param("status") boolean status, @Param("id") Long id);
 
+	@Transactional
+	@Modifying
+	@Query("UPDATE RemissionEntryEntity re SET re.balanceDue=:balanceDue, re.paymentStatus=:paymentStatus WHERE re.remissionEntryId=:remissionEntryId")
+	int updateBalanceAndPaymentStatusById(@Param("balanceDue") Double balanceDue,
+			@Param("paymentStatus") String paymentStatus, @Param("remissionEntryId") Long remissionEntryId);
+
 }

@@ -51,7 +51,12 @@ public class RemissionOutputEntity {
 	@Column(name = "remission_total", unique = false, nullable = false)
 	private Double remissionTotal;
 	
+	@Column(name = "balance_due", unique = false, nullable = false)
+	private Double balanceDue;
+	
 	@Column(name = "status", nullable = false)
 	private Boolean status;
 
+	@Column(name = "payment_status", unique = false, nullable = true, length = 100)
+	private String paymentStatus;
 }
