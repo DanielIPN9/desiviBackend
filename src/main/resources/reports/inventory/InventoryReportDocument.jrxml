@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.21.0.final using JasperReports Library version 6.21.0-4f56c4f36cd19e17675219a9ac4692d5f0f13b06  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InventoryReportDocument" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="832" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" uuid="602189ac-ddd2-4042-a218-98f14c5cd3d5">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InventoryReportDocument" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="837" leftMargin="0" rightMargin="5" topMargin="5" bottomMargin="0" isIgnorePagination="true" uuid="602189ac-ddd2-4042-a218-98f14c5cd3d5">
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
 	<style name="Table_CH" mode="Opaque" backcolor="#192CFC">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
