@@ -18,13 +18,15 @@ public interface RemissionOutputPersistencePort {
 	BigInteger getConsecutiveByCode(String code);
 
 	RemissionOutput viewRemissionById(Long remissionOutputId);
-	
+
 	boolean cancelRemissionById(Long remissionOutputId);
 
 	List<RemissionOutputSummary> searchRemissionOutputByParams(RemissionOutputSearchParams outputSearchParams);
-	
+
 	List<RemissionOutputSummary> searchByUserId(Long userId);
 
 	ResponseModel generateRemissionDocument(RemissionOutputDocument remissionOutputDocument);
+
+	Boolean updateByAccountReceivable(Long remissionOutputId, Double balanceDue, String paymentStatus);
 
 }

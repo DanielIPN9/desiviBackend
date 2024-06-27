@@ -201,7 +201,7 @@ public class RemissionOutputPersistenceImpl implements RemissionOutputPersistenc
 			return null;
 		}
 	}
-	
+
 	@Override
 	public boolean cancelRemissionById(Long remissionOutputId) {
 		try {
@@ -269,4 +269,15 @@ public class RemissionOutputPersistenceImpl implements RemissionOutputPersistenc
 		}
 	}
 
+	@Override
+	public Boolean updateByAccountReceivable(Long remissionOutputId, Double balanceDue, String paymentStatus) {
+		try {
+			log.info("INIT updateByAccountReceivable()");
+			remissionOutputRepository.updateBalanceAndPaymentStatusById(balanceDue, paymentStatus, remissionOutputId);
+			return true;
+		} catch (Exception e) {
+			log.info("EXCEPTION: " + e.getMessage());
+			return false;
+		}
+	}
 }

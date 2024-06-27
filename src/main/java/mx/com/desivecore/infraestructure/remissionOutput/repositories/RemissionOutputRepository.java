@@ -12,10 +12,16 @@ import mx.com.desivecore.infraestructure.remissionOutput.entities.RemissionOutpu
 
 @Repository
 public interface RemissionOutputRepository extends JpaRepository<RemissionOutputEntity, Long> {
-	
+
 	@Transactional
 	@Modifying
 	@Query("UPDATE RemissionOutputEntity ro SET ro.status=:status WHERE ro.remissionOutputId=:id")
 	int changeRemissionStatusById(@Param("status") boolean status, @Param("id") Long id);
+
+	@Transactional
+	@Modifying
+	@Query("UPDATE RemissionOutputEntity ro SET ro.balanceDue=:balanceDue, ro.paymentStatus=:paymentStatus WHERE ro.remissionOutputId=:remissionOutputId")
+	int updateBalanceAndPaymentStatusById(@Param("balanceDue") Double balanceDue,
+			@Param("paymentStatus") String paymentStatus, @Param("remissionOutputId") Long remissionOutputId);
 
 }

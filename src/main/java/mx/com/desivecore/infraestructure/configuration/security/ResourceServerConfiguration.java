@@ -368,6 +368,25 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				requests -> requests.antMatchers(HttpMethod.GET, "/account-payable/view-all/accounting-type")
 						.hasAuthority(PermissionEnum.ACCOUNT_PAYABLE.toString()));
 
+		// ACCESOS PARA LA GESTION DE COBRO A CLIENTES
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/account-receivable/view-month")
+				.hasAuthority(PermissionEnum.ACCOUNT_RECEIVABLE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/account-receivable/search")
+				.hasAuthority(PermissionEnum.ACCOUNT_RECEIVABLE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/account-receivable/new-record")
+				.hasAuthority(PermissionEnum.ACCOUNT_RECEIVABLE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/account-receivable/view-detail/{remissionEntryId}")
+						.hasAuthority(PermissionEnum.ACCOUNT_RECEIVABLE.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/account-receivable/view-all/client")
+				.hasAuthority(PermissionEnum.ACCOUNT_RECEIVABLE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/account-receivable/view-all/payment-state")
+						.hasAuthority(PermissionEnum.ACCOUNT_RECEIVABLE.toString()));
+		http.authorizeRequests(
+				requests -> requests.antMatchers(HttpMethod.GET, "/account-receivable/view-all/accounting-type")
+						.hasAuthority(PermissionEnum.ACCOUNT_RECEIVABLE.toString()));
+
 		/*
 		 * Se habiltan las para la obtención del token de acceso
 		 */
