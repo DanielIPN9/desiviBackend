@@ -1,7 +1,9 @@
 package mx.com.desivecore.domain.reports;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,15 +17,21 @@ import mx.com.desivecore.domain.clients.models.ClientSummary;
 import mx.com.desivecore.domain.clients.ports.ClientPersistencePort;
 import mx.com.desivecore.domain.products.models.Product;
 import mx.com.desivecore.domain.products.ports.ProductPersistencePort;
+import mx.com.desivecore.domain.reports.models.AccountPayableSummary;
+import mx.com.desivecore.domain.reports.models.AccountReceivableSummary;
+import mx.com.desivecore.domain.reports.models.EntryMovementRecordSummary;
+import mx.com.desivecore.domain.reports.models.ExitMovementRecordSummary;
 import mx.com.desivecore.domain.reports.models.InventorySearch;
 import mx.com.desivecore.domain.reports.models.ProductDetail;
 import mx.com.desivecore.domain.reports.models.RemissionEntryDetail;
 import mx.com.desivecore.domain.reports.models.RemissionEntrySearch;
 import mx.com.desivecore.domain.reports.models.RemissionOutputDetail;
 import mx.com.desivecore.domain.reports.models.RemissionOutputSearch;
+import mx.com.desivecore.domain.reports.models.document.AccountinReportDocument;
 import mx.com.desivecore.domain.reports.models.document.InventoryReportDocument;
 import mx.com.desivecore.domain.reports.models.document.RemissionEntryReportDocument;
 import mx.com.desivecore.domain.reports.models.document.RemissionOutputReportDocument;
+import mx.com.desivecore.domain.reports.models.search.AccountingReportParams;
 import mx.com.desivecore.domain.reports.models.search.InventoryParamsReport;
 import mx.com.desivecore.domain.reports.models.search.RemissionEntryParamsReport;
 import mx.com.desivecore.domain.reports.models.search.RemissionOutputParamsReport;
@@ -142,6 +150,76 @@ public class ReportServiceImpl implements ReportServicePort {
 				inventoryParamsReport.getFormat());
 
 		return response;
+	}
+
+	@Override
+	public ResponseModel generateAccountingReport(AccountingReportParams accountingReportSearchParams) {
+		String validations = reportValidator.validOperativeDataToAccountingReport(accountingReportSearchParams);
+		if (!validations.isEmpty()) {
+			log.warning("BAD PARAMS");
+			throw new ValidationError(validations);
+		}
+
+		List<Branch> branchReportList = (accountingReportSearchParams.getBranch().getBranchId() == 0)
+				? branchPersistencePort.findAllBranch()
+				: Collections.singletonList(accountingReportSearchParams.getBranch());
+
+		List<EntryMovementRecordSummary> entryCashMovementList = new ArrayList<>();
+		List<ExitMovementRecordSummary> exitCashMovementRecordList = new ArrayList<>();
+		List<AccountPayableSummary> accountPayableList = new ArrayList<>();
+		List<AccountReceivableSummary> accountReceivableList = new ArrayList<>();
+
+		for (Branch branch : branchReportList) {
+			log.info("SEACRH DATA BY BRANCH " + branch.getName());
+			accountingReportSearchParams.setBranch(branch);
+
+			entryCashMovementList.addAll(Optional
+					.ofNullable(reportPersistencePort.searchEntryCashMovementByParams(accountingReportSearchParams))
+					.orElse(new ArrayList<>()));
+
+			exitCashMovementRecordList.addAll(Optional
+					.ofNullable(reportPersistencePort.searchExitCashMovementByParams(accountingReportSearchParams))
+					.orElse(new ArrayList<>()));
+
+			accountPayableList.addAll(Optional
+					.ofNullable(reportPersistencePort.searchAccountPayableByParams(accountingReportSearchParams))
+					.orElse(new ArrayList<>()));
+
+			accountReceivableList.addAll(Optional
+					.ofNullable(reportPersistencePort.searchAccountReceivableByParams(accountingReportSearchParams))
+					.orElse(new ArrayList<>()));
+
+		}
+
+		Double etryCashAmountTotal = entryCashMovementList.stream().mapToDouble(EntryMovementRecordSummary::getAmount)
+				.sum();
+
+		Double exitCashAmountTotal = exitCashMovementRecordList.stream()
+				.mapToDouble(ExitMovementRecordSummary::getAmount).sum();
+
+		Double accountPayableAmountTotal = accountPayableList.stream().mapToDouble(AccountPayableSummary::getAmount)
+				.sum();
+
+		Double accountReceivableTotal = accountReceivableList.stream().mapToDouble(AccountReceivableSummary::getAmount)
+				.sum();
+
+		Double incomeTotal = etryCashAmountTotal + accountReceivableTotal;
+		incomeTotal = (double) Math.round(incomeTotal * 100) / 100;
+
+		Double expenseTotal = exitCashAmountTotal + accountPayableAmountTotal;
+		expenseTotal = (double) Math.round(expenseTotal * 100) / 100;
+
+		Double profitTotal = incomeTotal - expenseTotal;
+		profitTotal = (double) Math.round(profitTotal * 100) / 100;
+
+		AccountinReportDocument accountinReportDocument = new AccountinReportDocument(accountingReportSearchParams,
+				incomeTotal, expenseTotal, profitTotal, entryCashMovementList, exitCashMovementRecordList,
+				accountPayableList, accountReceivableList);
+
+		log.info(accountinReportDocument.toString());
+
+		return reportPersistencePort.generateAccountingReport(accountinReportDocument,
+				accountingReportSearchParams.getFormat());
 	}
 
 	@Override

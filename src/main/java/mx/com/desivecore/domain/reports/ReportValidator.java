@@ -1,6 +1,7 @@
 package mx.com.desivecore.domain.reports;
 
 import lombok.extern.java.Log;
+import mx.com.desivecore.domain.reports.models.search.AccountingReportParams;
 import mx.com.desivecore.domain.reports.models.search.InventoryParamsReport;
 import mx.com.desivecore.domain.reports.models.search.RemissionEntryParamsReport;
 import mx.com.desivecore.domain.reports.models.search.RemissionOutputParamsReport;
@@ -40,6 +41,24 @@ public class ReportValidator {
 
 		validations += remissionOutputParamsReport.getDateFrom() == null ? " -La fecha de inicio es obligatoria" : "";
 		validations += remissionOutputParamsReport.getDateTo() == null ? "- La fecha de fin es obligatoria" : "";
+
+		return validations;
+	}
+
+	public String validOperativeDataToAccountingReport(AccountingReportParams accountingReportParams) {
+		log.info("INIT validOperativeDataToAccountingReport()");
+		String validations = "";
+		if (accountingReportParams == null)
+			return "-Datos de búsqueda invalidos";
+
+		validations += accountingReportParams.getDateFrom() == null ? " -La fecha de inicio es obligatoria. " : "";
+		validations += accountingReportParams.getDateTo() == null ? "- La fecha de fin es obligatoria. " : "";
+
+		validations += accountingReportParams.getBranch() == null ? "-Debe ingresar una opción de sucursal. " : "";
+		validations += accountingReportParams.getBranch() != null
+				? accountingReportParams.getBranch().getBranchId() == null ? "-Debe ingresar una opción de sucursal. "
+						: ""
+				: "";
 
 		return validations;
 	}

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.java.Log;
 import mx.com.desivecore.commons.models.ResponseModel;
+import mx.com.desivecore.domain.reports.models.search.AccountingReportParams;
 import mx.com.desivecore.domain.reports.models.search.InventoryParamsReport;
 import mx.com.desivecore.domain.reports.models.search.RemissionEntryParamsReport;
 import mx.com.desivecore.domain.reports.models.search.RemissionOutputParamsReport;
@@ -57,7 +58,18 @@ public class ReportController {
 		String encodedString = Base64.getEncoder().encodeToString(reporte);
 		return new ResponseEntity<>(new ResponseModel(encodedString), HttpStatus.OK);
 	}
-	
+
+	@PostMapping("/accounting-balance")
+	public ResponseEntity<?> generateAccountingReport(
+			@RequestBody AccountingReportParams accountingReportSearchParams) {
+		log.info("INIT generateAccountingReport()");
+		log.info(String.format("PARMAS:[%s]", accountingReportSearchParams.toString()));
+		ResponseModel response = reportServicePort.generateAccountingReport(accountingReportSearchParams);
+		byte[] reporte = (byte[]) response.getData();
+		String encodedString = Base64.getEncoder().encodeToString(reporte);
+		return new ResponseEntity<>(new ResponseModel(encodedString), HttpStatus.OK);
+	}
+
 	@GetMapping("/view-all/sipplier")
 	public ResponseEntity<?> viewSupplierActiveList() {
 		log.info("INIT viewSupplierActiveList()");
@@ -78,13 +90,12 @@ public class ReportController {
 		ResponseModel response = reportServicePort.viewAllProduct();
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/view-all/client")
 	public ResponseEntity<?> viewClientActiveList() {
 		log.info("INIT viewClientActiveList()");
 		ResponseModel response = reportServicePort.viwAllClient();
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-
 
 }

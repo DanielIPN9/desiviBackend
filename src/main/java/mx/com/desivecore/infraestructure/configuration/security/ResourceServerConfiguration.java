@@ -237,6 +237,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				.hasAuthority(PermissionEnum.REMISSION_OUTPUT_REPORT.toString()));
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/report/inventory")
 				.hasAuthority(PermissionEnum.INVENTORY_REPORT.toString()));
+		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/report/accounting-balance")
+				.hasAuthority(PermissionEnum.GLOBAL_BALANCE_REPORT.toString()));
 
 		// ACCESOS PARA LA GESTION DE COTIZACIONES
 		http.authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/quote/create")
