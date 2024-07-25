@@ -45,6 +45,7 @@ public class ReportPersistenceImpl implements ReportPersistencePort {
 
 	private static final String XLS_FORMAT = "XSL";
 	private static final String PDF_FORMAT = "PDF";
+	private static final String ACCOUNTING_INVENTORY_TEMPLATE = "/reports/inventory/AccountingInventoryReportDocument.jasper";
 	private static final String INVENTORY_TEMPLATE = "/reports/inventory/InventoryReportDocument.jasper";
 	private static final String REMISSION_ENTRY_TEMPLATE = "/reports/remissionEntry/RemissionEntryReportDocument.jasper";
 	private static final String REMISSION_OUTPUT_TEMPLATE = "/reports/remissionOutput/RemissionOutputReportDocument.jasper";
@@ -139,6 +140,49 @@ public class ReportPersistenceImpl implements ReportPersistencePort {
 		try {
 			log.info("INIT searchAccountReceivableByParams()");
 			return accountingDSLReportRepository.searchAccountReceivableByParams(accountingReportParams);
+		} catch (Exception e) {
+			log.severe("EXCEPTION: " + e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public ResponseModel generateAccountingInventoryReport(InventoryReportDocument inventoryReportDocument,
+			String format) {
+		try {
+			log.info("INIT generateAccountingInventoryReport()");
+
+			log.info(String.format("LOAD REPORT "));
+			InputStream file = this.getClass().getResourceAsStream(ACCOUNTING_INVENTORY_TEMPLATE);
+
+			InputStream logoImage = this.getClass().getResourceAsStream(LOGO_REPORT);
+			inventoryReportDocument.setLogo(logoImage);
+
+			Collection<InventoryReportDocument> collection = Collections.singletonList(inventoryReportDocument);
+
+			JasperPrint jasperPrint = JasperFillManager.fillReport(file, null,
+					new JRBeanCollectionDataSource(collection));
+
+			byte[] remissionEntryReport = null;
+
+			if (format.equalsIgnoreCase(PDF_FORMAT)) {
+				remissionEntryReport = JasperExportManager.exportReportToPdf(jasperPrint);
+			} else if (format.equalsIgnoreCase(XLS_FORMAT)) {
+				ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+				SimpleOutputStreamExporterOutput output = new SimpleOutputStreamExporterOutput(byteArray);
+				JRXlsExporter exporter = new JRXlsExporter();
+				exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+				exporter.setExporterOutput(output);
+				exporter.exportReport();
+				output.close();
+				remissionEntryReport = byteArray.toByteArray();
+
+			} else {
+				throw new ValidationError("Formato inválido");
+			}
+
+			log.info(String.format("RETURN DATA "));
+			return new ResponseModel(remissionEntryReport);
 		} catch (Exception e) {
 			log.severe("EXCEPTION: " + e.getMessage());
 			return null;
@@ -275,8 +319,7 @@ public class ReportPersistenceImpl implements ReportPersistencePort {
 	}
 
 	@Override
-	public ResponseModel generateAccountingReport(AccountinReportDocument accountinReportDocument,
-			String format) {
+	public ResponseModel generateAccountingReport(AccountinReportDocument accountinReportDocument, String format) {
 		try {
 			log.info("INIT generateRemissionOutputReport()");
 

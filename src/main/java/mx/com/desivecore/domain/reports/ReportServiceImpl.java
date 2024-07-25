@@ -110,6 +110,49 @@ public class ReportServiceImpl implements ReportServicePort {
 	}
 
 	@Override
+	public ResponseModel generateAccountingInventoryReport(InventoryParamsReport inventoryParamsReport) {
+		String validations = reportValidator.validOperativeDataToInventoryReport(inventoryParamsReport);
+		if (!validations.isEmpty()) {
+			log.warning("BAD PARAMS");
+			throw new ValidationError(validations);
+		}
+		List<Long> branchIdList = new ArrayList<>();
+		List<Branch> branchList = branchPersistencePort.findAllBranch();
+		if (inventoryParamsReport.getBarnch().getBranchId() == 0) {
+			for (Branch branch : branchList) {
+				branchIdList.add(branch.getBranchId());
+			}
+		}
+		branchIdList.add(inventoryParamsReport.getBarnch().getBranchId());
+
+		List<InventorySearch> inventorySearchList = new ArrayList<>();
+		for (Long branchId : branchIdList) {
+			String barnchName = "";
+			for (Branch branch : branchList) {
+				if (branch.getBranchId() == branchId)
+					barnchName = branch.getName();
+			}
+
+			List<ProductDetail> productDetailList = reportPersistencePort.searchInventoryDataByParams(branchId);
+			InventorySearch inventorySearch = new InventorySearch(barnchName, productDetailList);
+			inventorySearchList.add(inventorySearch);
+		}
+
+		List<ProductDetail> productDetailList = new ArrayList<>();
+
+		for (InventorySearch inventorySearch : inventorySearchList) {
+			productDetailList.addAll(inventorySearch.getProductDetail());
+		}
+
+		InventoryReportDocument inventoryReportDocument = new InventoryReportDocument(productDetailList);
+		log.info(inventoryReportDocument.toString());
+		ResponseModel response = reportPersistencePort.generateAccountingInventoryReport(inventoryReportDocument,
+				inventoryParamsReport.getFormat());
+
+		return response;
+	}
+	
+	@Override
 	public ResponseModel generateInventoryReport(InventoryParamsReport inventoryParamsReport) {
 		String validations = reportValidator.validOperativeDataToInventoryReport(inventoryParamsReport);
 		if (!validations.isEmpty()) {

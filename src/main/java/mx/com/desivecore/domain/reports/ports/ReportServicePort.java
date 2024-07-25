@@ -12,6 +12,8 @@ public interface ReportServicePort {
 
 	ResponseModel generateRemissionOutputReport(RemissionOutputParamsReport remissionOutputParamsReport);
 
+	ResponseModel generateAccountingInventoryReport(InventoryParamsReport inventoryParamsReport);
+	
 	ResponseModel generateInventoryReport(InventoryParamsReport inventoryParamsReport);
 
 	ResponseModel generateAccountingReport(AccountingReportParams accountingReportSearchParams);

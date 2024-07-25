@@ -35,6 +35,8 @@ public interface ReportPersistencePort {
 
 	List<AccountReceivableSummary> searchAccountReceivableByParams(AccountingReportParams accountingReportParams);
 
+	ResponseModel generateAccountingInventoryReport(InventoryReportDocument inventoryReportDocument, String format);
+	
 	ResponseModel generateInventoryReport(InventoryReportDocument inventoryReportDocument, String format);
 
 	ResponseModel generateRemissionEntryReport(RemissionEntryReportDocument remissionEntryReportDocument,

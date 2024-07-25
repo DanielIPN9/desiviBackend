@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.java.Log;
+import mx.com.desivecore.commons.constants.PaymentStateEnum;
 import mx.com.desivecore.commons.models.ResponseModel;
 import mx.com.desivecore.commons.utils.StringUtil;
 import mx.com.desivecore.domain.branches.models.Branch;
@@ -115,6 +116,10 @@ public class RemissionOutputServiceImpl implements RemissionOutputServicePort {
 
 		if (!remissionOutput.isStatus())
 			throw new ValidationError("La orden ha sido cancelada");
+
+		if (remissionOutput.getPaymentStatus().equalsIgnoreCase(PaymentStateEnum.FULL_PAYMENT.toString())
+				|| remissionOutput.getPaymentStatus().equalsIgnoreCase(PaymentStateEnum.PARTIAL_PAYMENT.toString()))
+			throw new ValidationError("La orden tiene un registro de pago.");
 
 		List<ProductAvailability> availabilityPlusList = new ArrayList<>();
 		for (ProductOutput productOutput : remissionOutput.getProducts()) {
